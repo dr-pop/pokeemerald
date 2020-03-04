@@ -89,7 +89,12 @@
         {
             "direction": "up",
             "map": "MAP_OLDALE_TOWN",
-            "offset": -6
+            "offset": 0
+        },
+        {
+            "direction": "left",
+            "map": "MAP_ROUTE102",
+            "offset": -25
         }
     ],
     "coord_events": [

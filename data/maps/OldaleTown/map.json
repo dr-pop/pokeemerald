@@ -59,7 +59,7 @@
         {
             "direction": "down",
             "map": "MAP_ROUTE104",
-            "offset": 6
+            "offset": 0
         }
     ],
     "coord_events": [

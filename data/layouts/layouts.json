@@ -198,7 +198,7 @@
             "name": "Route104_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Fortree",
-            "width": 55
+            "width": 60
         },
         {
             "blockdata_filepath": "data/layouts/Route105/map.bin",
