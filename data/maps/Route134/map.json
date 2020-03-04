@@ -7,11 +7,6 @@
     ],
     "connections": [
         {
-            "direction": "left",
-            "map": "MAP_SLATEPORT_CITY",
-            "offset": 0
-        },
-        {
             "direction": "right",
             "map": "MAP_ROUTE133",
             "offset": 0

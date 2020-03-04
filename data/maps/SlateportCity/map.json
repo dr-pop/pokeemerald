@@ -112,13 +112,8 @@
     "connections": [
         {
             "direction": "right",
-            "map": "MAP_ROUTE134",
-            "offset": 0
-        },
-        {
-            "direction": "right",
             "map": "MAP_ROUTE102",
-            "offset": 5
+            "offset": 0
         },
         {
             "direction": "left",

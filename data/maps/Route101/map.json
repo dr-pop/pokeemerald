@@ -17,7 +17,7 @@
         {
             "direction": "down",
             "map": "MAP_OLDALE_TOWN",
-            "offset": 0
+            "offset": -5
         }
     ],
     "coord_events": [
