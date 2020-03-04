@@ -9,8 +9,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route101_EventScript_RouteSign",
             "type": "sign",
-            "x": 5,
-            "y": 9
+            "x": 13,
+            "y": 8
         }
     ],
     "connections": [
@@ -27,8 +27,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "1",
-            "x": 10,
-            "y": 19
+            "x": 9,
+            "y": 20
         },
         {
             "elevation": 3,
@@ -36,7 +36,16 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "1",
-            "x": 11,
+            "x": 10,
+            "y": 20
+        },
+        {
+            "elevation": 3,
+            "script": "Route101_EventScript_PreventExitSouth",
+            "type": "trigger",
+            "var": "VAR_ROUTE101_STATE",
+            "var_value": "2",
+            "x": 9,
             "y": 19
         },
         {
@@ -46,16 +55,7 @@
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
             "x": 10,
-            "y": 18
-        },
-        {
-            "elevation": 3,
-            "script": "Route101_EventScript_PreventExitSouth",
-            "type": "trigger",
-            "var": "VAR_ROUTE101_STATE",
-            "var_value": "2",
-            "x": 11,
-            "y": 18
+            "y": 19
         },
         {
             "elevation": 3,
@@ -119,8 +119,8 @@
             "script": "Route101_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 16,
-            "y": 8
+            "x": 18,
+            "y": 21
         },
         {
             "elevation": 0,
@@ -132,8 +132,8 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 9,
-            "y": 13
+            "x": 10,
+            "y": 8
         },
         {
             "elevation": 3,
@@ -145,8 +145,8 @@
             "script": "Route101_EventScript_BirchsBag",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 7,
-            "y": 14
+            "x": 12,
+            "y": 9
         },
         {
             "elevation": 0,
@@ -158,8 +158,8 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 13
+            "x": 11,
+            "y": 8
         },
         {
             "elevation": 3,
@@ -171,8 +171,8 @@
             "script": "ProfBirch_EventScript_RatePokedexOrRegister",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 11
+            "x": 8,
+            "y": 9
         },
         {
             "elevation": 3,
@@ -184,8 +184,8 @@
             "script": "Route101_EventScript_Boy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 2,
-            "y": 13
+            "x": 13,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_101",
