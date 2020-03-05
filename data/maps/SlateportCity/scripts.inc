@@ -717,9 +717,42 @@ SlateportCity_EventScript_Gabby:: @ 81DD35C
 	msgbox SlateportCity_Text_MostInvaluableExperience, MSGBOX_SIGN
 	end
 
-SlateportCity_EventScript_Man3:: @ 81DD365
-	msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
+@ avara tutorial, for debugging
+
+Script_GivePokemonDemo::
+	lock
+	faceplayer
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	msgbox Text_TakeCharizard, MSGBOX_DEFAULT
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_eq Script_PlayerHasFullParty
+	givemon SPECIES_CHARIZARD, 50, ITEM_DRAGON_FANG
+	playfanfare MUS_FANFA4
+	msgbox Text_ReceivedCharizard, MSGBOX_DEFAULT
+	waitfanfare
+	release
 	end
+
+Script_PlayerHasFullParty::
+	msgbox Text_PlayerHasFullParty, MSGBOX_DEFAULT
+	release
+	end
+
+Text_TakeCharizard:
+	.string "Please, take this Charizard.$"
+
+Text_ReceivedCharizard:
+	.string "{PLAYER} received a Charizard!$"
+
+Text_PlayerHasFullParty:
+	.string "Ah, your party is full.$"
+
+@ SlateportCity_EventScript_Man3:: @ 81DD365
+@	msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
+@	end
+
+@ end of avara tutorial, debugging script
 
 SlateportCity_EventScript_BerryPowderClerk:: @ 81DD36E
 	lock
