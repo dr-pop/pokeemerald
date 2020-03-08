@@ -18,7 +18,7 @@
             "name": "SlateportCity_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Rustboro",
-            "width": 54
+            "width": 60
         },
         {
             "blockdata_filepath": "data/layouts/MauvilleCity/map.bin",
