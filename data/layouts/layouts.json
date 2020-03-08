@@ -103,7 +103,7 @@
         {
             "blockdata_filepath": "data/layouts/OldaleTown/map.bin",
             "border_filepath": "data/layouts/OldaleTown/border.bin",
-            "height": 25,
+            "height": 27,
             "id": "LAYOUT_OLDALE_TOWN",
             "name": "OldaleTown_Layout",
             "primary_tileset": "gTileset_General",
