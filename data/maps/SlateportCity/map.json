@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_NameRatersHouseSign",
             "type": "sign",
-            "x": 11,
+            "x": 13,
             "y": 21
         },
         {
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "Common_EventScript_ShowPokemonCenterSign",
             "type": "sign",
-            "x": 13,
+            "x": 15,
             "y": 25
         },
         {
@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "Common_EventScript_ShowPokemonCenterSign",
             "type": "sign",
-            "x": 14,
+            "x": 16,
             "y": 25
         },
         {
@@ -57,23 +57,23 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_MarketSign",
             "type": "sign",
-            "x": 14,
-            "y": 51
+            "x": 16,
+            "y": 47
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_OceanicMuseumSign",
             "type": "sign",
-            "x": 26,
-            "y": 23
+            "x": 29,
+            "y": 24
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_CitySign",
             "type": "sign",
-            "x": 16,
+            "x": 18,
             "y": 23
         },
         {
@@ -81,7 +81,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_PokemonFanClubSign",
             "type": "sign",
-            "x": 11,
+            "x": 13,
             "y": 24
         },
         {
@@ -89,7 +89,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_BattleTentSign",
             "type": "sign",
-            "x": 7,
+            "x": 8,
             "y": 13
         },
         {
@@ -148,7 +148,7 @@
             "script": "SlateportCity_EventScript_FatMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 37,
+            "x": 39,
             "y": 16
         },
         {
@@ -161,7 +161,7 @@
             "script": "SlateportCity_EventScript_Man1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 34,
+            "x": 36,
             "y": 31
         },
         {
@@ -174,7 +174,7 @@
             "script": "SlateportCity_EventScript_RichBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
+            "x": 10,
             "y": 16
         },
         {
@@ -187,7 +187,7 @@
             "script": "SlateportCity_EventScript_Woman1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 19,
+            "x": 21,
             "y": 28
         },
         {
@@ -213,7 +213,7 @@
             "script": "SlateportCity_EventScript_Cook",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 41,
+            "x": 43,
             "y": 16
         },
         {
@@ -226,7 +226,7 @@
             "script": "SlateportCity_EventScript_OldWoman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 12,
+            "x": 14,
             "y": 32
         },
         {
@@ -239,7 +239,7 @@
             "script": "SlateportCity_EventScript_Girl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 29,
+            "x": 31,
             "y": 18
         },
         {
@@ -252,7 +252,7 @@
             "script": "SlateportCity_EventScript_Ty",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 14,
+            "x": 16,
             "y": 15
         },
         {
@@ -265,7 +265,7 @@
             "script": "SlateportCity_EventScript_Gabby",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 13,
+            "x": 15,
             "y": 16
         },
         {
@@ -278,7 +278,7 @@
             "script": "SlateportCity_EventScript_CaptStern",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 13,
+            "x": 15,
             "y": 15
         },
         {
@@ -291,7 +291,7 @@
             "script": "SlateportCity_EventScript_Sailor1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 44,
+            "x": 46,
             "y": 42
         },
         {
@@ -304,7 +304,7 @@
             "script": "SlateportCity_EventScript_Sailor2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 44,
+            "x": 46,
             "y": 27
         },
         {
@@ -317,7 +317,7 @@
             "script": "SlateportCity_EventScript_PokefanF",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
+            "x": 47,
             "y": 18
         },
         {
@@ -343,7 +343,7 @@
             "script": "SlateportCity_EventScript_Maniac",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
+            "x": 10,
             "y": 24
         },
         {
@@ -369,7 +369,7 @@
             "script": "SlateportCity_EventScript_DecorClerk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 41,
+            "x": 43,
             "y": 14
         },
         {
@@ -395,7 +395,7 @@
             "script": "Script_GivePokemonDemo",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 36,
+            "x": 38,
             "y": 43
         },
         {
@@ -408,7 +408,7 @@
             "script": "SlateportCity_EventScript_EffortRibbonWoman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
+            "x": 47,
             "y": 20
         },
         {
@@ -421,7 +421,7 @@
             "script": "SlateportCity_EventScript_PowerTMClerk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
+            "x": 47,
             "y": 15
         },
         {
@@ -434,7 +434,7 @@
             "script": "SlateportCity_EventScript_EnergyGuru",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 47,
+            "x": 49,
             "y": 15
         },
         {
@@ -447,7 +447,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 21,
+            "x": 23,
             "y": 15
         }
     ],
@@ -459,14 +459,14 @@
             "dest_map": "MAP_SLATEPORT_CITY_POKEMON_CENTER_1F",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 28,
+            "x": 30,
             "y": 14
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_MART",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 13,
+            "x": 15,
             "y": 23
         },
         {
@@ -480,56 +480,56 @@
             "dest_map": "MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 8,
-            "y": 13
+            "x": 9,
+            "y": 14
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_POKEMON_FAN_CLUB",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 33,
+            "x": 35,
             "y": 14
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 30,
-            "y": 23
+            "x": 32,
+            "y": 24
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_NAME_RATERS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 19,
-            "y": 11
+            "x": 21,
+            "y": 12
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
             "dest_warp_id": 1,
             "elevation": 0,
-            "x": 35,
+            "x": 37,
             "y": 24
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 24,
+            "x": 25,
             "y": 8
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
             "dest_warp_id": 2,
             "elevation": 0,
-            "x": 43,
+            "x": 45,
             "y": 9
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 37,
+            "x": 38,
             "y": 14
         }
     ],
