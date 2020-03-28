@@ -9,16 +9,16 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
             "type": "sign",
-            "x": 5,
-            "y": 2
+            "x": 11,
+            "y": 6
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
             "type": "sign",
-            "x": 4,
-            "y": 2
+            "x": 1,
+            "y": 8
         },
         {
             "elevation": 0,
@@ -26,23 +26,23 @@
             "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
             "type": "sign",
             "x": 6,
-            "y": 2
+            "y": 1
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
             "type": "sign",
-            "x": 7,
-            "y": 2
+            "x": 5,
+            "y": 1
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "RustboroCity_PokemonSchool_EventScript_StudentNotebook",
             "type": "sign",
-            "x": 3,
-            "y": 5
+            "x": 1,
+            "y": 4
         }
     ],
     "connections": null,
@@ -64,7 +64,7 @@
             "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
+            "x": 7,
             "y": 6
         },
         {
@@ -77,7 +77,7 @@
             "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 9,
+            "x": 8,
             "y": 6
         },
         {
@@ -90,8 +90,8 @@
             "script": "RustboroCity_PokemonSchool_EventScript_RichBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 8
+            "x": 1,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -103,8 +103,8 @@
             "script": "RustboroCity_PokemonSchool_EventScript_Lass",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 8
+            "x": 11,
+            "y": 7
         },
         {
             "elevation": 3,
@@ -129,8 +129,8 @@
             "script": "RustboroCity_PokemonSchool_EventScript_Teacher",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 3
+            "x": 2,
+            "y": 2
         },
         {
             "elevation": 0,
@@ -142,8 +142,8 @@
             "script": "RustboroCity_PokemonSchool_EventScript_Scott",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 0,
-            "y": 10
+            "x": 5,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",
@@ -154,8 +154,8 @@
             "dest_map": "MAP_RUSTBORO_CITY",
             "dest_warp_id": 4,
             "elevation": 0,
-            "x": 5,
-            "y": 10
+            "x": 8,
+            "y": 0
         },
         {
             "dest_map": "MAP_RUSTBORO_CITY",
