@@ -24,8 +24,8 @@
             "script": "VerdanturfTown_WandasHouse_EventScript_Wally",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 14,
-            "y": 5
+            "x": 6,
+            "y": 3
         },
         {
             "elevation": 3,
@@ -37,8 +37,8 @@
             "script": "VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 4
+            "x": 3,
+            "y": 8
         },
         {
             "elevation": 3,
@@ -50,8 +50,8 @@
             "script": "VerdanturfTown_WandasHouse_EventScript_WallysUncle",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 7,
-            "y": 2
+            "x": 4,
+            "y": 8
         },
         {
             "elevation": 3,
@@ -63,8 +63,8 @@
             "script": "VerdanturfTown_WandasHouse_EventScript_WallysAunt",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 2,
-            "y": 4
+            "x": 0,
+            "y": 8
         },
         {
             "elevation": 3,
@@ -76,8 +76,8 @@
             "script": "VerdanturfTown_WandasHouse_EventScript_Wanda",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 5
+            "x": 2,
+            "y": 8
         }
     ],
     "region_map_section": "MAPSEC_VERDANTURF_TOWN",
