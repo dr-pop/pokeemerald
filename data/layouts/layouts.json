@@ -193,7 +193,7 @@
         {
             "blockdata_filepath": "data/layouts/Route104/map.bin",
             "border_filepath": "data/layouts/Route104/border.bin",
-            "height": 60,
+            "height": 70,
             "id": "LAYOUT_ROUTE104",
             "name": "Route104_Layout",
             "primary_tileset": "gTileset_General",
@@ -1013,12 +1013,12 @@
         {
             "blockdata_filepath": "data/layouts/Route104_MrBrineysHouse/map.bin",
             "border_filepath": "data/layouts/Route104_MrBrineysHouse/border.bin",
-            "height": 9,
+            "height": 15,
             "id": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
             "name": "Route104_MrBrineysHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 11
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_LilycoveMuseum_1F/map.bin",
@@ -1063,12 +1063,12 @@
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_PokemonTrainerFanClub/map.bin",
             "border_filepath": "data/layouts/LilycoveCity_PokemonTrainerFanClub/border.bin",
-            "height": 14,
+            "height": 15,
             "id": "LAYOUT_LILYCOVE_CITY_POKEMON_TRAINER_FAN_CLUB",
             "name": "LilycoveCity_PokemonTrainerFanClub_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/MossdeepCity_Gym/map.bin",
@@ -1183,12 +1183,12 @@
         {
             "blockdata_filepath": "data/layouts/Route114_FossilManiacsHouse/map.bin",
             "border_filepath": "data/layouts/Route114_FossilManiacsHouse/border.bin",
-            "height": 8,
+            "height": 15,
             "id": "LAYOUT_ROUTE114_FOSSIL_MANIACS_HOUSE",
             "name": "Route114_FossilManiacsHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route114_FossilManiacsTunnel/map.bin",
@@ -1203,22 +1203,22 @@
         {
             "blockdata_filepath": "data/layouts/Route114_LanettesHouse/map.bin",
             "border_filepath": "data/layouts/Route114_LanettesHouse/border.bin",
-            "height": 8,
+            "height": 15,
             "id": "LAYOUT_ROUTE114_LANETTES_HOUSE",
             "name": "Route114_LanettesHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_Lab",
-            "width": 11
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route116_TunnelersRestHouse/map.bin",
             "border_filepath": "data/layouts/Route116_TunnelersRestHouse/border.bin",
-            "height": 9,
+            "height": 15,
             "id": "LAYOUT_ROUTE116_TUNNELERS_REST_HOUSE",
             "name": "Route116_TunnelersRestHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route117_PokemonDayCare/map.bin",
@@ -1347,8 +1347,8 @@
             "id": "LAYOUT_PETALBURG_WOODS",
             "name": "PetalburgWoods_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Rustboro",
-            "width": 48
+            "secondary_tileset": "gTileset_Fortree",
+            "width": 60
         },
         {
             "blockdata_filepath": "data/layouts/MtChimney/map.bin",
