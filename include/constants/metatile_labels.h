@@ -108,8 +108,9 @@
 #define METATILE_BrendansMaysHouse_MovingBox_Open    0x270
 
 // gTileset_Building
-#define METATILE_Building_PC_Off  0x004
-#define METATILE_Building_PC_On   0x005
+#define METATILE_Building_PC_Off       0x004
+#define METATILE_Building_PC_On        0x005
+#define METATILE_Building_PopDoorInt1  0x006
 
 // gTileset_Cave
 #define METATILE_Cave_EntranceCover                      0x229
@@ -202,7 +203,7 @@
 #define METATILE_General_CalmWater             0x170
 #define METATILE_General_CaveEntrance_Bottom   0x0A7
 #define METATILE_General_CaveEntrance_Top      0x09F
-#define METATILE_General_Door                  0x021
+#define METATILE_General_Door                  0x023
 #define METATILE_General_Door_Contest          0x1DB
 #define METATILE_General_Door_Gym              0x1CD
 #define METATILE_General_Door_PokeCenter       0x061
@@ -216,6 +217,9 @@
 #define METATILE_General_MuddySlope_Frame1     0x0E9
 #define METATILE_General_MuddySlope_Frame2     0x0EA
 #define METATILE_General_MuddySlope_Frame3     0x0EB
+#define METATILE_General_PopDoor1              0x021
+#define METATILE_General_PopDoor2              0x022
+#define METATILE_General_PopSliding            0x020
 #define METATILE_General_RedCaveIndent         0x1A0
 #define METATILE_General_RedCaveOpen           0x1A1
 #define METATILE_General_ReflectiveWater       0x0A1
@@ -420,6 +424,10 @@
 #define METATILE_PokemonCenter_Floor_Plain_Alt          0x2E4
 #define METATILE_PokemonCenter_Floor_ShadowTop          0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt      0x2DC
+
+// gTileset_
+#define METATILE_PopDoor1  0x020
+#define METATILE_PopDoor2  0x022
 
 // gTileset_RS
 #define METATILE_RS_MossdeepGym_RedArrow_Down   0x205

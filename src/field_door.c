@@ -133,6 +133,14 @@ static const u8 sDoorAnimTiles_TrainerHillLobbyElevator[] = INCBIN_U8("graphics/
 static const u16 sDoorNullPalette48[16] = {};
 static const u8 sDoorAnimTiles_TrainerHillRoofElevator[] = INCBIN_U8("graphics/door_anims/trainer_hill_roof_elevator.4bpp");
 static const u16 sDoorNullPalette49[16] = {};
+static const u8 sDoorAnimTiles_PopDoor1[] = INCBIN_U8("graphics/door_anims/pop_door1.4bpp"); //custom
+static const u16 sDoorNullPalette50[16] = {}; //custom
+static const u8 sDoorAnimTiles_PopDoor2[] = INCBIN_U8("graphics/door_anims/pop_door2.4bpp"); //custom
+static const u16 sDoorNullPalette51[16] = {}; //custom
+static const u8 sDoorAnimTiles_PopSliding[] = INCBIN_U8("graphics/door_anims/pop_sliding.4bpp"); //custom
+static const u16 sDoorNullPalette52[16] = {}; //custom
+static const u8 sDoorAnimTiles_PopDoorInt1[] = INCBIN_U8("graphics/door_anims/pop_doorint1.4bpp"); //custom
+static const u16 sDoorNullPalette53[16] = {}; //custom
 
 static const struct DoorAnimFrame sDoorOpenAnimFrames[] =
 {
@@ -221,6 +229,10 @@ static const u8 sDoorAnimPalettes_BattleDomePreBattleRoom[] = {9, 9, 7, 7, 7, 7,
 static const u8 sDoorAnimPalettes_BattleTentInterior[] = {9, 9, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_TrainerHillLobbyElevator[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_TrainerHillRoofElevator[] = {9, 9, 7, 7, 7, 7, 7, 7};
+static const u8 sDoorAnimPalettes_PopDoor1[] = {6, 6, 6, 6, 6, 6, 6, 6}; //custom
+static const u8 sDoorAnimPalettes_PopDoor2[] = {5, 5, 5, 5, 5, 5, 5, 5}; //custom
+static const u8 sDoorAnimPalettes_PopSliding[] = {0, 0, 0, 0, 0, 0, 0, 0}; //custom
+static const u8 sDoorAnimPalettes_PopDoorInt1[] = {3, 3, 3, 3, 3, 3, 3, 3}; //custom
 
 static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 {
@@ -277,6 +289,10 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_BattleTent_Door,                              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTentInterior, sDoorAnimPalettes_BattleTentInterior},
     {METATILE_TrainerHill_Door_Elevator_Lobby,              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerHillLobbyElevator, sDoorAnimPalettes_TrainerHillLobbyElevator},
     {METATILE_TrainerHill_Door_Elevator_Roof,               DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerHillRoofElevator, sDoorAnimPalettes_TrainerHillRoofElevator},
+	{METATILE_General_PopDoor1,               				DOOR_SOUND_NORMAL, 	1, sDoorAnimTiles_PopDoor1, sDoorAnimPalettes_PopDoor1}, //custom
+	{METATILE_General_PopDoor2,               				DOOR_SOUND_NORMAL, 	1, sDoorAnimTiles_PopDoor2, sDoorAnimPalettes_PopDoor2}, //custom
+	{METATILE_General_PopSliding,               			DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_PopSliding, sDoorAnimPalettes_PopSliding}, //custom
+	{METATILE_Building_PopDoorInt1,               			DOOR_SOUND_NORMAL,	1, sDoorAnimTiles_PopDoorInt1, sDoorAnimPalettes_PopDoorInt1}, //custom
     {},
 };
 
@@ -323,7 +339,7 @@ static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, u32 x, u32 
     else
     {
         door_build_blockdef(&arr[0], 0x3F8, pal);
-        DrawDoorMetatileAt(x, y - 1, &arr[0]);
+        //DrawDoorMetatileAt(x, y - 1, &arr[0]); //customly commented out
         door_build_blockdef(&arr[0], 0x3FC, pal + 4);
         DrawDoorMetatileAt(x, y, &arr[0]);
     }
