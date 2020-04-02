@@ -9,8 +9,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_NameRatersHouseSign",
             "type": "sign",
-            "x": 13,
-            "y": 21
+            "x": 42,
+            "y": 25
         },
         {
             "elevation": 0,
@@ -33,7 +33,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
-            "x": 26,
+            "x": 28,
             "y": 15
         },
         {
@@ -41,15 +41,15 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_HarborSign",
             "type": "sign",
-            "x": 24,
-            "y": 9
+            "x": 18,
+            "y": 13
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
-            "x": 27,
+            "x": 29,
             "y": 15
         },
         {
@@ -65,8 +65,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_OceanicMuseumSign",
             "type": "sign",
-            "x": 29,
-            "y": 24
+            "x": 43,
+            "y": 11
         },
         {
             "elevation": 0,
@@ -81,16 +81,16 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_PokemonFanClubSign",
             "type": "sign",
-            "x": 13,
-            "y": 24
+            "x": 23,
+            "y": 25
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "SlateportCity_EventScript_BattleTentSign",
             "type": "sign",
-            "x": 8,
-            "y": 13
+            "x": 6,
+            "y": 15
         },
         {
             "elevation": 0,
@@ -383,7 +383,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 41,
-            "y": 20
+            "y": 19
         },
         {
             "elevation": 3,
@@ -459,15 +459,15 @@
             "dest_map": "MAP_SLATEPORT_CITY_POKEMON_CENTER_1F",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 30,
-            "y": 14
+            "x": 17,
+            "y": 25
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_MART",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 15,
-            "y": 23
+            "x": 30,
+            "y": 15
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_STERNS_SHIPYARD_1F",
@@ -477,39 +477,39 @@
             "y": 38
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY",
+            "dest_map": "MAP_RUSTBORO_CITY_POKEMON_SCHOOL",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 9,
-            "y": 14
+            "y": 15
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_POKEMON_FAN_CLUB",
+            "dest_map": "MAP_RUSTBORO_CITY_FLAT2_1F",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 35,
-            "y": 14
+            "y": 15
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
+            "dest_map": "MAP_LILYCOVE_CITY_COVE_LILY_MOTEL_1F",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 32,
-            "y": 24
+            "y": 25
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_NAME_RATERS_HOUSE",
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 21,
-            "y": 12
+            "y": 13
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
-            "dest_warp_id": 1,
+            "dest_map": "MAP_RUSTBORO_CITY_FLAT1_1F",
+            "dest_warp_id": 0,
             "elevation": 0,
             "x": 37,
-            "y": 24
+            "y": 25
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
@@ -519,18 +519,18 @@
             "y": 8
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
-            "dest_warp_id": 2,
+            "dest_map": "MAP_RUSTBORO_CITY_CUTTERS_HOUSE",
+            "dest_warp_id": 0,
             "elevation": 0,
             "x": 45,
-            "y": 9
+            "y": 10
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 38,
-            "y": 14
+            "y": 12
         }
     ],
     "weather": "WEATHER_SUNNY"

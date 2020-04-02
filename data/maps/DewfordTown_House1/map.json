@@ -20,12 +20,12 @@
             "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "DewfordTown_House1_EventScript_Woman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
-            "y": 3
+            "x": 5,
+            "y": 2
         },
         {
             "elevation": 3,
@@ -37,8 +37,8 @@
             "script": "DewfordTown_House1_EventScript_Man",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 3
+            "x": 0,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -50,8 +50,8 @@
             "script": "DewfordTown_House1_EventScript_Zigzagoon",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 4,
-            "y": 2
+            "x": 7,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_DEWFORD_TOWN",
@@ -59,18 +59,18 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_DEWFORD_TOWN",
-            "dest_warp_id": 3,
+            "dest_map": "MAP_OLDALE_TOWN",
+            "dest_warp_id": 2,
             "elevation": 0,
-            "x": 3,
+            "x": 5,
             "y": 7
         },
         {
             "dest_map": "MAP_DEWFORD_TOWN",
             "dest_warp_id": 3,
             "elevation": 0,
-            "x": 4,
-            "y": 7
+            "x": 9,
+            "y": 9
         }
     ],
     "weather": "WEATHER_NONE"

@@ -37,8 +37,8 @@
             "script": "RustboroCity_DevonCorp_2F_EventScript_BallScientist",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 13,
-            "y": 15
+            "x": 6,
+            "y": 27
         },
         {
             "elevation": 3,
@@ -51,7 +51,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 3,
-            "y": 13
+            "y": 9
         },
         {
             "elevation": 3,
@@ -76,8 +76,8 @@
             "script": "RustboroCity_DevonCorp_2F_EventScript_FossilScientist",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 14,
-            "y": 13
+            "x": 11,
+            "y": 10
         },
         {
             "elevation": 3,
@@ -89,8 +89,8 @@
             "script": "RustboroCity_DevonCorp_2F_EventScript_MatchCallScientist",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 14
+            "x": 4,
+            "y": 23
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",
@@ -98,18 +98,25 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
-            "dest_warp_id": 2,
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_2F",
+            "dest_warp_id": 1,
             "elevation": 0,
             "x": 8,
             "y": 11
         },
         {
-            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_3F",
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_2F",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 8,
             "y": 21
+        },
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
+            "dest_warp_id": 2,
+            "elevation": 0,
+            "x": 1,
+            "y": 25
         }
     ],
     "weather": "WEATHER_NONE"

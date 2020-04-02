@@ -72,18 +72,18 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_RUSTBORO_CITY",
-            "dest_warp_id": 2,
+            "dest_map": "MAP_SLATEPORT_CITY",
+            "dest_warp_id": 1,
             "elevation": 0,
-            "x": 3,
+            "x": 4,
             "y": 7
         },
         {
             "dest_map": "MAP_RUSTBORO_CITY",
             "dest_warp_id": 2,
             "elevation": 0,
-            "x": 4,
-            "y": 7
+            "x": 7,
+            "y": 9
         }
     ],
     "weather": "WEATHER_NONE"

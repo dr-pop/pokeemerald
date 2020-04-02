@@ -46,18 +46,18 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_RUSTBORO_CITY",
-            "dest_warp_id": 7,
+            "dest_map": "MAP_RUSTBORO_CITY_POKEMON_SCHOOL",
+            "dest_warp_id": 1,
             "elevation": 0,
-            "x": 6,
-            "y": 10
+            "x": 10,
+            "y": 2
         },
         {
             "dest_map": "MAP_RUSTBORO_CITY",
             "dest_warp_id": 7,
             "elevation": 0,
-            "x": 6,
-            "y": 8
+            "x": 5,
+            "y": 11
         }
     ],
     "weather": "WEATHER_NONE"

@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route104_EventScript_BrineysCottageSign",
             "type": "sign",
-            "x": 25,
+            "x": 24,
             "y": 42
         },
         {
@@ -25,8 +25,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route104_EventScript_RouteSignRustboro",
             "type": "sign",
-            "x": 14,
-            "y": 2
+            "x": 11,
+            "y": 1
         },
         {
             "elevation": 0,
@@ -41,8 +41,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route104_EventScript_TrainerTipsDoubleBattles",
             "type": "sign",
-            "x": 17,
-            "y": 23
+            "x": 22,
+            "y": 40
         },
         {
             "elevation": 3,
@@ -73,8 +73,8 @@
             "flag": "FLAG_HIDDEN_ITEM_ROUTE_104_ANTIDOTE",
             "item": "ITEM_ANTIDOTE",
             "type": "hidden_item",
-            "x": 16,
-            "y": 72
+            "x": 23,
+            "y": 66
         },
         {
             "elevation": 3,
@@ -105,7 +105,7 @@
             "var": "VAR_ROUTE104_STATE",
             "var_value": "1",
             "x": 20,
-            "y": 39
+            "y": 36
         }
     ],
     "id": "MAP_ROUTE104",
@@ -124,8 +124,8 @@
             "script": "Route104_EventScript_BugCatcher",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 34,
-            "y": 13
+            "x": 37,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -138,7 +138,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 17,
-            "y": 8
+            "y": 7
         },
         {
             "elevation": 3,
@@ -150,7 +150,7 @@
             "script": "Route104_EventScript_Haley",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
-            "x": 33,
+            "x": 34,
             "y": 23
         },
         {
@@ -176,8 +176,8 @@
             "script": "Route104_EventScript_Woman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 36,
-            "y": 27
+            "x": 38,
+            "y": 25
         },
         {
             "elevation": 3,
@@ -189,8 +189,8 @@
             "script": "Route104_EventScript_Girl2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 28,
-            "y": 74
+            "x": 48,
+            "y": 38
         },
         {
             "elevation": 1,
@@ -202,8 +202,8 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 2,
-            "y": 62
+            "x": 1,
+            "y": 67
         },
         {
             "elevation": 4,
@@ -215,8 +215,8 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 18,
-            "y": 43
+            "x": 19,
+            "y": 45
         },
         {
             "elevation": 3,
@@ -229,7 +229,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "1",
             "x": 33,
-            "y": 49
+            "y": 47
         },
         {
             "elevation": 3,
@@ -241,8 +241,8 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "8",
             "trainer_type": "0",
-            "x": 35,
-            "y": 4
+            "x": 22,
+            "y": 2
         },
         {
             "elevation": 3,
@@ -254,8 +254,8 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "9",
             "trainer_type": "0",
-            "x": 36,
-            "y": 4
+            "x": 23,
+            "y": 2
         },
         {
             "elevation": 3,
@@ -267,8 +267,8 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "10",
             "trainer_type": "0",
-            "x": 37,
-            "y": 4
+            "x": 24,
+            "y": 2
         },
         {
             "elevation": 3,
@@ -281,7 +281,7 @@
             "trainer_sight_or_berry_tree_id": "11",
             "trainer_type": "0",
             "x": 23,
-            "y": 37
+            "y": 36
         },
         {
             "elevation": 3,
@@ -294,7 +294,7 @@
             "trainer_sight_or_berry_tree_id": "12",
             "trainer_type": "0",
             "x": 24,
-            "y": 37
+            "y": 38
         },
         {
             "elevation": 3,
@@ -307,7 +307,7 @@
             "trainer_sight_or_berry_tree_id": "13",
             "trainer_type": "0",
             "x": 25,
-            "y": 37
+            "y": 36
         },
         {
             "elevation": 3,
@@ -411,7 +411,7 @@
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
             "x": 26,
-            "y": 16
+            "y": 14
         },
         {
             "elevation": 3,
@@ -424,7 +424,7 @@
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
             "x": 27,
-            "y": 16
+            "y": 14
         },
         {
             "elevation": 3,
@@ -437,7 +437,7 @@
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
             "x": 21,
-            "y": 25
+            "y": 23
         },
         {
             "elevation": 3,
@@ -450,7 +450,7 @@
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
             "x": 43,
-            "y": 41
+            "y": 39
         },
         {
             "elevation": 3,
@@ -462,8 +462,8 @@
             "script": "Route104_EventScript_ItemPokeBall",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 43,
-            "y": 45
+            "x": 42,
+            "y": 44
         },
         {
             "elevation": 3,
@@ -475,8 +475,8 @@
             "script": "Route104_EventScript_Billy",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
-            "x": 18,
-            "y": 67
+            "x": 16,
+            "y": 68
         },
         {
             "elevation": 3,
@@ -488,8 +488,8 @@
             "script": "Route104_EventScript_ItemXAccuracy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
-            "y": 35
+            "x": 46,
+            "y": 34
         },
         {
             "elevation": 3,
@@ -501,8 +501,8 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 35,
-            "y": 22
+            "x": 49,
+            "y": 39
         },
         {
             "elevation": 3,
@@ -515,7 +515,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 8,
-            "y": 7
+            "y": 5
         },
         {
             "elevation": 3,
@@ -553,8 +553,8 @@
             "script": "Route104_EventScript_Rival",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 21,
-            "y": 40
+            "x": 17,
+            "y": 41
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_104",
@@ -566,7 +566,7 @@
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 20,
-            "y": 40
+            "y": 38
         },
         {
             "dest_map": "MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
@@ -607,15 +607,15 @@
             "dest_map": "MAP_PETALBURG_WOODS",
             "dest_warp_id": 4,
             "elevation": 3,
-            "x": 51,
-            "y": 40
+            "x": 53,
+            "y": 38
         },
         {
             "dest_map": "MAP_PETALBURG_WOODS",
             "dest_warp_id": 5,
             "elevation": 3,
-            "x": 51,
-            "y": 41
+            "x": 53,
+            "y": 39
         }
     ],
     "weather": "WEATHER_SUNNY"
