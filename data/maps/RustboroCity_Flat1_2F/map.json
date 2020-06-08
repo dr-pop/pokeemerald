@@ -17,7 +17,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
             "movement_range_x": 3,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -30,7 +30,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -38,7 +38,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,
-            "y": 6
+            "y": 3
         },
         {
             "elevation": 3,
@@ -51,7 +51,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
-            "y": 6
+            "y": 3
         },
         {
             "elevation": 3,
@@ -64,7 +64,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 3,
-            "y": 5
+            "y": 4
         },
         {
             "elevation": 3,
@@ -76,8 +76,8 @@
             "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 7
+            "x": 4,
+            "y": 4
         },
         {
             "elevation": 3,
@@ -103,7 +103,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,
-            "y": 7
+            "y": 5
         },
         {
             "elevation": 3,
@@ -115,8 +115,8 @@
             "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 4,
-            "y": 8
+            "x": 9,
+            "y": 7
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",
@@ -126,6 +126,13 @@
         {
             "dest_map": "MAP_RUSTBORO_CITY_FLAT1_1F",
             "dest_warp_id": 2,
+            "elevation": 0,
+            "x": 7,
+            "y": 4
+        },
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_HOUSE2",
+            "dest_warp_id": 0,
             "elevation": 0,
             "x": 7,
             "y": 2

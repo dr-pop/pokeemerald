@@ -431,7 +431,32 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_32 0x1121
 #define OBJ_EVENT_PAL_TAG_33 0x1122
 #define OBJ_EVENT_PAL_TAG_34 0x1123
-#define OBJ_EVENT_PAL_POP_1 0x1124 // custom
+#define OBJ_EVENT_PAL_PLAYERM 0x1124 // custom
+#define OBJ_EVENT_PAL_BLUE 0x1125
+#define OBJ_EVENT_PAL_BROWN 0x1126
+#define OBJ_EVENT_PAL_GREEN 0x1127
+#define OBJ_EVENT_PAL_ORANGE 0x1128
+#define OBJ_EVENT_PAL_PINK 0x1129
+#define OBJ_EVENT_PAL_PURPLE 0x1130
+#define OBJ_EVENT_PAL_REDBROWN 0x1131
+#define OBJ_EVENT_PAL_SANDGREEN 0x1132
+#define OBJ_EVENT_PAL_WHITE 0x1133
+#define OBJ_EVENT_PAL_YELLOW 0x1134
+#define OBJ_EVENT_PAL_GREEN2 0x1135
+#define OBJ_EVENT_PAL_REDPURPLE 0x1136
+#define OBJ_EVENT_PAL_LILA 0x1137
+#define OBJ_EVENT_PAL_WHITE2 0x1138
+#define OBJ_EVENT_PAL_TWIN 0x1139
+#define OBJ_EVENT_PAL_SWIMMER 0x1140
+#define OBJ_EVENT_PAL_RICHBOY 0x1141
+#define OBJ_EVENT_PAL_GROWER 0x1142
+#define OBJ_EVENT_PAL_LADY 0x1143
+#define OBJ_EVENT_PAL_BURGLAR 0x1144
+#define OBJ_EVENT_PAL_RUIN 0x1145
+#define OBJ_EVENT_PAL_TAMER 0x1146
+#define OBJ_EVENT_PAL_FARMER 0x1147
+#define OBJ_EVENT_PAL_MAYOR 0x1148
+#define OBJ_EVENT_PAL_OFFICER 0x1149
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -478,7 +503,32 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette32, OBJ_EVENT_PAL_TAG_32},
     {gObjectEventPalette33, OBJ_EVENT_PAL_TAG_33},
     {gObjectEventPalette34, OBJ_EVENT_PAL_TAG_34},
-	{gObjectEventPalette_Pop1, OBJ_EVENT_PAL_POP_1}, // custom
+	{gObjectEventPalettePlayerM, 	OBJ_EVENT_PAL_PLAYERM}, // custom
+	{gObjectEventPaletteBlue, 		OBJ_EVENT_PAL_BLUE}, // custom
+	{gObjectEventPaletteBrown, 		OBJ_EVENT_PAL_BROWN}, // custom
+	{gObjectEventPaletteGreen, 		OBJ_EVENT_PAL_GREEN}, // custom
+	{gObjectEventPaletteOrange, 	OBJ_EVENT_PAL_ORANGE}, // custom
+	{gObjectEventPalettePink, 		OBJ_EVENT_PAL_PINK}, // custom
+	{gObjectEventPalettePurple, 	OBJ_EVENT_PAL_PURPLE}, // custom
+	{gObjectEventPaletteRedbrown, 	OBJ_EVENT_PAL_REDBROWN}, // custom
+	{gObjectEventPaletteSandgreen, 	OBJ_EVENT_PAL_SANDGREEN}, // custom
+	{gObjectEventPaletteWhite, 		OBJ_EVENT_PAL_WHITE}, // custom
+	{gObjectEventPaletteYellow, 	OBJ_EVENT_PAL_YELLOW}, // custom
+	{gObjectEventPaletteGreen2, 	OBJ_EVENT_PAL_GREEN2}, // custom
+	{gObjectEventPaletteRedpurple, 	OBJ_EVENT_PAL_REDPURPLE}, // custom
+	{gObjectEventPaletteLila, 		OBJ_EVENT_PAL_LILA}, // custom
+	{gObjectEventPaletteWhite2, 	OBJ_EVENT_PAL_WHITE2}, // custom
+	{gObjectEventPaletteTwin, 		OBJ_EVENT_PAL_TWIN}, // custom
+	{gObjectEventPaletteSwimmer, 	OBJ_EVENT_PAL_SWIMMER}, // custom
+	{gObjectEventPaletteRichboy, 	OBJ_EVENT_PAL_RICHBOY}, // custom
+	{gObjectEventPaletteGrower, 	OBJ_EVENT_PAL_GROWER}, // custom
+	{gObjectEventPaletteLady, 		OBJ_EVENT_PAL_LADY}, // custom
+	{gObjectEventPaletteBurglar, 	OBJ_EVENT_PAL_BURGLAR}, // custom
+	{gObjectEventPaletteRuin, 		OBJ_EVENT_PAL_RUIN}, // custom
+	{gObjectEventPaletteTamer, 		OBJ_EVENT_PAL_TAMER}, // custom
+	{gObjectEventPaletteFarmer, 	OBJ_EVENT_PAL_FARMER}, // custom
+	{gObjectEventPaletteMayor, 		OBJ_EVENT_PAL_MAYOR}, // custom
+	{gObjectEventPaletteOfficer, 	OBJ_EVENT_PAL_OFFICER}, // custom
     {NULL,                  0x0000},
 };
 

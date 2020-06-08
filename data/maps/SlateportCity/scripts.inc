@@ -722,7 +722,7 @@ SlateportCity_EventScript_Gabby:: @ 81DD35C
 Script_GivePokemonDemo::
 	lock
 	faceplayer
-	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_SYS_B_DASH
 	msgbox Text_TakeCharizard, MSGBOX_DEFAULT
 	getpartysize
 	compare VAR_RESULT, 6

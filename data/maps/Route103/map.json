@@ -38,7 +38,7 @@
             "script": "Route103_EventScript_Man",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 74,
+            "x": 67,
             "y": 17
         },
         {
@@ -233,8 +233,8 @@
             "script": "Route103_EventScript_Rhett",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
-            "x": 63,
-            "y": 21
+            "x": 66,
+            "y": 22
         },
         {
             "elevation": 3,
