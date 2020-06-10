@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
+            "script": "RustboroCity_PokemonSchool_EventScript_Artefact",
             "type": "sign",
             "x": 11,
             "y": 6
@@ -17,29 +17,29 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
             "type": "sign",
-            "x": 1,
-            "y": 7
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
-            "type": "sign",
-            "x": 6,
+            "x": 3,
             "y": 1
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RustboroCity_PokemonSchool_EventScript_Blackboard",
+            "script": "RustboroCity_PokemonSchool_EventScript_Machine",
             "type": "sign",
             "x": 5,
-            "y": 1
+            "y": 4
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "RustboroCity_PokemonSchool_EventScript_Computer",
+            "type": "sign",
+            "x": 1,
+            "y": 3
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RustboroCity_PokemonSchool_EventScript_StudentNotebook",
+            "script": "RustboroCity_PokemonSchool_EventScript_Machine",
             "type": "sign",
             "x": 6,
             "y": 4
@@ -57,54 +57,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid1",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 7,
-            "y": 6
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid2",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 8,
-            "y": 6
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RustboroCity_PokemonSchool_EventScript_RichBoy",
+            "script": "RustboroCity_PokemonSchool_EventScript_Scientist2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 1,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RustboroCity_PokemonSchool_EventScript_Lass",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 11,
-            "y": 7
+            "y": 8
         },
         {
             "elevation": 3,
@@ -112,38 +73,38 @@
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "RustboroCity_PokemonSchool_EventScript_SchoolKidM",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "RustboroCity_PokemonSchool_EventScript_SchoolBoyM",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 7
+            "x": 12,
+            "y": 6
         },
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "RustboroCity_PokemonSchool_EventScript_Scientist3",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 5,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "RustboroCity_PokemonSchool_EventScript_Teacher",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "RustboroCity_PokemonSchool_EventScript_Scientist1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 2,
             "y": 2
-        },
-        {
-            "elevation": 0,
-            "flag": "FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT",
-            "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RustboroCity_PokemonSchool_EventScript_Scott",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 5,
-            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",

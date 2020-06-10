@@ -1,6 +1,24 @@
 LilycoveCity_CoveLilyMotel_1F_MapScripts:: @ 8218188
 	.byte 0
 
+LilycoveCity_CoveLilyMotel_1F_EventScript_HotelOwner:: @ 8218189
+	lockall
+	faceplayer
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_TroubleUpstairs, MSGBOX_DEFAULT
+	applymovement 1, Common_Movement_FaceRight
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_SPINARAK, 0
+	waitmoncry
+	applymovement 1, Common_Movement_FaceDown
+	waitmovement 0	
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_ComeBackLater, MSGBOX_DEFAULT
+	closemessage
+	applymovement 1, Common_Movement_FaceRight
+	waitmovement 0
+	releaseall
+	end
+
 LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner:: @ 8218189
 	lockall
 	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear
@@ -72,6 +90,15 @@ LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn: @ 8218260
 	walk_down
 	face_up
 	step_end
+
+LilycoveCity_CoveLilyMotel_1F_Text_TroubleUpstairs: @ 8218264
+	.string "Oh, I'm sorry. The Willystad Hotel is\n"
+	.string "temporarily closed.\p"
+	.string "We're, uh…$"
+	
+LilycoveCity_CoveLilyMotel_1F_Text_ComeBackLater: @ 8218264
+	.string "We're having some trouble upstairs…\p"
+	.string "Please come back later!$"
 
 LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot: @ 8218264
 	.string "Hm, so they doubled the guests by\n"

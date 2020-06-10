@@ -1,16 +1,18 @@
 Route103_MapScripts:: @ 81EC38E
-	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
+	//map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
+	//map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
 	.byte 0
 
 Route103_OnTransition: @ 81EC399
-	call Common_EventScript_SetupRivalGfxId
-	call ProfBirch_EventScript_UpdateLocation
+	//call Common_EventScript_SetupRivalGfxId
+	//call ProfBirch_EventScript_UpdateLocation
 	end
 
 Route103_OnLoad: @ 81EC3A4
-	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	//call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
 	end
+
+//remove below at some point
 
 Route103_EventScript_OpenAlteringCave:: @ 81EC3AE
 	setmetatile 45, 5, METATILE_General_CaveEntrance_Top, 1
@@ -188,13 +190,14 @@ Route103_Movement_WatchRivalExitFacingEastOrWest: @ 81EC5D6
 	delay_16
 	walk_in_place_fastest_down
 	step_end
+// remove above at some point
 
 Route103_EventScript_Boy:: @ 81EC5D9
 	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
 	end
 
 Route103_EventScript_Man:: @ 81EC5E2
-	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
+	msgbox Route103_Text_Ledges, MSGBOX_NPC //edited
 	end
 
 Route103_EventScript_RouteSign:: @ 81EC5EB
@@ -291,6 +294,7 @@ Route103_EventScript_Isabelle:: @ 81EC78F
 	msgbox Route103_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+//remove below
 Route103_Text_MayRoute103Pokemon: @ 81EC7A6
 	.string "MAY: Let's see… The POKéMON found\n"
 	.string "on ROUTE 103 include…$"
@@ -342,15 +346,15 @@ Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
 	.string "{PLAYER}, I get the feeling that you\n"
 	.string "could befriend any POKéMON with ease.\p"
 	.string "We should head back to the LAB.$"
+//remove above
 
 Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
 	.string "My POKéMON is staggeringly tired…\n"
 	.string "I should have brought a POTION…$"
 
-Route103_Text_ShortcutToOldale: @ 81ECBB5
-	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
-	.string "Fufufu, that's useful, isn't it?$"
+Route103_Text_Ledges: @ 81ECBB5 //edited
+	.string "I jumped down from this ledge.\p"
+	.string "But now there's no way back up.$"
 
 Route103_Text_RouteSign: @ 81ECC1A
 	.string "ROUTE 103\n"

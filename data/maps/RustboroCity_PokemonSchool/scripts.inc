@@ -2,6 +2,40 @@ RustboroCity_PokemonSchool_MapScripts:: @ 8213EA8
 	.byte 0
 
 RustboroCity_PokemonSchool_EventScript_Blackboard:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Blackboard, MSGBOX_SIGN
+	end
+
+RustboroCity_PokemonSchool_EventScript_Computer:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Computer, MSGBOX_SIGN
+	end
+
+RustboroCity_PokemonSchool_EventScript_Machine:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Machine, MSGBOX_SIGN
+	end
+
+RustboroCity_PokemonSchool_EventScript_Artefact:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Artefact, MSGBOX_SIGN
+	end
+
+RustboroCity_PokemonSchool_EventScript_Scientist1:: @ 8213EA9
+	lock
+	msgbox RustboroCity_PokemonSchool_Text_Scientist1, MSGBOX_SIGN
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_Scientist2:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Scientist2, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_Scientist3:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_Scientist3, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_SchoolBoyM:: @ 8213EA9
+	msgbox RustboroCity_PokemonSchool_Text_SchoolBoyM, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_BlackboardOld:: @ 8213EA9
 	lockall
 	msgbox RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges, MSGBOX_DEFAULT
 	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
@@ -201,6 +235,50 @@ RustboroCity_PokemonSchool_EventScript_ScottWatchStudents:: @ 82140A8
 	msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT
 	release
 	end
+
+RustboroCity_PokemonSchool_Text_Blackboard: @ 8214A5F
+	.string "It's full of diagrams and scientific\n"
+	.string "formulas.$"
+
+RustboroCity_PokemonSchool_Text_Computer: @ 8214A5F
+	.string "There's a long list of files…\p"
+	.string "“Floral energy systems”…\p"
+	.string "“Technical Machine protocol”…\p"
+	.string "“Archaeological sites”…\p"
+	.string "Better not mess around with it!$"
+
+RustboroCity_PokemonSchool_Text_Machine: @ 8214A5F
+	.string "There's a handwritten note…\p"
+	.string "“Pokémon Extraction Machine\n"
+	.string "Poké-X Machine in short”$"
+	
+RustboroCity_PokemonSchool_Text_Artefact: @ 8214A5F
+	.string "It contains what looks like a dried\n"
+	.string "flower. It's very colorful.$"
+
+RustboroCity_PokemonSchool_Text_Scientist1: @ 8214A5F
+	.string "Hmm… If Y equals the sum of R and B\n"
+	.string "plus 25…\p"
+	.string "And the delta between C and sigma G, S\n"
+	.string "is equal to 245…\p"
+	.string "Then E minus R and S must equal 384!$"
+	
+RustboroCity_PokemonSchool_Text_Scientist2: @ 8214A5F
+	.string "The professor recently returned from\n"
+	.string "an underwater expedition.\p"
+	.string "People tend to forget that there\n"
+	.string "are plants underwater as well!$"
+
+RustboroCity_PokemonSchool_Text_Scientist3: @ 8214A5F
+	.string "This is the laboratory of Prof. Buxus.\p"
+	.string "He just left to the City Hall to present\n"
+	.string "his latest findings.$"
+	
+RustboroCity_PokemonSchool_Text_SchoolBoyM: @ 8214A5F
+	.string "The scientists in this laboratory\n"
+	.string "know a lot about plants and Pokémon.\p"
+	.string "I always thought flowers were for\n"
+	.string "girls, but that's not true at all!$"
 
 RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges: @ 82140B2
 	.string "The blackboard lists status changes\n"

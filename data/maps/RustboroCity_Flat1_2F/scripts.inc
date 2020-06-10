@@ -1,6 +1,10 @@
 RustboroCity_Flat1_2F_MapScripts:: @ 8215139
 	.byte 0
 
+RustboroCity_Flat1_2F_EventScript_Girl:: @ 82151D7
+	msgbox RustboroCity_Flat1_2F_Text_Dolls, MSGBOX_NPC
+	end
+
 RustboroCity_Flat1_2F_EventScript_WaldasDad:: @ 821513A
 	lock
 	faceplayer
@@ -83,6 +87,11 @@ RustboroCity_Flat1_2F_EventScript_WaldasMom:: @ 821523D
 RustboroCity_Flat1_2F_EventScript_PokeDoll:: @ 8215246
 	msgbox RustboroCity_Flat1_2F_Text_ItsAPokemonPlushDoll, MSGBOX_SIGN
 	end
+
+RustboroCity_Flat1_2F_Text_Dolls: @ 821524F
+	.string "My sister and I collect Pokémon\n"
+	.string "Dolls.\p"
+	.string "Five down, 891 to go!$"
 
 RustboroCity_Flat1_2F_Text_ComingUpWithMealsIsHard: @ 821524F
 	.string "Oh, it's so hard every day…\p"

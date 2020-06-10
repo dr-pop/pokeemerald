@@ -48,8 +48,12 @@ RustboroCity_House1_EventScript_TradeCompleted:: @ 82159D5
 	release
 	end
 
-RustboroCity_House1_EventScript_Hiker:: @ 82159DF
-	msgbox RustboroCity_House1_Text_AllSortsOfPlaces, MSGBOX_NPC
+RustboroCity_House1_EventScript_Husband:: @ 82159DF
+	msgbox RustboroCity_House1_Text_Husband, MSGBOX_NPC
+	end
+
+RustboroCity_House1_EventScript_Daughter:: @ 82159DF
+	msgbox RustboroCity_House1_Text_Daughter, MSGBOX_NPC
 	end
 
 RustboroCity_House1_Text_IllTradeIfYouWant: @ 82159E8
@@ -76,9 +80,11 @@ RustboroCity_House1_Text_AnyPokemonCanBeCute: @ 8215B17
 	.string "Any POKéMON can be cute if you raise\n"
 	.string "it with care and kindness.$"
 
-RustboroCity_House1_Text_AllSortsOfPlaces: @ 8215B57
-	.string "In all sorts of places, there are all\n"
-	.string "sorts of POKéMON and people.\p"
-	.string "I find that fascinating, so I go to all\n"
-	.string "sorts of places.$"
+RustboroCity_House1_Text_Husband: @ 8215B57
+	.string "My husband is a true adventurer. But\n"
+	.string "I prefer the coziness of being home.\p"
+	.string "Huh, opposites attract, I guess.$"
 
+RustboroCity_House1_Text_Daughter: @ 8215B57
+	.string "Daddy said that if I study hard, one\n"
+	.string "day I will join him on his travels!$"

@@ -1,19 +1,24 @@
 RustboroCity_Flat2_3F_MapScripts:: @ 8216116
 	.byte 0
 
-RustboroCity_Flat2_3F_EventScript_DevonEmployee:: @ 8216117
-	msgbox RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones, MSGBOX_NPC
+RustboroCity_Flat2_3F_EventScript_Azumarill:: @ 8216117
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 0
+	msgbox RustboroCity_Flat2_3F_Text_Azumarill, MSGBOX_NPC
+	waitmoncry
+	release
 	end
 
 RustboroCity_Flat2_3F_EventScript_Woman:: @ 8216120
-	msgbox RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones, MSGBOX_NPC
+	msgbox RustboroCity_Flat2_3F_Text_Nostalgic, MSGBOX_NPC
 	end
 
-RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones: @ 8216129
-	.string "DEVON's PRESIDENT likes to collect\n"
-	.string "rare stones.$"
+RustboroCity_Flat2_3F_Text_Azumarill: @ 8216129
+	.string "Azumarill: Paarriii!$"
 
-RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones: @ 8216159
-	.string "I think the PRESIDENT's son also\n"
-	.string "collects rare stones.$"
+RustboroCity_Flat2_3F_Text_Nostalgic: @ 8216159
+	.string "I love visiting my parents. But my\n"
+	.string "childhood room makes me nostalgic.$"
 
