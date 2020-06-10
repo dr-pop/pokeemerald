@@ -309,6 +309,25 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	releaseall
 	end
 
+RustboroCity_DevonCorp_1F_EventScript_ChooseStarterDebug::
+	lockall
+	faceplayer
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof4, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	special ChooseStarter
+	waitstate
+	lockall
+	delay 30
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1, MSGBOX_DEFAULT
+	closemessage
+	playfanfare MUS_FANFA4
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	releaseall
+	end
+
 RustboroCity_DevonCorp_1F_Movement_Burglar1:: @ 821127F
 	walk_up
 	walk_up

@@ -554,7 +554,8 @@ static void Task_StarterChoose5(u8 taskId)
     case 0:  // YES
         // Return the starter choice and exit.
         gSpecialVar_Result = gTasks[taskId].tStarterSelection;
-        ResetAllPicSprites();
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK); //added
+		ResetAllPicSprites();
         SetMainCallback2(gMain.savedCallback);
         break;
     case 1:  // NO
