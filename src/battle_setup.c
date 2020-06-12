@@ -910,7 +910,7 @@ static void CB2_GiveStarter(void)
     //SetMainCallback2(CB2_StartFirstBattle);
     //FadeScreen(FADE_TO_BLACK, 0); //added
 	//CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded, 0x400); //added
-	SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic); //added
+	SetMainCallback2(CB2_ReturnToFieldContinueScript); //added
 	//BattleTransition_Start(B_TRANSITION_BLUR);
 }
 

@@ -6,10 +6,13 @@ SlateportCity_MapScripts:: @ 81DCC61
 SlateportCity_OnTransition: @ 81DCC6C
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
-	compare VAR_SLATEPORT_CITY_STATE, 1
-	call_if_eq SlateportCity_EventScript_MovePeopleForSternInterview
-	compare VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
-	call_if_eq SlateportCity_EventScript_SetReadyForScottScene
+	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//call_if_eq SlateportCity_EventScript_LocateRival
+	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//call_if_eq SlateportCity_EventScript_RivalIntroduction
+	//call_if_eq SlateportCity_EventScript_MovePeopleForSternInterview
+	//compare VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
+	//call_if_eq SlateportCity_EventScript_SetReadyForScottScene
 	end
 
 SlateportCity_EventScript_EnterSlateport:: @ 81DCC8D
@@ -18,6 +21,99 @@ SlateportCity_EventScript_EnterSlateport:: @ 81DCC8D
 	setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
 	return
 
+//SlateportCity_EventScript_LocateRival::
+	//setobjectxy 2, 21, 15
+	//setobjectxy 19, 17, 13
+	//addobject 2
+	//addobject 19
+	//return
+
+SlateportCity_EventScript_RivalIntroduction::
+	//setobjectxy 2, 21, 15
+	//addobject 2
+	//setobjectmovementtype 2, MOVEMENT_TYPE_FACE_DOWN
+	lockall
+	//delay 30
+	//applymovement 2, Common_Movement_FaceLeft
+	//waitmovement 0
+	//delay 30
+	//applymovement 2, Common_Movement_FaceRight
+	//waitmovement 0
+	delay 30
+	applymovement 2, Common_Movement_FaceUp
+	waitmovement 0
+	delay 16
+	playse SE_PIN
+	applymovement 2, Common_Movement_ExclamationMark
+	waitmovement 0
+	playbgm MUS_RG_RIVAL1, 0
+	delay 16
+	msgbox SlateportCity_Text_Rival1, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	msgbox SlateportCity_Text_Rival2, MSGBOX_DEFAULT
+	closemessage
+	applymovement 2, SlateportCity_Movement_RivalExit
+	waitmovement 0
+	//playse SE_PIN
+	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
+	removeobject 2
+	//playse SE_PIN
+	//setobjectxy 2, 40, 18
+	//addobject 2
+	//setobjectmovementtype 2, MOVEMENT_TYPE_LOOK_AROUND
+	//delay 30
+	//playse SE_PIN
+	//showobjectat 2, MAP_SLATEPORT_CITY
+	//delay 30
+	//playse SE_PIN
+	setvar VAR_SLATEPORT_CITY_STATE, 2
+	fadedefaultbgm
+	releaseall
+	end
+
+SlateportCity_EventScript_RivalSearching::
+	msgbox SlateportCity_Text_Rival3, MSGBOX_NPC
+	end
+
+SlateportCity_Text_Rival1:
+	.string "???: Oh, hey there!\p"
+	.string "Let's find this thief, shall\n"
+	.string "we?\p"
+	.string "What's your name by the way?\n"
+	.string "Wait, let me guess…\p"
+	.string "It's {PLAYER}, am I right?\n"
+	.string "Now you guess mine.$"
+
+SlateportCity_Text_Rival2:
+	.string "Wow, you guessed it right, too!\n"
+	.string "My name is Rival!\p"
+	.string "Now, let's not waste any more time\n"
+	.string "on niceties.\p"
+	.string "I will look for the thief\n"
+	.string "in the Market.\l"
+	.string "You go the other way!$"
+
+SlateportCity_Text_Rival3:
+	.string "Rival: Hey, {PLAYER}! Found\n"
+	.string "anything yet?\p"
+	.string "I got this area covered.\n"
+	.string "Check out the rest of town.$"
+
+SlateportCity_Movement_RivalExit:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right	
+	walk_right
+	walk_right
+	walk_right
+	step_end
+	
 SlateportCity_EventScript_MovePeopleForSternInterview:: @ 81DCC99
 	setobjectxyperm 11, 28, 13
 	setobjectxyperm 7, 25, 13
@@ -50,7 +146,8 @@ SlateportCity_EventScript_MoveScottLeft:: @ 81DCD06
 	return
 
 SlateportCity_OnFrame: @ 81DCD12
-	map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
+	//map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
+	map_script_2 VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
 	.2byte 0
 
 SlateportCity_EventScript_ScottScene:: @ 81DCD1C
@@ -328,7 +425,17 @@ SlateportCity_EventScript_LittleGirl:: @ 81DCFBB
 	end
 
 SlateportCity_EventScript_OldMan:: @ 81DCFDC
-	msgbox SlateportCity_Text_OldMan, MSGBOX_NPC
+	lock
+	faceplayer
+	compare VAR_SLATEPORT_CITY_STATE, 2
+	goto_if_eq SlateportCity_EventScript_OldMan2
+	msgbox SlateportCity_Text_OldMan, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_OldMan2::
+	msgbox SlateportCity_Text_OldMan2, MSGBOX_DEFAULT
+	release
 	end
 
 SlateportCity_EventScript_Sailor1:: @ 81DCFE5
@@ -350,6 +457,19 @@ SlateportCity_EventScript_Man2:: @ 81DD000
 SlateportCity_EventScript_BlackBelt:: @ 81DD009
 	msgbox SlateportCity_Text_Jungle, MSGBOX_NPC
 	end
+
+SlateportCity_EventScript_Pikachu:: @ 8215F80
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIKACHU, 0
+	msgbox SlateportCity_EventScript_Text_Pikachu, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+SlateportCity_EventScript_Text_Pikachu:
+	.string: "Pikachu: Piikaa!$"
 
 SlateportCity_EventScript_AquaGrunt2:: @ 81DD020
 	lock
@@ -703,7 +823,15 @@ SlateportCity_EventScript_Ty:: @ 81DD353
 
 SlateportCity_EventScript_Gabby:: @ 81DD35C
 	lock
+	compare VAR_SLATEPORT_CITY_STATE, 2
+	goto_if_eq SlateportCity_EventScript_Gabby2
 	msgbox SlateportCity_Text_Reporter1, MSGBOX_SIGN
+	release
+	end
+
+SlateportCity_EventScript_Gabby2::
+	lock
+	msgbox SlateportCity_Text_Reporter2, MSGBOX_SIGN
 	release
 	end
 
@@ -743,6 +871,101 @@ Text_PlayerHasFullParty:
 @	end
 
 @ end of avara tutorial, debugging script
+
+Script_DebugKecleon::
+	lock
+	faceplayer
+	msgbox Text_Debug1, MSGBOX_YESNO //restore "fossil stolen"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes1
+	msgbox Text_Debug2, MSGBOX_YESNO //toggle "fossil stolen"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes2
+	goto_if_set FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottHidden
+	goto_if_unset FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottUnhidden
+	release
+	end
+
+// “ ”
+
+Text_Debug1:
+	.string "Hello, I'm Debug Kecleon.\p"
+	.string "Do you wish to reset this:\n"
+	.string "“Fossil Stolen (C.S. 1)”$"
+
+Script_DebugKecleonYes1::
+	clearflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	setvar VAR_SLATEPORT_CITY_STATE, 0
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Text_Debug2:
+	.string "Do you wish to toggle this:\n"
+	.string "“Fossil Stolen (C.S. 1)”$"
+
+Script_DebugKecleonYes2::
+	setflag FLAG_DEVON_GOODS_STOLEN
+	clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	clearflag FLAG_HIDE_ROUTE_101_BIRCH
+	setvar VAR_SLATEPORT_CITY_STATE, 1
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Text_DebugDone:
+	.string "All done. See ya!$"
+
+Script_DebugKecleonScottHidden::
+	msgbox Text_ScottHidden, MSGBOX_DEFAULT
+	closemessage
+	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	release
+	end
+
+Script_DebugKecleonScottUnhidden::
+	msgbox Text_ScottUnhidden, MSGBOX_DEFAULT
+	closemessage
+	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	release
+	end
+	
+Script_DebugKecleonBirchHidden::
+	msgbox Text_BirchHidden, MSGBOX_DEFAULT
+	closemessage
+	msgbox Text_DebugBye, MSGBOX_DEFAULT
+	release
+	end
+	
+Script_DebugKecleonBirchUnhidden::
+	msgbox Text_BirchUnhidden, MSGBOX_DEFAULT
+	closemessage
+	msgbox Text_DebugBye, MSGBOX_DEFAULT
+	release
+	end
+
+Text_DebugBye:
+	.string "OK then. Bye!$"
+
+Text_ScottHidden:
+	.string "FLAG: HIDE SCOTT is set.\n"
+	.string "Pikachu invisible.$"
+	
+Text_ScottUnhidden:
+	.string "FLAG: HIDE SCOTT is unset.\n"
+	.string "Pikachu visible.$"
+	
+Text_BirchHidden:
+	.string "FLAG: HIDE BIRCH is set.\n"
+	.string "Kirla invisible.$"
+	
+Text_BirchUnhidden:
+	.string "FLAG: HIDE BIRCH is unset.\n"
+	.string "Kirlia visible.$"
 
 SlateportCity_EventScript_BerryPowderClerk:: @ 81DD36E
 	lock
@@ -1154,6 +1377,12 @@ SlateportCity_Text_OldMan: @ 81DE16C
 	.string "They arrived by boat from faraway\n"
 	.string "lands.$"
 
+SlateportCity_Text_OldMan2:
+	.string "A strange chap just ran out of\n"
+	.string "the City Hall.\p"
+	.string "It looked like he was carrying\n"
+	.string "something heavy.$"
+
 SlateportCity_Text_RecentArrival: @ 81DE1EC
 	.string "Hey, are you new in town as well?\p"
 	.string "I came from overseas to study the\n"
@@ -1203,6 +1432,15 @@ SlateportCity_Text_Reporter1: @ 81DE4C4
 	.string "a new scientific discovery…\p"
 	.string "Rumour has it that Prof. Buxus found\n"
 	.string "something on one of his expeditions!$"
+
+SlateportCity_Text_Reporter2: @ 81DE4C4
+	.string "Breaking news from Willystad City!\p"
+	.string "There has been a heist in the City\n"
+	.string "Hall. A precious item was stolen.\p"
+	.string "The thief was spotted fleeing the\n"
+	.string "city in a haste.\l"
+	.string "Will he be found?\l"
+	.string "Stay tuned for more!$"
 
 SlateportCity_Text_SternMoveAheadWithExploration: @ 81DE502
 	.string "CAPT. STERN: Yes, indeed. We intend to\n"

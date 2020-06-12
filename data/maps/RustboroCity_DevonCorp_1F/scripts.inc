@@ -41,6 +41,15 @@ RustboroCity_DevonCorp_1F_EventScript_CrowdKarateGirl:: @ 821127F
 	release
 	end
 
+RustboroCity_DevonCorp_1F_EventScript_Prof1::
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof5, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_Mayor1::
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4, MSGBOX_NPC
+	end
+
 RustboroCity_DevonCorp_1F_EventScript_CrowdExpertF:: @ 821127F
 	lock
 	faceplayer
@@ -137,7 +146,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof3, MSGBOX_DEFAULT
 	closemessage
 	delay 16
-	playbgm MUS_RG_ROCKET, 0
+	playbgm MUS_RG_AJITO, 0
 	delay 16
 	applymovement 14, RustboroCity_DevonCorp_1F_Movement_Burglar1
 	waitmovement 0
@@ -273,9 +282,16 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof4, MSGBOX_DEFAULT
 	closemessage
 	delay 16
+	fadescreen FADE_TO_BLACK
+	delay 16
 	special ChooseStarter
 	waitstate
-	delay 30
+	delay 8
+	playfanfare MUS_FANFA4
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 16
 	applymovement 10, Common_Movement_WalkUp
 	waitmovement 0
 	applymovement 10, Common_Movement_FaceRight
@@ -284,8 +300,9 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1, MSGBOX_DEFAULT
 	closemessage
+	delay 16
 	playfanfare MUS_FANFA4
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
@@ -306,6 +323,11 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	closemessage
 	applymovement 4, RustboroCity_DevonCorp_1F_Movement_Prof2
 	waitmovement 0
+	fadedefaultbgm
+	setflag FLAG_DEVON_GOODS_STOLEN
+	setvar VAR_SLATEPORT_CITY_STATE, 1
+	clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	clearflag FLAG_HIDE_ROUTE_101_BIRCH
 	releaseall
 	end
 
@@ -322,7 +344,7 @@ RustboroCity_DevonCorp_1F_EventScript_ChooseStarterDebug::
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1, MSGBOX_DEFAULT
 	closemessage
 	playfanfare MUS_FANFA4
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	releaseall
@@ -652,14 +674,19 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor3:
 	.string "got ourselves two volunteers.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Prof4:
-	.string "Prof. Buxus: Here, take one of\n"
-	.string "these Pokémon to keep you safe.$"
+	.string "Prof. Buxus: {PLAYER}, this is\n"
+	.string "very noble of you.\p"
+	.string "Here, please take one of these\n"
+	.string "Pokémon to keep you safe.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1:
 	.string "???: Alright, then. I will take\n"
 	.string "the other one.$"
 
-RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare:
+RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1:
+	.string "{PLAYER} obtained the Pokémon.$"
+
+RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2:
 	.string "??? obtained the Pokémon.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Rival2:
@@ -667,7 +694,12 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Rival2:
 	.string "catch this bandit right away!$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Prof5:
-	.string "Prof. Buxus: Good luck, trainer!$"
+	.string "Prof. Buxus: Good luck, {PLAYER}!\p"
+	.string "We'll be waiting.$"
+
+RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4:
+	.string "Mayor: Godspeed, young trainer.\p"
+	.string "Please catch that thief.$"
 	
 RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp: @ 821131B
 	.string "Hello and welcome to the DEVON\n"

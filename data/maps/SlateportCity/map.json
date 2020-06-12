@@ -153,16 +153,16 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_MAN_1",
-            "movement_range_x": 1,
+            "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT",
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "SlateportCity_EventScript_Man1",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "SlateportCity_EventScript_RivalSearching",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 52,
-            "y": 16
+            "x": 21,
+            "y": 15
         },
         {
             "elevation": 3,
@@ -183,7 +183,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlateportCity_EventScript_BlackBelt",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
@@ -336,15 +336,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "SlateportCity_EventScript_DecorClerk",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "Script_DebugKecleon",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 55,
-            "y": 18
+            "x": 24,
+            "y": 15
         },
         {
             "elevation": 3,
@@ -375,15 +375,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SlateportCity_EventScript_EffortRibbonWoman",
+            "script": "SlateportCity_EventScript_Pikachu",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 47,
-            "y": 19
+            "x": 30,
+            "y": 28
         },
         {
             "elevation": 3,
@@ -410,6 +410,19 @@
             "trainer_type": "0",
             "x": 37,
             "y": 31
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_ROUTE_101_BIRCH",
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "SlateportCity_EventScript_RivalSearching",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 40,
+            "y": 18
         }
     ],
     "region_map_section": "MAPSEC_SLATEPORT_CITY",
