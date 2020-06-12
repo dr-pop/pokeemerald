@@ -51,6 +51,11 @@ SlateportCity_EventScript_RivalIntroduction::
 	msgbox SlateportCity_Text_Rival1, MSGBOX_DEFAULT
 	closemessage
 	delay 16
+	fadescreen FADE_TO_BLACK
+	special RivalNameChange
+	fadescreen FADE_FROM_BLACK
+	//waitstate
+	delay 16
 	msgbox SlateportCity_Text_Rival2, MSGBOX_DEFAULT
 	closemessage
 	applymovement 2, SlateportCity_Movement_RivalExit
@@ -76,26 +81,33 @@ SlateportCity_EventScript_RivalSearching::
 	msgbox SlateportCity_Text_Rival3, MSGBOX_NPC
 	end
 
+SlateportCity_EventScript_RivalNameChange::
+	lock
+	faceplayer
+	special RivalNameChange
+	release
+	end
+
 SlateportCity_Text_Rival1:
 	.string "???: Oh, hey there!\p"
 	.string "Let's find this thief, shall\n"
 	.string "we?\p"
 	.string "What's your name by the way?\n"
 	.string "Wait, let me guess…\p"
-	.string "It's {PLAYER}, am I right?\n"
+	.string "It's {PLAYER}, am I right?\p"
 	.string "Now you guess mine.$"
 
 SlateportCity_Text_Rival2:
 	.string "Wow, you guessed it right, too!\n"
-	.string "My name is Rival!\p"
-	.string "Now, let's not waste any more time\n"
-	.string "on niceties.\p"
+	.string "My name is {RIVAL}!\p"
+	.string "Now, let's not waste any more\n"
+	.string "time on niceties.\p"
 	.string "I will look for the thief\n"
 	.string "in the Market.\l"
 	.string "You go the other way!$"
 
 SlateportCity_Text_Rival3:
-	.string "Rival: Hey, {PLAYER}! Found\n"
+	.string "{RIVAL}: Hey, {PLAYER}! Found\n"
 	.string "anything yet?\p"
 	.string "I got this area covered.\n"
 	.string "Check out the rest of town.$"
@@ -469,7 +481,7 @@ SlateportCity_EventScript_Pikachu:: @ 8215F80
 	end
 
 SlateportCity_EventScript_Text_Pikachu:
-	.string: "Pikachu: Piikaa!$"
+	.string "Pikachu: Piikaa!$"
 
 SlateportCity_EventScript_AquaGrunt2:: @ 81DD020
 	lock

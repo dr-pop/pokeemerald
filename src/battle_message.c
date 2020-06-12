@@ -2699,9 +2699,13 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
         GetEreaderTrainerName(text);
         toCpy = text;
     }
-    else
+    else //edited below
     {
-        toCpy = gTrainers[trainerId].trainerName;
+        //toCpy = gTrainers[trainerId].trainerName;
+		if(!StringCompare(gTrainers[trainerId].trainerName, gText_ExpandedPlaceholder_May) || !StringCompare(gTrainers[trainerId].trainerName, gText_ExpandedPlaceholder_Brendan))
+				toCpy = gSaveBlock2Ptr->rivalName;
+		else
+				toCpy = gTrainers[trainerId].trainerName;
     }
 
     return toCpy;

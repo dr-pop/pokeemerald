@@ -370,7 +370,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 37,
-            "y": 42
+            "y": 43
         },
         {
             "elevation": 3,
@@ -379,7 +379,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SlateportCity_EventScript_Pikachu",
+            "script": "SlateportCity_EventScript_RivalNameChange",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 30,
