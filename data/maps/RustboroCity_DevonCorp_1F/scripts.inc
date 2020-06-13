@@ -1,15 +1,40 @@
 RustboroCity_DevonCorp_1F_MapScripts:: @ 8211245
-	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
+	//map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, RustboroCity_DevonCorp_1F_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_DevonCorp_1F_OnFrame
 	.byte 0
 
 RustboroCity_DevonCorp_1F_OnTransition: @ 821124B
 	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
+	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
 	end
 
-RustboroCity_DevonCorp_1F_EventScript_BlockStairs:: @ 8211255
-	setobjectxyperm 2, 14, 2
-	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_DOWN
-	return
+//RustboroCity_DevonCorp_1F_EventScript_BlockStairs:: @ 8211255
+	//setobjectxyperm 2, 14, 2
+	//setobjectmovementtype 2, MOVEMENT_TYPE_FACE_DOWN
+	//return
+
+RustboroCity_DevonCorp_1F_OnWarp:
+	map_script_2 VAR_SLATEPORT_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
+	.2byte 0
+
+RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2:: @ 8211255
+	//removeobject 3
+	//addobject 3
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	addobject 5 // add fossil
+	addobject 10 // add rival
+	turnobject 10, DIR_NORTH // position rival
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH // position player
+	end
+
+RustboroCity_DevonCorp_1F_OnFrame:
+	map_script_2 VAR_SLATEPORT_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_Cutscene2
+	.2byte 0
+
+// ============================================================
+// NPC INTERACTIONS. CROWD AT FOSSIL REVEAL EVENT IN CITY HALL.
+// ============================================================
 
 RustboroCity_DevonCorp_1F_EventScript_CrowdBurglar:: @ 821127F
 	lock
@@ -39,15 +64,6 @@ RustboroCity_DevonCorp_1F_EventScript_CrowdKarateGirl:: @ 821127F
 	applymovement 13, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_Prof1::
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof5, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_Mayor1::
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4, MSGBOX_NPC
 	end
 
 RustboroCity_DevonCorp_1F_EventScript_CrowdExpertF:: @ 821127F
@@ -109,6 +125,47 @@ RustboroCity_DevonCorp_1F_EventScript_CrowdHiker:: @ 821127F
 	waitmovement 0
 	release
 	end
+
+RustboroCity_DevonCorp_1F_Text_CrowdHiker:
+	.string "I hiked all the way from Mt. Snow to\n"
+	.string "see this reveal.$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdRangerM:
+	.string "I'm curious to know what Prof. Buxus\n"
+	.string "found this time around!$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdKarateGirl:
+	.string "What a crowd!\p"
+	.string "I can hardly see anything from here.$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdMan:
+	.string "The Mayor is about to make an\n"
+	.string "announcement. Find a spot!$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdGirl:
+	.string "Prof. Buxus often goes on expedition.\n"
+	.string "He doesn't like sitting in his lab.$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdExpertF:
+	.string "Science uncovers the secrets of\n"
+	.string "nature, one discovery at a time.$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdPicknicker:
+	.string "Is that a fossil?\p"
+	.string "Oh no, it's the Mayor!$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdOldMan:
+	.string "That Buxus fellow is an adventurous\n"
+	.string "type.\p"
+	.string "I used to be like him, back in the days.$"
+
+RustboroCity_DevonCorp_1F_Text_CrowdBurglar:
+	.string "What do you want, kid?\n"
+	.string "I'm not doing anything illegal!$"
+
+// ========================================================================
+// CUTSCENE 1: FOSSIL REVEAL AND THEFT. ENDS WITH CROWD AND FOSSIL REMOVED.
+// ========================================================================
 
 RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	lockall
@@ -287,7 +344,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	special ChooseStarter
 	waitstate
 	delay 8
-	playfanfare MUS_FANFA4
+	playfanfare MUS_FANFA5
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -325,12 +382,23 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	waitmovement 0
 	fadedefaultbgm
 	setflag FLAG_DEVON_GOODS_STOLEN
+	//setflag FLAG_DELIVERED_DEVON_GOODS
 	setvar VAR_SLATEPORT_CITY_STATE, 1
 	clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
 	clearflag FLAG_HIDE_ROUTE_101_BIRCH
 	releaseall
 	end
 
+RustboroCity_DevonCorp_1F_EventScript_Prof1::
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof5, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_Mayor1::
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4, MSGBOX_NPC
+	end
+
+/*
 RustboroCity_DevonCorp_1F_EventScript_ChooseStarterDebug::
 	lockall
 	faceplayer
@@ -349,6 +417,7 @@ RustboroCity_DevonCorp_1F_EventScript_ChooseStarterDebug::
 	closemessage
 	releaseall
 	end
+*/
 
 RustboroCity_DevonCorp_1F_Movement_Burglar1:: @ 821127F
 	walk_up
@@ -483,110 +552,6 @@ RustboroCity_DevonCorp_1F_Movement_Prof2:: @ 821127F
 	face_down
 	step_end
 
-RustboroCity_DevonCorp_1F_EventScript_Employee:: @ 8211261
-	lock
-	faceplayer
-	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
-	msgbox RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright:: @ 821127F
-	msgbox RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered:: @ 8211289
-	msgbox RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_StairGuard:: @ 8211293
-	lock
-	faceplayer
-	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
-	msgbox RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome:: @ 82112BA
-	msgbox RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_GotRobbed:: @ 82112C4
-	msgbox RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_Greeter:: @ 82112CE
-	lock
-	faceplayer
-	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
-	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp:: @ 82112F5
-	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed:: @ 82112FF
-	msgbox RustboroCity_DevonCorp_1F_Text_StaffGotRobbed, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_RocksMetalDisplay:: @ 8211309
-	msgbox RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay, MSGBOX_SIGN
-	end
-
-RustboroCity_DevonCorp_1F_EventScript_ProductsDisplay:: @ 8211312
-	msgbox RustboroCity_DevonCorp_1F_Text_ProductDisplay, MSGBOX_SIGN
-	end
-
-RustboroCity_DevonCorp_1F_Text_CrowdHiker:
-	.string "I hiked all the way from Mt. Snow to\n"
-	.string "see this reveal.$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdRangerM:
-	.string "I'm curious to know what Prof. Buxus\n"
-	.string "found this time around!$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdKarateGirl:
-	.string "What a crowd!\p"
-	.string "I can hardly see anything from here.$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdMan:
-	.string "The Mayor is about to make an\n"
-	.string "announcement. Find a spot!$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdGirl:
-	.string "Prof. Buxus often goes on expedition.\n"
-	.string "He doesn't like sitting in his lab.$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdExpertF:
-	.string "Science uncovers the secrets of\n"
-	.string "nature, one discovery at a time.$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdPicknicker:
-	.string "Is that a fossil?\p"
-	.string "Oh no, it's the Mayor!$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdOldMan:
-	.string "That Buxus fellow is an adventurous\n"
-	.string "type.\p"
-	.string "I used to be like him, back in the days.$"
-
-RustboroCity_DevonCorp_1F_Text_CrowdBurglar:
-	.string "What do you want, kid?\n"
-	.string "I'm not doing anything illegal!$"
-
 RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor1:
 	.string "Mayor: Welcome, dear Islanders and\n"
 	.string "strangers from afar.\p"
@@ -700,7 +665,220 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Prof5:
 RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4:
 	.string "Mayor: Godspeed, young trainer.\p"
 	.string "Please catch that thief.$"
+
+// =============================================================
+// CUTSCENE 2: AFTER RETURNING THE FOSSIL. AUTO-PLAY AFTER WARP.
+// =============================================================
+
+RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
+	lock
+	delay 30
+	removeitem ITEM_PLUME_FOSSIL
+	applymovement 4, RustboroCity_DevonCorp_1F_Movement_WalkInPlace
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Prof1, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	//player and rival receive Pokémon
+	applymovement 2, RustboroCity_DevonCorp_1F_Movement_WalkInPlace
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Mayor1, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	applymovement 2, RustboroCity_DevonCorp_1F_Movement_MayorExit
+	waitmovement 0
+	removeobject 2
+	applymovement 4, RustboroCity_DevonCorp_1F_Movement_WalkInPlace
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Prof2, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	applymovement 4, Common_Movement_FaceLeft
+	waitmovement 0
+	delay 30
+	removeobject 5
+	delay 30
+	removeobject 3
+	delay 30
+	applymovement 4, RustboroCity_DevonCorp_1F_Movement_ProfExit1
+	waitmovement 0
+	delay 30
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Prof3, MSGBOX_DEFAULT
+	closemessage
+	applymovement 4, RustboroCity_DevonCorp_1F_Movement_ProfExit2
+	waitmovement 0
+	removeobject 4
+	applymovement 10, Common_Movement_FaceRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	delay 16
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Rival, MSGBOX_DEFAULT
+	closemessage
+	applymovement 10, RustboroCity_DevonCorp_1F_Movement_RivalExit2
+	waitmovement 0
+	removeobject 10
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	setflag FLAG_RETURNED_DEVON_GOODS
+	//setflag FLAG_DELIVERED_DEVON_GOODS
+	setvar VAR_SLATEPORT_CITY_STATE, 4
+	release
+	end
+
+RustboroCity_DevonCorp_1F_Text_Cutscene2Prof1:
+	.string "Prof. Buxus: {PLAYER}, {RIVAL}.\p"
+	.string "Thank you for retrieving the\n"
+	.string "stolen artefact.\p"
+	.string "I can now continue my research\n"
+	.string "on its mysterious energy.\p"
+	.string "As a token of my gratitude, please\n"
+	.string "keep the Pokémon that helped you.\p"
+	.string "You and your Pokémon seem to\n"
+	.string "get along well.$"
 	
+RustboroCity_DevonCorp_1F_Text_Cutscene2Mayor1:
+	.string "Mayor: The Professor is right.\p"
+	.string "You have shown much courage,\n"
+	.string "young trainers.\p"
+	.string "The Island could use more honest\n"
+	.string "people like the two of you.\p"
+	.string "In fact, I need to ask you to\n"
+	.string "help me once more.\p"
+	.string "Please visit me in my office\n"
+	.string "whenever you are ready.$"
+
+RustboroCity_DevonCorp_1F_Text_Cutscene2Prof2:
+//	.string "Prof. Buxus: An assignment from\n"
+//	.string "the Mayor, no less!\p"
+//	.string "It seems you have made a name\n"
+//	.string "for yourselves.\p"
+	.string "Prof. Buxus: My duty is done,\n"
+	.string "as well.\l"
+	.string "Time to pack up.$"
+
+RustboroCity_DevonCorp_1F_Text_Cutscene2Prof3:
+	.string "Prof. Buxus: Come and visit my\n"
+	.string "Laboratory, later.\p"
+	.string "I have something to show you.$"
+
+RustboroCity_DevonCorp_1F_Text_Cutscene2Rival:
+	.string "{RIVAL}: An assignment from\n"
+	.string "the Mayor, no less.\l"
+	.string "And an invitation from the Professor.\l"
+	.string "What an honour, {PLAYER}!\p"
+	.string "But first, I will take my Mudkip\n"
+	.string "to the Pokémon Center.\p"
+	.string "Taking care of your Pokémon\n"
+	.string "always comes first.\p"
+	.string "See you around, {PLAYER}!$"
+
+RustboroCity_DevonCorp_1F_Movement_MayorExit:
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_ProfExit1:
+	walk_down
+	walk_left
+	face_down
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_ProfExit2:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_RivalExit2:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+// =============================================
+// REMAINING SCRIPTS FROM ORIGINAL GAME, UNUSED:
+// =============================================
+
+RustboroCity_DevonCorp_1F_EventScript_Employee:: @ 8211261
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
+	msgbox RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright:: @ 821127F
+	msgbox RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered:: @ 8211289
+	msgbox RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_StairGuard:: @ 8211293
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	msgbox RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome:: @ 82112BA
+	msgbox RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_GotRobbed:: @ 82112C4
+	msgbox RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_Greeter:: @ 82112CE
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp:: @ 82112F5
+	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed:: @ 82112FF
+	msgbox RustboroCity_DevonCorp_1F_Text_StaffGotRobbed, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_RocksMetalDisplay:: @ 8211309
+	msgbox RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_ProductsDisplay:: @ 8211312
+	msgbox RustboroCity_DevonCorp_1F_Text_ProductDisplay, MSGBOX_SIGN
+	end
+
 RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp: @ 821131B
 	.string "Hello and welcome to the DEVON\n"
 	.string "CORPORATION.\p"

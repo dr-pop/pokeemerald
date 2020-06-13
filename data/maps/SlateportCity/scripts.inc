@@ -6,8 +6,8 @@ SlateportCity_MapScripts:: @ 81DCC61
 SlateportCity_OnTransition: @ 81DCC6C
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
-	//compare VAR_SLATEPORT_CITY_STATE, 1
-	//call_if_eq SlateportCity_EventScript_LocateRival
+	compare VAR_SLATEPORT_CITY_STATE, 1
+	call_if_eq SlateportCity_EventScript_LocateRival
 	//compare VAR_SLATEPORT_CITY_STATE, 1
 	//call_if_eq SlateportCity_EventScript_RivalIntroduction
 	//call_if_eq SlateportCity_EventScript_MovePeopleForSternInterview
@@ -21,12 +21,12 @@ SlateportCity_EventScript_EnterSlateport:: @ 81DCC8D
 	setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
 	return
 
-//SlateportCity_EventScript_LocateRival::
+SlateportCity_EventScript_LocateRival::
 	//setobjectxy 2, 21, 15
 	//setobjectxy 19, 17, 13
-	//addobject 2
+	addobject 2
 	//addobject 19
-	//return
+	return
 
 SlateportCity_EventScript_RivalIntroduction::
 	//setobjectxy 2, 21, 15
@@ -61,7 +61,7 @@ SlateportCity_EventScript_RivalIntroduction::
 	applymovement 2, SlateportCity_Movement_RivalExit
 	waitmovement 0
 	//playse SE_PIN
-	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
+	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
 	removeobject 2
 	//playse SE_PIN
 	//setobjectxy 2, 40, 18
@@ -92,7 +92,7 @@ SlateportCity_Text_Rival1:
 	.string "???: Oh, hey there!\p"
 	.string "Let's find this thief, shall\n"
 	.string "we?\p"
-	.string "What's your name by the way?\n"
+	.string "By the way, what's your name?\n"
 	.string "Wait, let me guess…\p"
 	.string "It's {PLAYER}, am I right?\p"
 	.string "Now you guess mine.$"
@@ -101,14 +101,14 @@ SlateportCity_Text_Rival2:
 	.string "Wow, you guessed it right, too!\n"
 	.string "My name is {RIVAL}!\p"
 	.string "Now, let's not waste any more\n"
-	.string "time on niceties.\p"
+	.string "time on niceties, {PLAYER}.\p"
 	.string "I will look for the thief\n"
 	.string "in the Market.\l"
 	.string "You go the other way!$"
 
 SlateportCity_Text_Rival3:
-	.string "{RIVAL}: Hey, {PLAYER}! Found\n"
-	.string "anything yet?\p"
+	.string "{RIVAL}: Hey, {PLAYER}!\n"
+	.string "Found anything yet?\p"
 	.string "I got this area covered.\n"
 	.string "Check out the rest of town.$"
 
@@ -893,6 +893,9 @@ Script_DebugKecleon::
 	msgbox Text_Debug2, MSGBOX_YESNO //toggle "fossil stolen"
 	compare VAR_RESULT, YES
 	goto_if_eq Script_DebugKecleonYes2
+	msgbox Text_Debug3, MSGBOX_YESNO //toggle "thief caught"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes3
 	goto_if_set FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottHidden
 	goto_if_unset FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottUnhidden
 	release
@@ -907,8 +910,10 @@ Text_Debug1:
 
 Script_DebugKecleonYes1::
 	clearflag FLAG_DEVON_GOODS_STOLEN
-	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
 	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
 	setvar VAR_SLATEPORT_CITY_STATE, 0
 	msgbox Text_DebugDone, MSGBOX_DEFAULT
 	release
@@ -920,11 +925,32 @@ Text_Debug2:
 
 Script_DebugKecleonYes2::
 	setflag FLAG_DEVON_GOODS_STOLEN
-	clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	//setflag FLAG_DELIVERED_DEVON_GOODS
+	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
 	clearflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
 	setvar VAR_SLATEPORT_CITY_STATE, 1
 	msgbox Text_DebugDone, MSGBOX_DEFAULT
 	release
+	end
+
+Text_Debug3:
+	.string "Do you wish to toggle this:\n"
+	.string "“Thief Caught (C.S. 2)”$"
+
+Script_DebugKecleonYes3::
+	setflag FLAG_DEVON_GOODS_STOLEN
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
+	setvar VAR_SLATEPORT_CITY_STATE, 3
+	giveitem ITEM_PLUME_FOSSIL
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
+	waitstate
+	releaseall
 	end
 
 Text_DebugDone:

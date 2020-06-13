@@ -54,7 +54,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_RETURNED_DEVON_GOODS",
             "graphics_id": "OBJ_EVENT_GFX_DRAKE",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -67,7 +67,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_RETURNED_DEVON_GOODS",
             "graphics_id": "OBJ_EVENT_GFX_BALL_CUSHION",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -80,7 +80,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_RETURNED_DEVON_GOODS",
             "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
             "movement_range_x": 0,
             "movement_range_y": 0,
