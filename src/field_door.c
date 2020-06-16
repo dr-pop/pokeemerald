@@ -292,7 +292,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 	{METATILE_General_PopDoor1,               				DOOR_SOUND_NORMAL, 	1, sDoorAnimTiles_PopDoor1, sDoorAnimPalettes_PopDoor1}, //custom
 	{METATILE_General_PopDoor2,               				DOOR_SOUND_NORMAL, 	1, sDoorAnimTiles_PopDoor2, sDoorAnimPalettes_PopDoor2}, //custom
 	{METATILE_General_PopSliding,               			DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_PopSliding, sDoorAnimPalettes_PopSliding}, //custom
-	{METATILE_Building_PopDoorInt1,               			DOOR_SOUND_NORMAL,	1, sDoorAnimTiles_PopDoorInt1, sDoorAnimPalettes_PopDoorInt1}, //custom
+	{METATILE_Building_AnimatedDoor,               			DOOR_SOUND_NORMAL,	1, sDoorAnimTiles_PopDoorInt1, sDoorAnimPalettes_PopDoorInt1}, //custom
     {},
 };
 

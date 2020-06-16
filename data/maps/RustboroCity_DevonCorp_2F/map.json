@@ -4,9 +4,141 @@
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Display1",
+            "type": "sign",
+            "x": 3,
+            "y": 23
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Display2",
+            "type": "sign",
+            "x": 5,
+            "y": 23
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "RustboroCity_DevonCorp_2F_EventScript_OfficeDoor",
+            "type": "sign",
+            "x": 8,
+            "y": 21
+        }
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger1",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 2,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger2",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 3,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger3",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 4,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger4",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 5,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger5",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 6,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger6",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 7,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_MayorOffice",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 8,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger8",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 9,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger9",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 10,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger10",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 11,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger11",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 12,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger12",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var_value": "4",
+            "x": 13,
+            "y": 8
+        }
     ],
     "id": "MAP_RUSTBORO_CITY_DEVON_CORP_2F",
     "layout": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_2F",
@@ -15,13 +147,13 @@
     "name": "RustboroCity_DevonCorp_2F",
     "object_events": [
         {
-            "elevation": 3,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_TalkToPokemonScientist",
+            "script": "RustboroCity_DevonCorp_2F_EventScript_MayorOffice2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 8,
@@ -30,67 +162,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_BallScientist",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 6,
-            "y": 27
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_PokenavScientist",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 3,
-            "y": 9
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
             "movement_range_x": 0,
             "movement_range_y": 10,
-            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_PokemonDreamsScientist",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "RustboroCity_DevonCorp_2F_EventScript_Secretary",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 12,
             "y": 24
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_FossilScientist",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 11,
-            "y": 10
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "RustboroCity_DevonCorp_2F_EventScript_MatchCallScientist",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 4,
-            "y": 23
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",

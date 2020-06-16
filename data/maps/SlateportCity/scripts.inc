@@ -1,13 +1,14 @@
 SlateportCity_MapScripts:: @ 81DCC61
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_OnFrame
 	.byte 0
 
 SlateportCity_OnTransition: @ 81DCC6C
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
-	compare VAR_SLATEPORT_CITY_STATE, 1
-	call_if_eq SlateportCity_EventScript_LocateRival
+	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//call_if_eq SlateportCity_EventScript_LocateRival
 	//compare VAR_SLATEPORT_CITY_STATE, 1
 	//call_if_eq SlateportCity_EventScript_RivalIntroduction
 	//call_if_eq SlateportCity_EventScript_MovePeopleForSternInterview
@@ -26,7 +27,496 @@ SlateportCity_EventScript_LocateRival::
 	//setobjectxy 19, 17, 13
 	addobject 2
 	//addobject 19
-	return
+	end
+
+SlateportCity_OnWarp:
+	compare VAR_SLATEPORT_CITY_STATE, 1
+	call_if_eq SlateportCity_EventScript_LocateRival
+	end
+
+SlateportCity_OnFrame: @ 81DCD12
+	//map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
+	map_script_2 VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
+	.2byte 0
+
+// ============================================================
+// DEBUGGING AND TESTING SCRIPTS.
+// ============================================================
+
+Script_GivePokemonDemo::
+	lock
+	faceplayer
+	setflag FLAG_SYS_B_DASH
+	msgbox Text_TakeCharizard, MSGBOX_DEFAULT
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_eq Script_PlayerHasFullParty
+	givemon SPECIES_CHARIZARD, 50, ITEM_DRAGON_FANG
+	playfanfare MUS_FANFA4
+	msgbox Text_ReceivedCharizard, MSGBOX_DEFAULT
+	waitfanfare
+	release
+	end
+
+Script_PlayerHasFullParty::
+	msgbox Text_PlayerHasFullParty, MSGBOX_DEFAULT
+	release
+	end
+
+Text_TakeCharizard:
+	.string "Please, take this Charizard.$"
+
+Text_ReceivedCharizard:
+	.string "{PLAYER} received a Charizard!$"
+
+Text_PlayerHasFullParty:
+	.string "Ah, your party is full.$"
+
+// SlateportCity_EventScript_Man3:: @ 81DD365
+//	msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
+//	end
+
+// “ ”
+
+Script_DebugKecleon::
+	lock
+	faceplayer
+	msgbox Text_Debug1, MSGBOX_YESNO //restore "fossil stolen"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes1
+	msgbox Text_Debug2, MSGBOX_YESNO //toggle "fossil stolen"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes2
+	msgbox Text_Debug3, MSGBOX_YESNO //toggle "thief caught"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes3
+	msgbox Text_Debug4, MSGBOX_YESNO //toggle "open door office"
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonYes4
+	goto Script_DebugKecleonNo4
+	//goto_if_set FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottHidden
+	//goto_if_unset FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottUnhidden
+	release
+	end
+
+Text_Debug1:
+	.string "Hello, I'm Debug Kecleon.\p"
+	.string "Do you wish to reset this:\n"
+	.string "“Fossil Stolen (C.S. 1)”$"
+
+Script_DebugKecleonYes1::
+	clearflag FLAG_DEVON_GOODS_STOLEN
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
+	setvar VAR_SLATEPORT_CITY_STATE, 0
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Text_Debug2:
+	.string "Do you wish to toggle this:\n"
+	.string "“Fossil Stolen (C.S. 1)”$"
+
+Script_DebugKecleonYes2::
+	setflag FLAG_DEVON_GOODS_STOLEN
+	//setflag FLAG_DELIVERED_DEVON_GOODS
+	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	clearflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
+	setvar VAR_SLATEPORT_CITY_STATE, 1
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Text_Debug3:
+	.string "Do you wish to toggle this:\n"
+	.string "“Thief Caught (C.S. 2)”$"
+
+Script_DebugKecleonYes3::
+	setflag FLAG_DEVON_GOODS_STOLEN
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
+	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_RETURNED_DEVON_GOODS
+	setvar VAR_SLATEPORT_CITY_STATE, 3
+	giveitem ITEM_PLUME_FOSSIL
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
+	waitstate
+	releaseall
+	end
+
+Text_Debug4:
+	.string "Do you wish the door to the\n"
+	.string "Mayor's Office to be open?”$"
+
+Script_DebugKecleonYes4::
+	clearflag FLAG_USED_STORAGE_KEY
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Script_DebugKecleonNo4::
+	setflag FLAG_USED_STORAGE_KEY
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	release
+	end
+
+Text_DebugDone:
+	.string "All done. See ya!$"
+
+Script_DebugKecleonScottHidden::
+	msgbox Text_ScottHidden, MSGBOX_DEFAULT
+	closemessage
+	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	release
+	end
+
+Script_DebugKecleonScottUnhidden::
+	msgbox Text_ScottUnhidden, MSGBOX_DEFAULT
+	closemessage
+	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	release
+	end
+	
+Script_DebugKecleonBirchHidden::
+	msgbox Text_BirchHidden, MSGBOX_DEFAULT
+	closemessage
+	msgbox Text_DebugBye, MSGBOX_DEFAULT
+	release
+	end
+	
+Script_DebugKecleonBirchUnhidden::
+	msgbox Text_BirchUnhidden, MSGBOX_DEFAULT
+	closemessage
+	msgbox Text_DebugBye, MSGBOX_DEFAULT
+	release
+	end
+
+Text_ScottHidden:
+	.string "FLAG: HIDE SCOTT is set.\n"
+	.string "Pikachu invisible.$"
+	
+Text_ScottUnhidden:
+	.string "FLAG: HIDE SCOTT is unset.\n"
+	.string "Pikachu visible.$"
+	
+Text_BirchHidden:
+	.string "FLAG: HIDE BIRCH is set.\n"
+	.string "Kirla invisible.$"
+	
+Text_BirchUnhidden:
+	.string "FLAG: HIDE BIRCH is unset.\n"
+	.string "Kirlia visible.$"
+
+Text_DebugBye:
+	.string "OK then. Bye!$"
+
+// ============================================================
+// NPC INTERACTIONS. WILLYSTAD CITIZENS.
+// ============================================================
+
+SlateportCity_EventScript_OceanicMuseumSign:: @ 81DCF79
+	msgbox SlateportCity_Text_OceanicMuseumSign, MSGBOX_SIGN
+	end
+
+SlateportCity_EventScript_BattleTentSign:: @ 81DCF36
+	msgbox SlateportCity_Text_BattleTentSign, MSGBOX_SIGN
+	end
+
+SlateportCity_EventScript_CitySign:: @ 81DCF82
+	msgbox SlateportCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+SlateportCity_EventScript_MarketSign:: @ 81DCF8B
+	msgbox SlateportCity_Text_MarketSign, MSGBOX_SIGN
+	end
+
+SlateportCity_EventScript_HarborSign:: @ 81DCF94
+	msgbox SlateportCity_Text_CityHallSign, MSGBOX_SIGN
+	end
+
+SlateportCity_EventScript_OldWoman:: @ 81DCE63
+	lock
+	msgbox SlateportCity_Text_PeerHorizon, MSGBOX_NPC
+	closemessage
+	applymovement 6, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+SlateportCity_EventScript_Girl:: @ 81DCE84
+	msgbox SlateportCity_Text_MarketAndMart, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_FatMan:: @ 81DCED9
+	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//goto_if_eq SlateportCity_EventScript_FatManSternInterview
+	lock
+	faceplayer
+	msgbox SlateportCity_Text_MarketBlockedTourist, MSGBOX_NPC
+	closemessage
+	applymovement 1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+SlateportCity_EventScript_Man1:: @ 81DCEF6
+	lock
+	faceplayer
+	compare VAR_SLATEPORT_CITY_STATE, 1
+	call_if_eq SlateportCity_EventScript_Man1SternInterview
+	msgbox SlateportCity_Text_EveryoneCallsHimCaptStern, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_Woman1:: @ 81DCF17
+	msgbox SlateportCity_Text_HotOutside, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_Maniac:: @ 81DCFBB
+	msgbox SlateportCity_Text_BigCityLife, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_LittleGirl:: @ 81DCFBB
+	msgbox SlateportCity_Text_LittleGirl, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_OldMan:: @ 81DCFDC
+	lock
+	faceplayer
+	compare VAR_SLATEPORT_CITY_STATE, 2
+	goto_if_eq SlateportCity_EventScript_OldMan2
+	msgbox SlateportCity_Text_OldMan, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_OldMan2::
+	msgbox SlateportCity_Text_OldMan2, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_Sailor1:: @ 81DCFE5
+	msgbox SlateportCity_Text_SeaIsSoWet, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_Sailor2:: @ 81DCFEE
+	msgbox SlateportCity_Text_MarketBlockedSailor, MSGBOX_NPC //edited
+	end
+
+SlateportCity_EventScript_Man2:: @ 81DD000
+	msgbox SlateportCity_Text_RecentArrival, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_BlackBelt:: @ 81DD009
+	msgbox SlateportCity_Text_Jungle, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_Pikachu:: @ 8215F80
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIKACHU, 0
+	msgbox SlateportCity_EventScript_Text_Pikachu, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+SlateportCity_EventScript_Text_Pikachu:
+	.string "Pikachu: Piikaa!$"
+
+SlateportCity_EventScript_Ty:: @ 81DD353
+	lock
+	msgbox SlateportCity_Text_CameraMan1, MSGBOX_SIGN
+	release
+	end
+
+SlateportCity_EventScript_Gabby:: @ 81DD35C
+	lock
+	compare VAR_SLATEPORT_CITY_STATE, 2
+	goto_if_ge SlateportCity_EventScript_Gabby2
+	msgbox SlateportCity_Text_Reporter1, MSGBOX_SIGN
+	release
+	end
+
+SlateportCity_EventScript_Gabby2::
+	compare VAR_SLATEPORT_CITY_STATE, 4
+	goto_if_ge SlateportCity_EventScript_Gabby3
+	msgbox SlateportCity_Text_Reporter2, MSGBOX_SIGN
+	release
+	end
+
+SlateportCity_EventScript_Gabby3::
+	msgbox SlateportCity_Text_Reporter3, MSGBOX_SIGN
+	release
+	end
+
+SlateportCity_EventScript_InMyShotScene:: @ 81DD5DC
+	lockall
+	playse SE_PIN
+	applymovement 8, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	msgbox SlateportCity_Text_CameraMan2, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PushPlayerDown
+	waitmovement 0
+//	opendoor 10, 12
+//	waitdooranim
+//	addobject 35
+//	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PushPlayerDown
+//	applymovement 35, SlateportCity_Movement_ScottExitBattleTent
+//	waitmovement 0
+//	closedoor 10, 12
+//	waitdooranim
+//	msgbox SlateportCity_Text_TakingBattleTentChallenge, MSGBOX_DEFAULT
+//	closemessage
+//	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PlayerWatchScottExit
+//	applymovement 35, SlateportCity_Movement_ScottExitAfterBattleTent
+//	waitmovement 0
+//	removeobject 35
+//	addvar VAR_SCOTT_STATE, 1
+//	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	releaseall
+	end
+
+SlateportCity_Movement_PushPlayerDown: @ 81DD630
+	walk_down
+	step_end
+
+SlateportCity_Text_PeerHorizon: @ 81DD8A6
+	.string "I love to stand on the docks and peer\n"
+	.string "over the horizon.\p"
+	.string "I wonder what is beyond it.$"
+
+SlateportCity_Text_MarketAndMart: @ 81DD93D
+	.string "The Willystad Market sells products\n"
+	.string "from all across the Island.\p"
+	.string "But the Pokémon Mart sells products\n"
+	.string "from all across the world!$"
+
+SlateportCity_Text_HotOutside: @ 81DDBAC
+	.string "Whenever it's too hot outside, I like\n"
+	.string "to go to a Pokémon Center.\p"
+	.string "They're airconditioned!$"
+
+SlateportCity_Text_Jungle: @ 81DDC4F
+	.string "I just spent one month in the jungle\n"
+	.string "with my Pokémon.\p"	
+	.string "It was tough, but I can't wait to go\n"	
+	.string "back again!$"
+
+SlateportCity_Text_MarketBlockedSailor: @ 81DE04B //edited
+	.string "Sorry kid! I'm unloading fresh goods\n"
+	.string "to be sold at the Willystad Market.\p"
+	.string "But first, let me take a break.$"
+
+SlateportCity_Text_BigCityLife: @ 81DE10E
+	.string "Whew! This city is big!\p"
+	.string "I think I'm lost…$"
+
+SlateportCity_Text_LittleGirl: @ 81DE16C
+	.string "My father is a sailor!\l"
+	.string "And my grandpa too!\p"
+	.string "When I grow up, I want to be a\n"
+	.string "sailor myself!$"
+
+SlateportCity_Text_OldMan: @ 81DE16C
+	.string "They say the towns on this Island were\n"
+	.string "founded by six families, long ago.\p"
+	.string "They arrived by boat from faraway\n"
+	.string "lands.$"
+
+SlateportCity_Text_OldMan2:
+	.string "A strange chap just ran out of\n"
+	.string "the City Hall.\p"
+	.string "It looked like he was carrying\n"
+	.string "something heavy.$"
+
+SlateportCity_Text_RecentArrival: @ 81DE1EC
+	.string "Hey, are you new in town as well?\p"
+	.string "I came from overseas to study the\n"
+	.string "unique Pokémon that live here!$"
+
+SlateportCity_Text_CameraMan1: @ 81DE491
+	.string "Shush, kid. Can't you see I'm working?$"
+
+SlateportCity_Text_CameraMan2: @ 81DE491
+	.string "Hey kid! You're in my shot!$"
+
+SlateportCity_Text_Reporter1: @ 81DE4C4
+	.string "We are standing here in front of the\n"
+	.string "Willystad City Hall.\p"
+	.string "In a few moments, the Mayor will reveal\n"
+	.string "a new scientific discovery…\p"
+	.string "Rumour has it that Prof. Buxus found\n"
+	.string "something on one of his expeditions!$"
+
+SlateportCity_Text_Reporter2: @ 81DE4C4
+	.string "Breaking news from Willystad City!\p"
+	.string "There has been a heist in the City\n"
+	.string "Hall. A precious item was stolen.\p"
+	.string "The thief was spotted fleeing the\n"
+	.string "city in a haste.\l"
+	.string "Will he be found?\l"
+	.string "Stay tuned for more!$"
+
+SlateportCity_Text_Reporter3:
+	.string "Our latest information!\p"
+	.string "The Fossil may have been returned,\n"
+	.string "but questions remain…\l"
+	.string "Who was the strange robber?\l"
+	.string "How could this have happened?\l"
+	.string "Is anyone still safe now?\l"
+	.string "Should we all be afraid?\p"
+	.string "This, and more, after the break.\n"
+	.string "Back to the studio.$"
+
+SlateportCity_Text_BattleTentSign: @ 81DE8BC
+	.string "Prof. Buxus Laboratory\p"
+	.string "“Studying the plants and Pokémon\n"
+	.string "of Sigma Island.”$"
+
+SlateportCity_Text_OceanicMuseumSign: @ 81DEA3B
+	.string "Island Warehouse\n"
+	.string "“Buy and sell your goods in bulk!”$"
+
+SlateportCity_Text_CitySign: @ 81DEA6F
+	.string "Willystad City\p"
+	.string "“The Island's bustling trading\n"
+	.string "port for over 300 years.”$"
+
+SlateportCity_Text_MarketSign: @ 81DEAAF
+	.string "Willystad Market\n"
+	.string "“For local and exotic goods!”$"
+
+SlateportCity_EventScript_Wingull::
+	//lock
+	applymovement 12, SlateportCity_Movement_WingullFlyEast
+	waitmovement 0
+	release
+	end
+
+SlateportCity_Movement_WingullFlyEast:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+// =======================================
+// CUTSCENE: RIVAL INTRODUCTION, AUTO-PLAY
+// =======================================
 
 SlateportCity_EventScript_RivalIntroduction::
 	//setobjectxy 2, 21, 15
@@ -77,16 +567,12 @@ SlateportCity_EventScript_RivalIntroduction::
 	releaseall
 	end
 
-SlateportCity_EventScript_RivalSearching::
-	msgbox SlateportCity_Text_Rival3, MSGBOX_NPC
-	end
-
-SlateportCity_EventScript_RivalNameChange::
-	lock
-	faceplayer
-	special RivalNameChange
-	release
-	end
+//SlateportCity_EventScript_RivalNameChange::
+	//lock
+	//faceplayer
+	//special RivalNameChange
+	//release
+	//end
 
 SlateportCity_Text_Rival1:
 	.string "???: Oh, hey there!\p"
@@ -106,12 +592,6 @@ SlateportCity_Text_Rival2:
 	.string "in the Market.\l"
 	.string "You go the other way!$"
 
-SlateportCity_Text_Rival3:
-	.string "{RIVAL}: Hey, {PLAYER}!\n"
-	.string "Found anything yet?\p"
-	.string "I got this area covered.\n"
-	.string "Check out the rest of town.$"
-
 SlateportCity_Movement_RivalExit:
 	walk_right
 	walk_right
@@ -125,6 +605,24 @@ SlateportCity_Movement_RivalExit:
 	walk_right
 	walk_right
 	step_end
+
+// ===============================
+// POST-CUTSCENE RIVAL INTERACTION
+// ===============================
+
+SlateportCity_EventScript_RivalSearching::
+	msgbox SlateportCity_Text_Rival3, MSGBOX_NPC
+	end
+
+SlateportCity_Text_Rival3:
+	.string "{RIVAL}: Hey, {PLAYER}!\n"
+	.string "Found anything yet?\p"
+	.string "I got this area covered.\n"
+	.string "Check out the rest of town.$"
+
+// =============================================
+// REMAINING SCRIPTS FROM ORIGINAL GAME, UNUSED:
+// =============================================
 	
 SlateportCity_EventScript_MovePeopleForSternInterview:: @ 81DCC99
 	setobjectxyperm 11, 28, 13
@@ -156,11 +654,6 @@ SlateportCity_EventScript_MoveScottLeft:: @ 81DCD06
 	setobjectxyperm 35, 22, 27
 	setobjectmovementtype 35, MOVEMENT_TYPE_FACE_RIGHT
 	return
-
-SlateportCity_OnFrame: @ 81DCD12
-	//map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
-	map_script_2 VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
-	.2byte 0
 
 SlateportCity_EventScript_ScottScene:: @ 81DCD1C
 	lockall
@@ -290,22 +783,9 @@ SlateportCity_EventScript_CookSternInterview:: @ 81DCE59
 	release
 	end
 
-SlateportCity_EventScript_OldWoman:: @ 81DCE63
-	lock
-	msgbox SlateportCity_Text_PeerHorizon, MSGBOX_NPC
-	closemessage
-	applymovement 6, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
 SlateportCity_EventScript_OldWomanSternInterview:: @ 81DCE7A
 	msgbox SlateportCity_Text_CaptSternBeingInterviewed, MSGBOX_DEFAULT
 	release
-	end
-
-SlateportCity_EventScript_Girl:: @ 81DCE84
-	msgbox SlateportCity_Text_MarketAndMart, MSGBOX_NPC
 	end
 
 SlateportCity_EventScript_GirlSternInterview:: @ 81DCEA4
@@ -332,29 +812,8 @@ SlateportCity_EventScript_RichBoySternInterview:: @ 81DCECF
 	release
 	end
 
-SlateportCity_EventScript_FatMan:: @ 81DCED9
-	//compare VAR_SLATEPORT_CITY_STATE, 1
-	//goto_if_eq SlateportCity_EventScript_FatManSternInterview
-	lock
-	faceplayer
-	msgbox SlateportCity_Text_MarketBlockedTourist, MSGBOX_NPC
-	closemessage
-	applymovement 1, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
 SlateportCity_EventScript_FatManSternInterview:: @ 81DCEED
 	msgbox SlateportCity_Text_AmIOnTV, MSGBOX_SIGN
-	end
-
-SlateportCity_EventScript_Man1:: @ 81DCEF6
-	lock
-	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 1
-	call_if_eq SlateportCity_EventScript_Man1SternInterview
-	msgbox SlateportCity_Text_EveryoneCallsHimCaptStern, MSGBOX_DEFAULT
-	release
 	end
 
 SlateportCity_EventScript_Man1SternInterview:: @ 81DCF0D
@@ -362,18 +821,11 @@ SlateportCity_EventScript_Man1SternInterview:: @ 81DCF0D
 	release
 	end
 
-SlateportCity_EventScript_Woman1:: @ 81DCF17
-	msgbox SlateportCity_Text_HotOutside, MSGBOX_NPC
-	end
-
 SlateportCity_EventScript_Woman1AquaGone:: @ 81DCF2C
 	msgbox SlateportCity_Text_VisitedMuseumOften, MSGBOX_DEFAULT
 	release
 	end
 
-SlateportCity_EventScript_BattleTentSign:: @ 81DCF36
-	msgbox SlateportCity_Text_BattleTentSign, MSGBOX_SIGN
-	end
 
 SlateportCity_EventScript_SternsShipyardSign:: @ 81DCF3F
 	lockall
@@ -397,22 +849,6 @@ SlateportCity_EventScript_PokemonFanClubSign:: @ 81DCF70
 	msgbox SlateportCity_Text_PokemonFanClubSign, MSGBOX_SIGN
 	end
 
-SlateportCity_EventScript_OceanicMuseumSign:: @ 81DCF79
-	msgbox SlateportCity_Text_OceanicMuseumSign, MSGBOX_SIGN
-	end
-
-SlateportCity_EventScript_CitySign:: @ 81DCF82
-	msgbox SlateportCity_Text_CitySign, MSGBOX_SIGN
-	end
-
-SlateportCity_EventScript_MarketSign:: @ 81DCF8B
-	msgbox SlateportCity_Text_MarketSign, MSGBOX_SIGN
-	end
-
-SlateportCity_EventScript_HarborSign:: @ 81DCF94
-	msgbox SlateportCity_Text_CityHallSign, MSGBOX_SIGN
-	end
-
 SlateportCity_EventScript_HarborSignFerryComplete:: @ 81DCFA8
 	msgbox SlateportCity_Text_CityHallSign, MSGBOX_DEFAULT
 	releaseall
@@ -422,66 +858,15 @@ SlateportCity_EventScript_NameRatersHouseSign:: @ 81DCFB2
 	msgbox SlateportCity_Text_NameRatersHouseSign, MSGBOX_SIGN
 	end
 
-SlateportCity_EventScript_Maniac:: @ 81DCFBB
-	msgbox SlateportCity_Text_BigCityLife, MSGBOX_NPC
-	end
-
 @ Unclear if the text here was meant to be different, but its not
 SlateportCity_EventScript_ManiacSternInterview:: @ 81DCFD2
 	msgbox SlateportCity_Text_BigCityLife, MSGBOX_DEFAULT
 	release
 	end
 
-SlateportCity_EventScript_LittleGirl:: @ 81DCFBB
-	msgbox SlateportCity_Text_LittleGirl, MSGBOX_NPC
-	end
-
-SlateportCity_EventScript_OldMan:: @ 81DCFDC
-	lock
-	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 2
-	goto_if_eq SlateportCity_EventScript_OldMan2
-	msgbox SlateportCity_Text_OldMan, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_EventScript_OldMan2::
-	msgbox SlateportCity_Text_OldMan2, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_EventScript_Sailor1:: @ 81DCFE5
-	msgbox SlateportCity_Text_SeaIsSoWet, MSGBOX_NPC
-	end
-
-SlateportCity_EventScript_Sailor2:: @ 81DCFEE
-	msgbox SlateportCity_Text_MarketBlockedSailor, MSGBOX_NPC //edited
-	end
-
 SlateportCity_EventScript_PokefanF:: @ 81DCFF7
 	msgbox SlateportCity_Text_BuyTooMuch, MSGBOX_NPC
 	end
-
-SlateportCity_EventScript_Man2:: @ 81DD000
-	msgbox SlateportCity_Text_RecentArrival, MSGBOX_NPC
-	end
-
-SlateportCity_EventScript_BlackBelt:: @ 81DD009
-	msgbox SlateportCity_Text_Jungle, MSGBOX_NPC
-	end
-
-SlateportCity_EventScript_Pikachu:: @ 8215F80
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_PIKACHU, 0
-	msgbox SlateportCity_EventScript_Text_Pikachu, MSGBOX_DEFAULT
-	waitmoncry
-	release
-	end
-
-SlateportCity_EventScript_Text_Pikachu:
-	.string "Pikachu: Piikaa!$"
 
 SlateportCity_EventScript_AquaGrunt2:: @ 81DD020
 	lock
@@ -827,183 +1212,6 @@ SlateportCity_Movement_PlayerFaceStern: @ 81DD34A
 	walk_in_place_fastest_down
 	step_end
 
-SlateportCity_EventScript_Ty:: @ 81DD353
-	lock
-	msgbox SlateportCity_Text_CameraMan1, MSGBOX_SIGN
-	release
-	end
-
-SlateportCity_EventScript_Gabby:: @ 81DD35C
-	lock
-	compare VAR_SLATEPORT_CITY_STATE, 2
-	goto_if_eq SlateportCity_EventScript_Gabby2
-	msgbox SlateportCity_Text_Reporter1, MSGBOX_SIGN
-	release
-	end
-
-SlateportCity_EventScript_Gabby2::
-	lock
-	msgbox SlateportCity_Text_Reporter2, MSGBOX_SIGN
-	release
-	end
-
-@ avara tutorial, for debugging
-
-Script_GivePokemonDemo::
-	lock
-	faceplayer
-	setflag FLAG_SYS_B_DASH
-	msgbox Text_TakeCharizard, MSGBOX_DEFAULT
-	getpartysize
-	compare VAR_RESULT, 6
-	goto_if_eq Script_PlayerHasFullParty
-	givemon SPECIES_CHARIZARD, 50, ITEM_DRAGON_FANG
-	playfanfare MUS_FANFA4
-	msgbox Text_ReceivedCharizard, MSGBOX_DEFAULT
-	waitfanfare
-	release
-	end
-
-Script_PlayerHasFullParty::
-	msgbox Text_PlayerHasFullParty, MSGBOX_DEFAULT
-	release
-	end
-
-Text_TakeCharizard:
-	.string "Please, take this Charizard.$"
-
-Text_ReceivedCharizard:
-	.string "{PLAYER} received a Charizard!$"
-
-Text_PlayerHasFullParty:
-	.string "Ah, your party is full.$"
-
-@ SlateportCity_EventScript_Man3:: @ 81DD365
-@	msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
-@	end
-
-@ end of avara tutorial, debugging script
-
-Script_DebugKecleon::
-	lock
-	faceplayer
-	msgbox Text_Debug1, MSGBOX_YESNO //restore "fossil stolen"
-	compare VAR_RESULT, YES
-	goto_if_eq Script_DebugKecleonYes1
-	msgbox Text_Debug2, MSGBOX_YESNO //toggle "fossil stolen"
-	compare VAR_RESULT, YES
-	goto_if_eq Script_DebugKecleonYes2
-	msgbox Text_Debug3, MSGBOX_YESNO //toggle "thief caught"
-	compare VAR_RESULT, YES
-	goto_if_eq Script_DebugKecleonYes3
-	goto_if_set FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottHidden
-	goto_if_unset FLAG_HIDE_SLATEPORT_CITY_SCOTT, Script_DebugKecleonScottUnhidden
-	release
-	end
-
-// “ ”
-
-Text_Debug1:
-	.string "Hello, I'm Debug Kecleon.\p"
-	.string "Do you wish to reset this:\n"
-	.string "“Fossil Stolen (C.S. 1)”$"
-
-Script_DebugKecleonYes1::
-	clearflag FLAG_DEVON_GOODS_STOLEN
-	//clearflag FLAG_DELIVERED_DEVON_GOODS
-	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 0
-	msgbox Text_DebugDone, MSGBOX_DEFAULT
-	release
-	end
-
-Text_Debug2:
-	.string "Do you wish to toggle this:\n"
-	.string "“Fossil Stolen (C.S. 1)”$"
-
-Script_DebugKecleonYes2::
-	setflag FLAG_DEVON_GOODS_STOLEN
-	//setflag FLAG_DELIVERED_DEVON_GOODS
-	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	clearflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 1
-	msgbox Text_DebugDone, MSGBOX_DEFAULT
-	release
-	end
-
-Text_Debug3:
-	.string "Do you wish to toggle this:\n"
-	.string "“Thief Caught (C.S. 2)”$"
-
-Script_DebugKecleonYes3::
-	setflag FLAG_DEVON_GOODS_STOLEN
-	//clearflag FLAG_DELIVERED_DEVON_GOODS
-	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 3
-	giveitem ITEM_PLUME_FOSSIL
-	msgbox Text_DebugDone, MSGBOX_DEFAULT
-	closemessage
-	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
-	waitstate
-	releaseall
-	end
-
-Text_DebugDone:
-	.string "All done. See ya!$"
-
-Script_DebugKecleonScottHidden::
-	msgbox Text_ScottHidden, MSGBOX_DEFAULT
-	closemessage
-	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
-	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
-	release
-	end
-
-Script_DebugKecleonScottUnhidden::
-	msgbox Text_ScottUnhidden, MSGBOX_DEFAULT
-	closemessage
-	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
-	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
-	release
-	end
-	
-Script_DebugKecleonBirchHidden::
-	msgbox Text_BirchHidden, MSGBOX_DEFAULT
-	closemessage
-	msgbox Text_DebugBye, MSGBOX_DEFAULT
-	release
-	end
-	
-Script_DebugKecleonBirchUnhidden::
-	msgbox Text_BirchUnhidden, MSGBOX_DEFAULT
-	closemessage
-	msgbox Text_DebugBye, MSGBOX_DEFAULT
-	release
-	end
-
-Text_DebugBye:
-	.string "OK then. Bye!$"
-
-Text_ScottHidden:
-	.string "FLAG: HIDE SCOTT is set.\n"
-	.string "Pikachu invisible.$"
-	
-Text_ScottUnhidden:
-	.string "FLAG: HIDE SCOTT is unset.\n"
-	.string "Pikachu visible.$"
-	
-Text_BirchHidden:
-	.string "FLAG: HIDE BIRCH is set.\n"
-	.string "Kirla invisible.$"
-	
-Text_BirchUnhidden:
-	.string "FLAG: HIDE BIRCH is unset.\n"
-	.string "Kirlia visible.$"
 
 SlateportCity_EventScript_BerryPowderClerk:: @ 81DD36E
 	lock
@@ -1169,40 +1377,6 @@ SlateportCity_EventScript_NotEnoughBerryPowder:: @ 81DD5CE
 	goto SlateportCity_EventScript_ChooseBerryPowderItem
 	end
 
-SlateportCity_EventScript_InMyShotScene:: @ 81DD5DC
-	lockall
-	playse SE_PIN
-	applymovement 8, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
-	waitmovement 0
-	msgbox SlateportCity_Text_CameraMan2, MSGBOX_DEFAULT
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PushPlayerDown
-	waitmovement 0
-//	opendoor 10, 12
-//	waitdooranim
-//	addobject 35
-//	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PushPlayerDown
-//	applymovement 35, SlateportCity_Movement_ScottExitBattleTent
-//	waitmovement 0
-//	closedoor 10, 12
-//	waitdooranim
-//	msgbox SlateportCity_Text_TakingBattleTentChallenge, MSGBOX_DEFAULT
-//	closemessage
-//	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PlayerWatchScottExit
-//	applymovement 35, SlateportCity_Movement_ScottExitAfterBattleTent
-//	waitmovement 0
-//	removeobject 35
-//	addvar VAR_SCOTT_STATE, 1
-//	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	releaseall
-	end
-
-SlateportCity_Movement_PushPlayerDown: @ 81DD630
-	walk_down
-	step_end
-
 SlateportCity_Movement_PlayerWatchScottExit: @ 81DD634
 	delay_16
 	walk_in_place_fastest_right
@@ -1273,16 +1447,6 @@ SlateportCity_Text_SeaweedFullOfLife: @ 81DD81A
 	.string "Why, it looks like it can even rear up\n"
 	.string "and attack!$"
 
-SlateportCity_Text_PeerHorizon: @ 81DD8A6
-	.string "I love to stand on the docks and peer\n"
-	.string "over the horizon.\p"
-	.string "I wonder what is beyond it.$"
-
-SlateportCity_Text_MarketAndMart: @ 81DD93D
-	.string "The Willystad Market sells products\n"
-	.string "from all across the Island.\p"
-	.string "But the Pokémon Mart sells products\n"
-	.string "from all across the world!$"
 
 SlateportCity_Text_BuyBricksSoDecorWontGetDirty: @ 81DD999
 	.string "If you put DOLLS or CUSHIONS on\n"
@@ -1309,23 +1473,12 @@ SlateportCity_Text_EveryoneCallsHimCaptStern: @ 81DDB21
 	.string "of an undersea exploration team.\p"
 	.string "So, everyone calls him CAPT. STERN.$"
 
-SlateportCity_Text_HotOutside: @ 81DDBAC
-	.string "Whenever it's too hot outside, I like\n"
-	.string "to go to a Pokémon Center.\p"
-	.string "They're airconditioned!$"
-
 SlateportCity_Text_VisitedMuseumOften: @ 81DDBD5
 	.string "When I was a child, I visited\n"
 	.string "the MUSEUM often.\p"
 	.string "I used to dream about the mysteries of\n"
 	.string "the sea after seeing the exhibits.$"
-
-SlateportCity_Text_Jungle: @ 81DDC4F
-	.string "I just spent one month in the jungle\n"
-	.string "with my Pokémon.\p"	
-	.string "It was tough, but I can't wait to go\n"	
-	.string "back again!$"
-
+	
 SlateportCity_Text_AquaHasPolicy: @ 81DDC8A
 	.string "TEAM AQUA has a policy of\n"
 	.string "assembling and dispersing at\l"
@@ -1390,41 +1543,9 @@ SlateportCity_Text_SeaIsSoWet: @ 81DDFF7
 	.string "Could the sea have been made by\n"
 	.string "the tears shed by POKéMON?$"
 
-SlateportCity_Text_MarketBlockedSailor: @ 81DE04B //edited
-	.string "Sorry kid! I'm unloading fresh goods\n"
-	.string "to be sold at the Willystad Market.\p"
-	.string "But first, let me take a break.$"
-
 SlateportCity_Text_BuyTooMuch: @ 81DE0D2
 	.string "Whenever I visit here, I get carried\n"
 	.string "away and buy too much.$"
-
-SlateportCity_Text_BigCityLife: @ 81DE10E
-	.string "Whew! This city is big!\p"
-	.string "I think I'm lost…$"
-
-SlateportCity_Text_LittleGirl: @ 81DE16C
-	.string "My father is a sailor!\l"
-	.string "And my grandpa too!\p"
-	.string "When I grow up, I want to be a\n"
-	.string "sailor myself!$"
-
-SlateportCity_Text_OldMan: @ 81DE16C
-	.string "They say the towns on this Island were\n"
-	.string "founded by six families, long ago.\p"
-	.string "They arrived by boat from faraway\n"
-	.string "lands.$"
-
-SlateportCity_Text_OldMan2:
-	.string "A strange chap just ran out of\n"
-	.string "the City Hall.\p"
-	.string "It looked like he was carrying\n"
-	.string "something heavy.$"
-
-SlateportCity_Text_RecentArrival: @ 81DE1EC
-	.string "Hey, are you new in town as well?\p"
-	.string "I came from overseas to study the\n"
-	.string "unique Pokémon that live here!$"
 
 SlateportCity_Text_CaptSternBeingInterviewed: @ 81DE28E
 	.string "I was hoping that it was a famous star\n"
@@ -1456,29 +1577,6 @@ SlateportCity_Text_AmIOnTV: @ 81DE43D
 SlateportCity_Text_CaptainsACelebrity: @ 81DE460
 	.string "A TV interview! Here!\n"
 	.string "The CAPTAIN's a celebrity!$"
-
-SlateportCity_Text_CameraMan1: @ 81DE491
-	.string "Shush, kid. Can't you see I'm working?$"
-
-SlateportCity_Text_CameraMan2: @ 81DE491
-	.string "Hey kid! You're in my shot!$"
-
-SlateportCity_Text_Reporter1: @ 81DE4C4
-	.string "We are standing here in front of the\n"
-	.string "Willystad City Hall.\p"
-	.string "In a few moments, the Mayor will reveal\n"
-	.string "a new scientific discovery…\p"
-	.string "Rumour has it that Prof. Buxus found\n"
-	.string "something on one of his expeditions!$"
-
-SlateportCity_Text_Reporter2: @ 81DE4C4
-	.string "Breaking news from Willystad City!\p"
-	.string "There has been a heist in the City\n"
-	.string "Hall. A precious item was stolen.\p"
-	.string "The thief was spotted fleeing the\n"
-	.string "city in a haste.\l"
-	.string "Will he be found?\l"
-	.string "Stay tuned for more!$"
 
 SlateportCity_Text_SternMoveAheadWithExploration: @ 81DE502
 	.string "CAPT. STERN: Yes, indeed. We intend to\n"
@@ -1532,10 +1630,6 @@ SlateportCity_Text_PleaseComeWithMe: @ 81DE8A0
 	.string "{PLAYER}{KUN}!\n"
 	.string "Please, come with me!$"
 
-SlateportCity_Text_BattleTentSign: @ 81DE8BC
-	.string "Prof. Buxus Laboratory\p"
-	.string "“Studying the plants and Pokémon\n"
-	.string "of Sigma Island.”$"
 
 SlateportCity_Text_SternsShipyardWantedSign: @ 81DE8F8
 	.string "STERN'S SHIPYARD\p"
@@ -1557,19 +1651,6 @@ SlateportCity_Text_SternsShipyardFerryComplete: @ 81DE9AA
 SlateportCity_Text_PokemonFanClubSign: @ 81DEA0B
 	.string "POKéMON FAN CLUB\n"
 	.string "“Calling all fans of POKéMON!”$"
-
-SlateportCity_Text_OceanicMuseumSign: @ 81DEA3B
-	.string "Island Warehouse\n"
-	.string "“Buy and sell your goods in bulk!”$"
-
-SlateportCity_Text_CitySign: @ 81DEA6F
-	.string "Willystad City\p"
-	.string "“The Island's bustling trading\n"
-	.string "port for over 300 years.”$"
-
-SlateportCity_Text_MarketSign: @ 81DEAAF
-	.string "Willystad Market\n"
-	.string "“For local and exotic goods!”$"
 
 SlateportCity_Text_HarborFerryUnderConstruction: @ 81DEAE3
 	.string "SLATEPORT HARBOR\p"

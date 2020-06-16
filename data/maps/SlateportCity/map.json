@@ -130,6 +130,60 @@
             "var_value": "0",
             "x": 16,
             "y": 15
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 34
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 33
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 32
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 38
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 39
+        },
+        {
+            "elevation": 4,
+            "script": "SlateportCity_EventScript_Wingull",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var_value": "0",
+            "x": 42,
+            "y": 37
         }
     ],
     "id": "MAP_SLATEPORT_CITY",
@@ -284,15 +338,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-            "movement_range_x": 0,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "SlateportCity_EventScript_PokefanF",
+            "graphics_id": "OBJ_EVENT_GFX_WINGULL",
+            "movement_range_x": 3,
+            "movement_range_y": 3,
+            "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN",
+            "script": "SlateportCity_EventScript_Wingull",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 44,
-            "y": 16
+            "x": 51,
+            "y": 34
         },
         {
             "elevation": 3,
@@ -379,7 +433,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SlateportCity_EventScript_RivalNameChange",
+            "script": "SlateportCity_EventScript_Pikachu",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 30,

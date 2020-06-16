@@ -1,12 +1,18 @@
 RustboroCity_DevonCorp_1F_MapScripts:: @ 8211245
-	//map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, RustboroCity_DevonCorp_1F_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_DevonCorp_1F_OnFrame
 	.byte 0
 
 RustboroCity_DevonCorp_1F_OnTransition: @ 821124B
+	compare VAR_SLATEPORT_CITY_STATE, 6
+	goto_if_ge RustboroCity_DevonCorp_1F_LockOffice
 	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
 	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
+	end
+
+RustboroCity_DevonCorp_1F_LockOffice::
+	setflag FLAG_USED_STORAGE_KEY
 	end
 
 //RustboroCity_DevonCorp_1F_EventScript_BlockStairs:: @ 8211255
@@ -343,10 +349,12 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	delay 16
 	special ChooseStarter
 	waitstate
-	delay 8
-	playfanfare MUS_FANFA5
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
-	waitfanfare
+	//delay 8
+	//playfanfare MUS_FANFA5
+	//msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof6, MSGBOX_DEFAULT
 	closemessage
 	delay 16
 	applymovement 10, Common_Movement_WalkUp
@@ -358,11 +366,11 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1, MSGBOX_DEFAULT
 	closemessage
 	delay 16
-	playfanfare MUS_FANFA4
-	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
+	//playfanfare MUS_FANFA4
+	//msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2, MSGBOX_DEFAULT
+	//waitfanfare
+	//closemessage
+	//delay 30
 	applymovement 10, Common_Movement_FaceUp
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival2, MSGBOX_DEFAULT
@@ -654,6 +662,10 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1:
 RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2:
 	.string "??? obtained the Pokémon.$"
 
+RustboroCity_DevonCorp_1F_Text_Cutscene1Prof6:
+	.string "So you choose Torchic.\n"
+	.string "Very well.$"
+
 RustboroCity_DevonCorp_1F_Text_Cutscene1Rival2:
 	.string "???: Don't worry, Mayor. We will\n"
 	.string "catch this bandit right away!$"
@@ -680,6 +692,11 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	closemessage
 	delay 16
 	//player and rival receive Pokémon
+	playfanfare MUS_FANFA5
+	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 16
 	applymovement 2, RustboroCity_DevonCorp_1F_Movement_WalkInPlace
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Mayor1, MSGBOX_DEFAULT
@@ -720,6 +737,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	setflag FLAG_RETURNED_DEVON_GOODS
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
 	//setflag FLAG_DELIVERED_DEVON_GOODS
 	setvar VAR_SLATEPORT_CITY_STATE, 4
 	release
