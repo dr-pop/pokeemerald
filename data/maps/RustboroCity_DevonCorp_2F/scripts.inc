@@ -320,8 +320,7 @@ RustboroCity_DevonCorp_2F_EventScript_MayorOffice:: @ 821127F
 	end
 	
 RustboroCity_DevonCorp_2F_EventScript_CheckWillystadState::
-	compare VAR_SLATEPORT_CITY_STATE, 5
-	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_SetVar6
+	goto_if_set FLAG_HIDE_LITTLEROOT_TOWN_BIRCH, RustboroCity_DevonCorp_2F_EventScript_SetVar6
 	setvar VAR_SLATEPORT_CITY_STATE, 5
 	//setflag FLAG_MET_DEVON_EMPLOYEE
 	release

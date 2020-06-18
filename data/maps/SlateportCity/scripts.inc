@@ -551,7 +551,7 @@ SlateportCity_EventScript_RivalIntroduction::
 	applymovement 2, SlateportCity_Movement_RivalExit
 	waitmovement 0
 	//playse SE_PIN
-	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
+	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
 	removeobject 2
 	//playse SE_PIN
 	//setobjectxy 2, 40, 18

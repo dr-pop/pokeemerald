@@ -141,7 +141,7 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxus:: @ 8213EA9
 	waitfanfare
 	closemessage
 	setflag FLAG_SYS_POKEDEX_GET
-	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	//setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	delay 16
 	msgbox RustboroCity_PokemonSchool_Text_Prof2, MSGBOX_DEFAULT
 	closemessage
@@ -245,7 +245,18 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxusExit2::
 	delay 8
 	removeobject 5
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
-	goto RustboroCity_DevonCorp_2F_EventScript_CheckWillystadState
+	goto RustboroCity_PokemonSchool_EventScript_CheckWillystadState
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_CheckWillystadState::
+	compare VAR_SLATEPORT_CITY_STATE, 5
+	goto_if_eq RustboroCity_PokemonSchool_EventScript_SetVar6
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_SetVar6::
+	setvar VAR_SLATEPORT_CITY_STATE, 6
 	release
 	end
 
