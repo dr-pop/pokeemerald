@@ -1273,6 +1273,16 @@ extern const u8 gText_TrainerHill2F[];
 extern const u8 gText_TrainerHill3F[];
 extern const u8 gText_TrainerHill4F[];
 
+// Debug Kecleon
+extern const u8 gText_DebugOption1[]; //added
+extern const u8 gText_DebugOption2[]; //added
+extern const u8 gText_DebugOption3[]; //added
+extern const u8 gText_DebugOption4[]; //added
+extern const u8 gText_DebugOption5[]; //added
+extern const u8 gText_DebugOption6[]; //added
+extern const u8 gText_DebugOption7[]; //added
+extern const u8 gText_DebugOption8[]; //added
+
 // Cable Club multichoice text
 extern const u8 CableClub_Text_TradeUsingLinkCable[];
 extern const u8 CableClub_Text_BattleUsingLinkCable[];

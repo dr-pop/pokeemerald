@@ -771,6 +771,19 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_DebugKecleon[] = //added
+{
+    {gText_DebugOption1},
+    {gText_DebugOption2},
+    {gText_DebugOption3},
+    {gText_DebugOption4},
+    {gText_DebugOption5},
+    {gText_DebugOption6},
+    {gText_DebugOption7},
+    {gText_DebugOption8},
+	//{gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -898,6 +911,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_SLATEPORT_TENT_RULES]       = MULTICHOICE(MultichoiceList_SlateportTentRules),
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
+	[MULTI_DEBUG_KECLEON]              = MULTICHOICE(MultichoiceList_DebugKecleon), //added
 };
 
 const u8 *const gStdStrings[] =

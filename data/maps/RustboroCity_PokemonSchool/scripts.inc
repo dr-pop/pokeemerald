@@ -3,8 +3,8 @@ RustboroCity_PokemonSchool_MapScripts:: @ 8213EA8
 	.byte 0
 
 RustboroCity_PokemonSchool_OnTransition:
-	//compare VAR_SLATEPORT_CITY_STATE, 4
-	goto_if_unset FLAG_HIDE_LITTLEROOT_TOWN_BIRCH, RustboroCity_PokemonSchool_EventScript_PositionScientist
+	//compare VAR_WILLYSTAD_CITY_STATE, 4
+	goto_if_unset FLAG_HIDE_WILLYSTAD_LAB_PROF, RustboroCity_PokemonSchool_EventScript_PositionScientist
 	end
 
 RustboroCity_PokemonSchool_EventScript_PositionScientist::
@@ -44,14 +44,14 @@ RustboroCity_PokemonSchool_EventScript_Scientist2:: @ 8213EA9
 RustboroCity_PokemonSchool_EventScript_Scientist3:: @ 8213EA9
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 4
+	compare VAR_WILLYSTAD_CITY_STATE, 4
 	goto_if_eq RustboroCity_PokemonSchool_EventScript_Scientist4
 	msgbox RustboroCity_PokemonSchool_Text_Scientist3, MSGBOX_DEFAULT
 	release
 	end
 
 RustboroCity_PokemonSchool_EventScript_Scientist4::
-	goto_if_set FLAG_HIDE_LITTLEROOT_TOWN_BIRCH, RustboroCity_PokemonSchool_EventScript_Scientist5
+	goto_if_set FLAG_HIDE_WILLYSTAD_LAB_PROF, RustboroCity_PokemonSchool_EventScript_Scientist5
 	msgbox RustboroCity_PokemonSchool_Text_Scientist4, MSGBOX_DEFAULT
 	release
 	end
@@ -159,7 +159,7 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxus:: @ 8213EA9
 	end
 
 RustboroCity_PokemonSchool_Text_Prof1:
-	.string "Oh, hi, {PLAYER}!\p"
+	.string "Prof. Buxus: Oh, hi, {PLAYER}!\p"
 	.string "How is your Pokémon doing?\p"
 	.string "Listen, if you're planning to go\n"
 	.string "on an adventure with your Pokémon,\l"
@@ -169,7 +169,7 @@ RustboroCity_PokemonSchool_Text_ReceivedPokedex: @ 81FAC32
 	.string "{PLAYER} received the Pokédex!$"
 
 RustboroCity_PokemonSchool_Text_Prof2:
-	.string "This is a Pokédex.\p"
+	.string "Prof. Buxus: This is a Pokédex.\p"
 	.string "It is a device that records\n"
 	.string "information about all the Pokémon\l"
 	.string "you find and catch.\p"
@@ -177,8 +177,8 @@ RustboroCity_PokemonSchool_Text_Prof2:
 	.string "take this too!$"
 	
 RustboroCity_PokemonSchool_Text_Prof3:
-	.string "You can catch Pokémon you\n"
-	.string "encounter in the wild.\p"
+	.string "Prof. Buxus: You can catch Pokémon\n"
+	.string "you encounter in the wild.\p"
 	.string "Just throw a Poké Ball at them\n"
 	.string "when they're weak.$"
 	
@@ -244,19 +244,19 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxusExit2::
 	playse SE_RG_W_DOOR
 	delay 8
 	removeobject 5
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
 	goto RustboroCity_PokemonSchool_EventScript_CheckWillystadState
 	release
 	end
 
 RustboroCity_PokemonSchool_EventScript_CheckWillystadState::
-	compare VAR_SLATEPORT_CITY_STATE, 5
+	compare VAR_WILLYSTAD_CITY_STATE, 5
 	goto_if_eq RustboroCity_PokemonSchool_EventScript_SetVar6
 	release
 	end
 
 RustboroCity_PokemonSchool_EventScript_SetVar6::
-	setvar VAR_SLATEPORT_CITY_STATE, 6
+	setvar VAR_WILLYSTAD_CITY_STATE, 6
 	release
 	end
 

@@ -108,7 +108,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_LITTLEROOT_TOWN_BIRCH",
+            "flag": "FLAG_HIDE_WILLYSTAD_LAB_PROF",
             "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
             "movement_range_x": 0,
             "movement_range_y": 0,

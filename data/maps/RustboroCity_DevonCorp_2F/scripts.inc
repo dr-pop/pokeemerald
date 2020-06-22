@@ -15,11 +15,11 @@ RustboroCity_DevonCorp_2F_EventScript_SetFossilReady:: @ 8211869
 	return
 
 //RustboroCity_DevonCorp_2F_OnWarp:
-	//map_script_2 VAR_SLATEPORT_CITY_STATE, 5, RustboroCity_DevonCorp_2F_EventScript_SetVarForRivalCutscene
+	//map_script_2 VAR_WILLYSTAD_CITY_STATE, 5, RustboroCity_DevonCorp_2F_EventScript_SetVarForRivalCutscene
 	//end
 
 //RustboroCity_DevonCorp_2F_EventScript_SetVarForRivalCutscene::
-	//setvar VAR_SLATEPORT_CITY_STATE, 6
+	//setvar VAR_WILLYSTAD_CITY_STATE, 6
 	//addobject 3
 	//end
 
@@ -28,8 +28,8 @@ RustboroCity_DevonCorp_2F_EventScript_SetFossilReady:: @ 8211869
 	//.2byte 0
 
 RustboroCity_DevonCorp_2F_OnLoad:
-	call_if_unset FLAG_USED_STORAGE_KEY, RustboroCity_DevonCorp_2F_EventScript_UnlockDoor
-	call_if_set FLAG_USED_STORAGE_KEY, RustboroCity_DevonCorp_2F_EventScript_LockDoor
+	call_if_unset FLAG_MAYOR_OFFICE_LOCKED, RustboroCity_DevonCorp_2F_EventScript_UnlockDoor
+	call_if_set FLAG_MAYOR_OFFICE_LOCKED, RustboroCity_DevonCorp_2F_EventScript_LockDoor
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_UnlockDoor::
@@ -46,7 +46,7 @@ RustboroCity_DevonCorp_2F_EventScript_LockDoor::
 
 RustboroCity_DevonCorp_2F_EventScript_OfficeDoor::
 	lockall
-	goto_if_set FLAG_USED_STORAGE_KEY, RustboroCity_DevonCorp_2F_EventScript_DoorIsLocked
+	goto_if_set FLAG_MAYOR_OFFICE_LOCKED, RustboroCity_DevonCorp_2F_EventScript_DoorIsLocked
 	msgbox RustboroCity_DevonCorp_2F_Text_DoorIsUnlocked, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -65,7 +65,7 @@ RustboroCity_DevonCorp_2F_Text_DoorIsLocked:
 RustboroCity_DevonCorp_2F_EventScript_Secretary::
 	lock
 	faceplayer
-	goto_if_set FLAG_USED_STORAGE_KEY, RustboroCity_DevonCorp_2F_EventScript_MayorAway
+	goto_if_set FLAG_MAYOR_OFFICE_LOCKED, RustboroCity_DevonCorp_2F_EventScript_MayorAway
 	msgbox RustboroCity_DevonCorp_2F_Text_SecretaryGoInside, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_FaceLeft
 	release
@@ -100,8 +100,8 @@ RustboroCity_DevonCorp_2F_EventScript_Display2::
 	end
 
 RustboroCity_DevonCorp_2F_Text_Display2:
-	.string "There's an old looking glass.\n"
-	.string "It's embedded with diamonds and pearls…$"
+	.string "There's an old looking glass. It's\n"
+	.string "embedded with diamonds and pearls…$"
 
 // ==================================
 // CUTSCENE. MAYORS MISSION
@@ -321,13 +321,13 @@ RustboroCity_DevonCorp_2F_EventScript_MayorOffice:: @ 821127F
 	
 RustboroCity_DevonCorp_2F_EventScript_CheckWillystadState::
 	goto_if_set FLAG_HIDE_LITTLEROOT_TOWN_BIRCH, RustboroCity_DevonCorp_2F_EventScript_SetVar6
-	setvar VAR_SLATEPORT_CITY_STATE, 5
+	setvar VAR_WILLYSTAD_CITY_STATE, 5
 	//setflag FLAG_MET_DEVON_EMPLOYEE
 	release
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_SetVar6::
-	setvar VAR_SLATEPORT_CITY_STATE, 6
+	setvar VAR_WILLYSTAD_CITY_STATE, 6
 	//setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
 	release
 	end
@@ -338,7 +338,7 @@ RustboroCity_DevonCorp_2F_Movement_Camera1:
 	step_end
 
 RustboroCity_DevonCorp_2F_Text_MayorOffice1:
-	.string "Hello, {PLAYER}.\n"
+	.string "Mayor: Hello, {PLAYER}.\n"
 	.string "I'm glad you came.\p"
 	//.string "The Professor told me how he\n"
 	//.string "found you lost at sea.\p"
@@ -471,8 +471,8 @@ RustboroCity_DevonCorp_2F_Text_MayorOffice2:
 	.string "There are many towns on this Island.\p"
 	.string "Each town is different.\n"
 	.string "But we trade and cooperate.\p"
-	.string "Like in nature, everyone needs to\n"
-	.string "fulfill their role.\p"
+	.string "Like in nature, every town fulfills\n"
+	.string "its own specific role.\p"
 	.string "This way, the Island is in balance.$"
 	//.string "So long every community keeps to their\n"
 	//.string "natural role, the Island is in harmony.$"
@@ -480,10 +480,10 @@ RustboroCity_DevonCorp_2F_Text_MayorOffice2:
 RustboroCity_DevonCorp_2F_Text_MayorOffice3:
 	.string "Unfortunately, some people wish to\n"
 	.string "disturb this balance.\p"
-	.string "Some crooks are terrorizing the\n"
-	.string "people of Konuko Town.\p"
+	.string "A band of crooks is terrorizing\n"
+	.string "the people of Konuko Town.\p"
 	.string "They are stealing the Pokémon of\n"
-	.string "the farmers, who live there.\p"
+	.string "its farmers.\p"
 	//	
 	//.string "The neighbouring Konuko Town\n"
 	//.string "seems to be in trouble.\p"

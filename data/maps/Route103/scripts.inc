@@ -126,7 +126,7 @@ Route103_EventScript_ThiefExitWest::
 	end
 
 Route103_EventScript_ThiefExitEnd::	
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
 	removeobject 17
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
 	waitmovement 0
@@ -136,7 +136,7 @@ Route103_EventScript_ThiefExitEnd::
 	//fadescreen FADE_TO_BLACK
 	//clearflag DEVON_GOODS_STOLEN
 	//clearflag FLAG_DELIVERED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 3
+	setvar VAR_WILLYSTAD_CITY_STATE, 3
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
 	waitstate
 	releaseall
@@ -159,7 +159,7 @@ Route103_Text_Thief1:
 	.string "Here, take this stupid Fossil alright.$"
 	
 Route103_Text_Thief2:
-	.string "Now leave me alone!$"
+	.string "Thief: Now leave me alone!$"
 
 Route103_Text_Rival1:
 	.string "{RIVAL}: {PLAYER}, you've caught\n"
@@ -222,7 +222,7 @@ Route103_Movement_ThiefExitSouthWest:
 Route103_EventScript_Man:: @ 81EC5E2
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 2
+	compare VAR_WILLYSTAD_CITY_STATE, 2
 	goto_if_eq Route103_EventScript_Man2
 	msgbox Route103_Text_Ledges, MSGBOX_DEFAULT //edited
 	release

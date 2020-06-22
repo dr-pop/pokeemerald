@@ -173,7 +173,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -238,7 +238,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_ROUTE_101_BIRCH",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF",
             "graphics_id": "OBJ_EVENT_GFX_TUCKER",
             "movement_range_x": 1,
             "movement_range_y": 1,

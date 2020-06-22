@@ -5,14 +5,28 @@ RustboroCity_DevonCorp_1F_MapScripts:: @ 8211245
 	.byte 0
 
 RustboroCity_DevonCorp_1F_OnTransition: @ 821124B
-	compare VAR_SLATEPORT_CITY_STATE, 6
+	compare VAR_WILLYSTAD_CITY_STATE, 0
+	goto_if_eq RustboroCity_DevonCorp_1F_ShowFossil
+	//compare VAR_WILLYSTAD_CITY_STATE, 1
+	//goto_if_ge RustboroCity_DevonCorp_1F_HideFossil
+	//compare VAR_WILLYSTAD_CITY_STATE, 2
+	//goto_if_ge RustboroCity_DevonCorp_1F_HideFossil
+	compare VAR_WILLYSTAD_CITY_STATE, 3
+	goto_if_eq RustboroCity_DevonCorp_1F_ShowFossil
+	//compare VAR_WILLYSTAD_CITY_STATE, 4
+	//goto_if_ge RustboroCity_DevonCorp_1F_HideFossil
+	compare VAR_WILLYSTAD_CITY_STATE, 6
 	goto_if_ge RustboroCity_DevonCorp_1F_LockOffice
 	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
 	//call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
 	end
 
+RustboroCity_DevonCorp_1F_ShowFossil::
+	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_DOWN
+	return
+	
 RustboroCity_DevonCorp_1F_LockOffice::
-	setflag FLAG_USED_STORAGE_KEY
+	setflag FLAG_MAYOR_OFFICE_LOCKED
 	end
 
 //RustboroCity_DevonCorp_1F_EventScript_BlockStairs:: @ 8211255
@@ -21,7 +35,7 @@ RustboroCity_DevonCorp_1F_LockOffice::
 	//return
 
 RustboroCity_DevonCorp_1F_OnWarp:
-	map_script_2 VAR_SLATEPORT_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
+	map_script_2 VAR_WILLYSTAD_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2
 	.2byte 0
 
 RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2:: @ 8211255
@@ -35,12 +49,28 @@ RustboroCity_DevonCorp_1F_EventScript_PrepareCutscene2:: @ 8211255
 	end
 
 RustboroCity_DevonCorp_1F_OnFrame:
-	map_script_2 VAR_SLATEPORT_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_Cutscene2
+	map_script_2 VAR_WILLYSTAD_CITY_STATE, 3, RustboroCity_DevonCorp_1F_EventScript_Cutscene2
 	.2byte 0
 
 // ============================================================
 // NPC INTERACTIONS. CROWD AT FOSSIL REVEAL EVENT IN CITY HALL.
 // ============================================================
+
+RustboroCity_DevonCorp_1F_EventScript_SignWestWing:: @ 8211309
+	msgbox RustboroCity_DevonCorp_1F_Text_SignWestWing, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_1F_Text_SignWestWing:
+	.string "City Hall West Wing:\n"
+	.string "{LEFT_ARROW} Island Library$"
+
+RustboroCity_DevonCorp_1F_EventScript_SignEastWing:: @ 8211312
+	msgbox RustboroCity_DevonCorp_1F_Text_SignEastWing, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_1F_Text_SignEastWing:
+	.string "City Hall East Wing:\n"
+	.string "Mayor's Office {RIGHT_ARROW}$"
 
 RustboroCity_DevonCorp_1F_EventScript_CrowdBurglar:: @ 821127F
 	lock
@@ -222,7 +252,9 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	delay 30
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Burglar1, MSGBOX_DEFAULT
 	closemessage
-	removeobject 5
+	//removeobject 5
+	applymovement 3, Common_Movement_FaceUp	
+	waitmovement 0
 	delay 30
 	applymovement 14, Common_Movement_FaceDown
 	waitmovement 0
@@ -389,11 +421,11 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	applymovement 4, RustboroCity_DevonCorp_1F_Movement_Prof2
 	waitmovement 0
 	fadedefaultbgm
-	setflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
 	//setflag FLAG_DELIVERED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 1
-	clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	clearflag FLAG_HIDE_ROUTE_101_BIRCH
+	setvar VAR_WILLYSTAD_CITY_STATE, 1
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
 	releaseall
 	end
 
@@ -580,7 +612,7 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor1:
 	.string "to the renowned Prof. Buxus.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Prof1:
-	.string "Huh, oh, yes. Yes, alright.\p"
+	.string "Prof. Buxus: Huh, oh, yes. Alright.\p"
 	.string "Well, my name is Buxus. I study the\n"
 	.string "science of flora and Pokémon.\p"
 	.string "Flora, that is flowers and plants.\p"
@@ -613,12 +645,12 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Prof3:
 	//.string "renowned Prof. Buxus.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Burglar1:
-	.string "???: Well, doc. Sounds like this will\n"
+	.string "Thief: Well, doc. Sounds like this will\n"
 	.string "sell for a good buck!\p"
 	.string "I'll take it from here, then.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Burglar2:
-	.string "???: This city got rich by trading goods\n"
+	.string "Thief: This city got rich by trading goods\n"
 	.string "that were stolen from others!\l"
 	.string "And now I will do the same!\p"
 	.string "So long, Slowpokes!$"
@@ -653,8 +685,8 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Prof4:
 	.string "Pokémon to keep you safe.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1:
-	.string "???: Alright, then. I will take\n"
-	.string "the other one.$"
+	.string "???: Alright, then. I will take the\n"
+	.string "other one, Mudkip.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1:
 	.string "{PLAYER} obtained the Pokémon.$"
@@ -663,7 +695,7 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare2:
 	.string "??? obtained the Pokémon.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Prof6:
-	.string "So you choose Torchic.\n"
+	.string "Prof. Buxus: So you choose Torchic.\n"
 	.string "Very well.$"
 
 RustboroCity_DevonCorp_1F_Text_Cutscene1Rival2:
@@ -685,7 +717,7 @@ RustboroCity_DevonCorp_1F_Text_Cutscene1Mayor4:
 RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	lock
 	delay 30
-	removeitem ITEM_PLUME_FOSSIL
+	//removeitem ITEM_PLUME_FOSSIL
 	applymovement 4, RustboroCity_DevonCorp_1F_Movement_WalkInPlace
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene2Prof1, MSGBOX_DEFAULT
@@ -713,7 +745,8 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	applymovement 4, Common_Movement_FaceLeft
 	waitmovement 0
 	delay 30
-	removeobject 5
+	//removeobject 5
+	applymovement 3, Common_Movement_FaceUp
 	delay 30
 	removeobject 3
 	delay 30
@@ -736,10 +769,10 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	removeobject 10
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
-	setflag FLAG_RETURNED_DEVON_GOODS
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
+	setflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_LAB_PROF
 	//setflag FLAG_DELIVERED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 4
+	setvar VAR_WILLYSTAD_CITY_STATE, 4
 	release
 	end
 

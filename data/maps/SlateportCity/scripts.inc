@@ -7,9 +7,9 @@ SlateportCity_MapScripts:: @ 81DCC61
 SlateportCity_OnTransition: @ 81DCC6C
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
-	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//compare VAR_WILLYSTAD_CITY_STATE, 1
 	//call_if_eq SlateportCity_EventScript_LocateRival
-	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//compare VAR_WILLYSTAD_CITY_STATE, 1
 	//call_if_eq SlateportCity_EventScript_RivalIntroduction
 	//call_if_eq SlateportCity_EventScript_MovePeopleForSternInterview
 	//compare VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
@@ -30,13 +30,13 @@ SlateportCity_EventScript_LocateRival::
 	end
 
 SlateportCity_OnWarp:
-	compare VAR_SLATEPORT_CITY_STATE, 1
+	compare VAR_WILLYSTAD_CITY_STATE, 1
 	call_if_eq SlateportCity_EventScript_LocateRival
 	end
 
 SlateportCity_OnFrame: @ 81DCD12
 	//map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
-	map_script_2 VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
+	map_script_2 VAR_WILLYSTAD_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
 	.2byte 0
 
 // ============================================================
@@ -76,7 +76,234 @@ Text_PlayerHasFullParty:
 //	msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
 //	end
 
-// “ ”
+// “”
+
+Script_DebugKecleonNew::
+	lock
+	faceplayer
+	message Text_DebugHello
+	waitmessage
+	//multichoice 1, 1, MULTI_DEBUG_KECLEON, 0
+	scrollingmultichoice 0, 2, 2, 5, TRUE
+	switch VAR_RESULT
+	case 0, Script_DebugKecleonNew_1
+	case 1, Script_DebugKecleonNew_2
+	case 2, Script_DebugKecleonNew_3
+	case 3, Script_DebugKecleonNew_4
+	case 4, Script_DebugKecleonNew_5
+	case 5, Script_DebugKecleonNew_6a
+	case 6, Script_DebugKecleonNew_6b
+	case 7, Script_DebugKecleonNew_7
+	case MULTI_B_PRESSED, Script_DebugKecleonNew_Cancel
+
+Text_DebugHello:
+	.string "Hello, I'm Debug Kecleon.\p"
+	.string "To which game state do you\n"
+	.string "wish to go?$"
+	
+Script_DebugKecleonNew_1::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 0
+	msgbox Text_Debug_Option1, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_SLATEPORT_CITY, 255, 37, 41
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option1:
+	.string "You chose Option 1:\n"
+	.string "“Start of new game”$"
+
+Script_DebugKecleonNew_2::
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 1
+	msgbox Text_Debug_Option2, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 13
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option2:
+	.string "You chose Option 2:\n"
+	.string "“Fossil stolen!”$"
+	
+Script_DebugKecleonNew_3::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 2
+	msgbox Text_Debug_Option3, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_SLATEPORT_CITY, 255, 18, 17
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option3:
+	.string "You chose Option 3:\n"
+	.string "“Met your Rival”$"
+	
+Script_DebugKecleonNew_4::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 3
+	msgbox Text_Debug_Option4, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option4:
+	.string "You chose Option 4:\n"
+	.string "“Defeated the Thief”$"
+
+Script_DebugKecleonNew_5::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	clearflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 4
+	msgbox Text_Debug_Option5, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 11
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option5:
+	.string "You chose Option 5:\n"
+	.string "“Fossil returned!”$"
+
+Script_DebugKecleonNew_6a::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 4
+	msgbox Text_Debug_Option6a, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_POKEMON_SCHOOL, 255, 6, 8
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option6a:
+	.string "You chose Option 6a:\n"
+	.string "“Met the Prof”$"
+	
+Script_DebugKecleonNew_6b::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	clearflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 5
+	msgbox Text_Debug_Option6b, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_2F, 255, 8, 9
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option6b:
+	.string "You chose Option 6b:\n"
+	.string "“Met the Mayor”$"
+	
+Script_DebugKecleonNew_7::
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
+	clearflag FLAG_MAYOR_OFFICE_LOCKED
+	setvar VAR_WILLYSTAD_CITY_STATE, 6
+	msgbox Text_Debug_Option7, MSGBOX_DEFAULT
+	msgbox Text_DebugDone, MSGBOX_DEFAULT
+	closemessage
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 5
+	waitstate
+	releaseall
+	end
+
+Text_Debug_Option7:
+	.string "You chose Option 7:\n"
+	.string "“Met Prof and Mayor”$"
+
+Script_DebugKecleonNew_Cancel::
+	msgbox Text_DebugBye, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Text_DebugDone:
+	.string "All done. See ya!$"
+
+Text_DebugBye:
+	.string "OK then. Bye!$"
+
+// ==== ANIMATION TEST RUN: ===
+
+Script_AnimationTest::
+	lock
+	faceplayer
+	msgbox Text_AnimationTest1, MSGBOX_DEFAULT
+	closemessage
+	addobject 17
+	applymovement 17, Movement_Test1
+	waitmovement 0
+	removeobject 17
+	addobject 20
+	applymovement 20, Movement_Test1
+	waitmovement 0
+	removeobject 20
+	addobject 5
+	applymovement 5, Movement_Test1
+	waitmovement 0
+	release
+	end
+
+Text_AnimationTest1:
+	.string "Starting test animation.$"
+
+Movement_Test1:
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+// ==== OLD DEBUG: ===
 
 Script_DebugKecleon::
 	lock
@@ -105,12 +332,12 @@ Text_Debug1:
 	.string "“Fossil Stolen (C.S. 1)”$"
 
 Script_DebugKecleonYes1::
-	clearflag FLAG_DEVON_GOODS_STOLEN
+	clearflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
 	//clearflag FLAG_DELIVERED_DEVON_GOODS
 	//setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 0
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setvar VAR_WILLYSTAD_CITY_STATE, 0
 	msgbox Text_DebugDone, MSGBOX_DEFAULT
 	release
 	end
@@ -120,12 +347,12 @@ Text_Debug2:
 	.string "“Fossil Stolen (C.S. 1)”$"
 
 Script_DebugKecleonYes2::
-	setflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
 	//setflag FLAG_DELIVERED_DEVON_GOODS
 	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	clearflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 1
+	clearflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setvar VAR_WILLYSTAD_CITY_STATE, 1
 	msgbox Text_DebugDone, MSGBOX_DEFAULT
 	release
 	end
@@ -135,12 +362,12 @@ Text_Debug3:
 	.string "“Thief Caught (C.S. 2)”$"
 
 Script_DebugKecleonYes3::
-	setflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
 	//clearflag FLAG_DELIVERED_DEVON_GOODS
 	//clearflag FLAG_HIDE_SLATEPORT_CITY_SCOTT
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
-	clearflag FLAG_RETURNED_DEVON_GOODS
-	setvar VAR_SLATEPORT_CITY_STATE, 3
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	clearflag FLAG_HIDE_WILLYSTAD_CITYHALL_MAYOR_PROF
+	setvar VAR_WILLYSTAD_CITY_STATE, 3
 	giveitem ITEM_PLUME_FOSSIL
 	msgbox Text_DebugDone, MSGBOX_DEFAULT
 	closemessage
@@ -165,22 +392,19 @@ Script_DebugKecleonNo4::
 	release
 	end
 
-Text_DebugDone:
-	.string "All done. See ya!$"
-
 Script_DebugKecleonScottHidden::
 	msgbox Text_ScottHidden, MSGBOX_DEFAULT
 	closemessage
-	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
-	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	goto_if_set FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF, Script_DebugKecleonBirchUnhidden
 	release
 	end
 
 Script_DebugKecleonScottUnhidden::
 	msgbox Text_ScottUnhidden, MSGBOX_DEFAULT
 	closemessage
-	goto_if_set FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchHidden
-	goto_if_unset FLAG_HIDE_ROUTE_101_BIRCH, Script_DebugKecleonBirchUnhidden
+	goto_if_set FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF, Script_DebugKecleonBirchHidden
+	goto_if_unset FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF, Script_DebugKecleonBirchUnhidden
 	release
 	end
 	
@@ -214,8 +438,6 @@ Text_BirchUnhidden:
 	.string "FLAG: HIDE BIRCH is unset.\n"
 	.string "Kirlia visible.$"
 
-Text_DebugBye:
-	.string "OK then. Bye!$"
 
 // ============================================================
 // NPC INTERACTIONS. WILLYSTAD CITIZENS.
@@ -255,7 +477,7 @@ SlateportCity_EventScript_Girl:: @ 81DCE84
 	end
 
 SlateportCity_EventScript_FatMan:: @ 81DCED9
-	//compare VAR_SLATEPORT_CITY_STATE, 1
+	//compare VAR_WILLYSTAD_CITY_STATE, 1
 	//goto_if_eq SlateportCity_EventScript_FatManSternInterview
 	lock
 	faceplayer
@@ -269,7 +491,7 @@ SlateportCity_EventScript_FatMan:: @ 81DCED9
 SlateportCity_EventScript_Man1:: @ 81DCEF6
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 1
+	compare VAR_WILLYSTAD_CITY_STATE, 1
 	call_if_eq SlateportCity_EventScript_Man1SternInterview
 	msgbox SlateportCity_Text_EveryoneCallsHimCaptStern, MSGBOX_DEFAULT
 	release
@@ -290,7 +512,7 @@ SlateportCity_EventScript_LittleGirl:: @ 81DCFBB
 SlateportCity_EventScript_OldMan:: @ 81DCFDC
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 2
+	compare VAR_WILLYSTAD_CITY_STATE, 2
 	goto_if_eq SlateportCity_EventScript_OldMan2
 	msgbox SlateportCity_Text_OldMan, MSGBOX_DEFAULT
 	release
@@ -338,14 +560,14 @@ SlateportCity_EventScript_Ty:: @ 81DD353
 
 SlateportCity_EventScript_Gabby:: @ 81DD35C
 	lock
-	compare VAR_SLATEPORT_CITY_STATE, 2
+	compare VAR_WILLYSTAD_CITY_STATE, 2
 	goto_if_ge SlateportCity_EventScript_Gabby2
 	msgbox SlateportCity_Text_Reporter1, MSGBOX_SIGN
 	release
 	end
 
 SlateportCity_EventScript_Gabby2::
-	compare VAR_SLATEPORT_CITY_STATE, 4
+	compare VAR_WILLYSTAD_CITY_STATE, 4
 	goto_if_ge SlateportCity_EventScript_Gabby3
 	msgbox SlateportCity_Text_Reporter2, MSGBOX_SIGN
 	release
@@ -551,7 +773,7 @@ SlateportCity_EventScript_RivalIntroduction::
 	applymovement 2, SlateportCity_Movement_RivalExit
 	waitmovement 0
 	//playse SE_PIN
-	setflag FLAG_HIDE_SLATEPORT_CITY_SCOTT 
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
 	removeobject 2
 	//playse SE_PIN
 	//setobjectxy 2, 40, 18
@@ -562,7 +784,7 @@ SlateportCity_EventScript_RivalIntroduction::
 	//showobjectat 2, MAP_SLATEPORT_CITY
 	//delay 30
 	//playse SE_PIN
-	setvar VAR_SLATEPORT_CITY_STATE, 2
+	setvar VAR_WILLYSTAD_CITY_STATE, 2
 	fadedefaultbgm
 	releaseall
 	end
@@ -772,7 +994,7 @@ SlateportCity_EventScript_MonHasEffortRibbon:: @ 81DCE38
 SlateportCity_EventScript_Cook:: @ 81DCE42
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 1
+	compare VAR_WILLYSTAD_CITY_STATE, 1
 	call_if_eq SlateportCity_EventScript_CookSternInterview
 	msgbox SlateportCity_Text_SeaweedFullOfLife, MSGBOX_DEFAULT
 	release
@@ -801,7 +1023,7 @@ SlateportCity_EventScript_GirlSecretBase:: @ 81DCEAE
 SlateportCity_EventScript_RichBoy:: @ 81DCEB8
 	lock
 	faceplayer
-	compare VAR_SLATEPORT_CITY_STATE, 1
+	compare VAR_WILLYSTAD_CITY_STATE, 1
 	call_if_eq SlateportCity_EventScript_RichBoySternInterview
 	msgbox SlateportCity_Text_GoingToCompeteInBattleTent, MSGBOX_DEFAULT
 	release
@@ -1114,7 +1336,7 @@ SlateportCity_EventScript_CaptStern:: @ 81DD1F8
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE
-	setvar VAR_SLATEPORT_CITY_STATE, 2
+	setvar VAR_WILLYSTAD_CITY_STATE, 2
 	warp MAP_SLATEPORT_CITY_HARBOR, 255, 11, 14
 	waitstate
 	releaseall

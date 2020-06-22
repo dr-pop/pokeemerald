@@ -35,7 +35,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger1",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 2,
             "y": 8
@@ -44,7 +44,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger2",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 3,
             "y": 8
@@ -53,7 +53,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger3",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 4,
             "y": 8
@@ -62,7 +62,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger4",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 5,
             "y": 8
@@ -71,7 +71,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger5",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 6,
             "y": 8
@@ -80,7 +80,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger6",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 7,
             "y": 8
@@ -89,7 +89,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_MayorOffice",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 8,
             "y": 8
@@ -98,7 +98,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger8",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 9,
             "y": 8
@@ -107,7 +107,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger9",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 10,
             "y": 8
@@ -116,7 +116,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger10",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 11,
             "y": 8
@@ -125,7 +125,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger11",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 12,
             "y": 8
@@ -134,7 +134,7 @@
             "elevation": 0,
             "script": "RustboroCity_DevonCorp_2F_EventScript_Trigger12",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_CITY_STATE",
+            "var": "VAR_WILLYSTAD_CITY_STATE",
             "var_value": "4",
             "x": 13,
             "y": 8

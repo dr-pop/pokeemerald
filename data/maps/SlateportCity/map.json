@@ -207,7 +207,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -246,16 +246,16 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF",
             "graphics_id": "OBJ_EVENT_GFX_COOK",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_EventScript_Cook",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 47,
-            "y": 15
+            "x": 35,
+            "y": 40
         },
         {
             "elevation": 3,
@@ -316,10 +316,10 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "SlateportCity_EventScript_Sailor1",
+            "script": "Script_AnimationTest",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 46,
+            "x": 30,
             "y": 42
         },
         {
@@ -394,7 +394,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "Script_DebugKecleon",
+            "script": "Script_DebugKecleonNew",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 24,
@@ -402,7 +402,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF",
             "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -410,8 +410,8 @@
             "script": "SlateportCity_EventScript_DollClerk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 43,
-            "y": 21
+            "x": 29,
+            "y": 40
         },
         {
             "elevation": 3,
@@ -441,7 +441,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF",
             "graphics_id": "OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN",
             "movement_range_x": 1,
             "movement_range_y": 1,
@@ -449,8 +449,8 @@
             "script": "SlateportCity_EventScript_PowerTMClerk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 43,
-            "y": 14
+            "x": 32,
+            "y": 40
         },
         {
             "elevation": 3,
@@ -467,7 +467,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_ROUTE_101_BIRCH",
+            "flag": "FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -477,6 +477,19 @@
             "trainer_type": "0",
             "x": 40,
             "y": 18
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_WINGULL",
+            "movement_range_x": 7,
+            "movement_range_y": 3,
+            "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 35,
+            "y": 37
         }
     ],
     "region_map_section": "MAPSEC_SLATEPORT_CITY",
