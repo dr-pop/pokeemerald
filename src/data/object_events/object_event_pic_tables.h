@@ -1437,6 +1437,18 @@ const struct SpriteFrameImage gObjectEventPicTable_SubmarineShadow[] = {
     obj_frame_tiles(gObjectEventPic_SubmarineShadow),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_SubmarineEmergedIdle[] = {
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 0),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 0),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 0),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 1),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 2),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 1),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 2),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 1),
+    overworld_frame(gObjectEventPic_SubmarineEmergedIdle, 12, 5, 2),
+};
+
 const struct SpriteFrameImage gObjectEventPicTable_PichuDoll[] = {
     obj_frame_tiles(gObjectEventPic_PichuDoll),
 };

@@ -1,7 +1,7 @@
 {
     "allow_bike": false,
     "allow_escape_rope": false,
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
         {
@@ -36,7 +36,7 @@
     "id": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
     "layout": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RAINBOW",
     "name": "RustboroCity_DevonCorp_1F",
     "object_events": [
         {
@@ -222,7 +222,7 @@
             "y": 15
         }
     ],
-    "region_map_section": "MAPSEC_RUSTBORO_CITY",
+    "region_map_section": "MAPSEC_SLATEPORT_CITY",
     "requires_flash": false,
     "show_map_name": false,
     "warp_events": [

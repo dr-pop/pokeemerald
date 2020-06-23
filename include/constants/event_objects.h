@@ -242,8 +242,9 @@
 #define OBJ_EVENT_GFX_HOOH                       238
 #define OBJ_EVENT_GFX_POPPLAYERM_NORMAL          239 // custom
 #define OBJ_EVENT_GFX_FOSSIL2                    240 // custom
+#define OBJ_EVENT_GFX_SUBMARINE_EMERGED_IDLE     241 // custom
 
-#define NUM_OBJ_EVENT_GFX                        241 // edited from 239 to 241
+#define NUM_OBJ_EVENT_GFX                        242 // edited from 239 to 241
 
 
 // These are dynamic object gfx ids.
