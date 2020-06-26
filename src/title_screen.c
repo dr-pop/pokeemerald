@@ -65,6 +65,9 @@ static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/
 //static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
 static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_sun.4bpp.lz");
 
+const u32 gTest_Mon[] = INCBIN_U32("graphics/pokemon/charizard/sunset.4bpp.lz"); //test to add sprite
+const u32 gTestPal_Mon[] = INCBIN_U32("graphics/pokemon/charizard/normal.gbapal.lz"); //test to add sprite
+
 const u16 gIntroWaterDropAlphaBlend[] =
 {
     BLDALPHA_BLEND(16, 0),
@@ -101,6 +104,65 @@ const u16 gIntroWaterDropAlphaBlend[] =
     BLDALPHA_BLEND(0, 16),
     [32 ... 63] = BLDALPHA_BLEND(0, 16)
 };
+
+// start test sprite
+// =================
+
+static const struct CompressedSpriteSheet sSpriteSheet_Mon[] = 
+{
+    //{gTest_Mon, 4096, 777},
+	{gTest_Mon, 6144, 777},
+    {NULL},
+};
+static const struct CompressedSpritePalette sSpritePal_Mon[] =
+{
+    {gTestPal_Mon, 777},
+    {NULL},
+}; 
+
+static const union AnimCmd smon_Anim1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(64, 30),
+	ANIMCMD_FRAME(128, 30), //attempt at animation
+    ANIMCMD_JUMP(0),
+};
+static const union AnimCmd *const smon_AnimTable[] =
+{
+        smon_Anim1,
+};
+
+static const struct OamData sMonOamData =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0, //gBattle_BGX_X, //added
+    .matrixNum = 0,
+    .size = 3,
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sMonSpriteTemplate =
+
+{
+    .tileTag = 777,
+    .paletteTag = 777,
+    .oam = &sMonOamData,
+    .anims = smon_AnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+// ========== 
+// end test sprite
 
 static const struct OamData sVersionBannerLeftOamData =
 {
@@ -564,7 +626,9 @@ void CB2_InitTitleScreen(void)
         LoadCompressedSpriteSheet(&sPokemonLogoShineSpriteSheet[0]);
         LoadPalette(gTitleScreenEmeraldVersionPal, 0x100, 0x20);
         LoadSpritePalette(&sSpritePalette_PressStart[0]);
-        gMain.state = 2;
+        LoadCompressedSpriteSheet(sSpriteSheet_Mon); // test sprite
+		LoadCompressedSpritePalette(sSpritePal_Mon); // test sprite
+		gMain.state = 2;
         break;
     case 2:
     {
@@ -615,7 +679,8 @@ void CB2_InitTitleScreen(void)
         if (!UpdatePaletteFade())
         {
             StartPokemonLogoShine(0);
-            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+            //ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+			ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 8, 2, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE); //u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude, u8 delayInterval, u8 regOffset, bool8 applyBattleBgOffsets)
             SetMainCallback2(MainCB2);
         }
         break;
@@ -705,6 +770,7 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
+		CreateSprite(&sMonSpriteTemplate, 190, 110, 0); // test sprite
         gTasks[taskId].data[4] = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
