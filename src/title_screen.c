@@ -59,7 +59,7 @@ static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unk_853
 
 //static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
 //static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sky.4bpp.lz");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sky2.4bpp.lz");
 static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sky.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 //static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
@@ -142,9 +142,9 @@ static const struct CompressedSpritePalette sSpritePal_SunsetRight[] =
 
 static const union AnimCmd sSunset_Anim1[] =
 {
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(32, 30),
-	ANIMCMD_FRAME(64, 30), //attempt at animation
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(32, 10),
+	ANIMCMD_FRAME(64, 10), //attempt at animation
     ANIMCMD_JUMP(0),
 };
 static const union AnimCmd *const sSunset_AnimTable[] =
@@ -225,10 +225,10 @@ static const struct CompressedSpritePalette sSpritePal_ReflectionRight[] =
 
 static const union AnimCmd sReflection_Anim1[] =
 {
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(32, 30),
-	ANIMCMD_FRAME(64, 30), //attempt at animation
-    ANIMCMD_FRAME(96, 30), //attempt at animation
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(32, 10),
+	ANIMCMD_FRAME(64, 10), //attempt at animation
+    ANIMCMD_FRAME(96, 10), //attempt at animation
 	ANIMCMD_JUMP(0),
 };
 static const union AnimCmd *const sReflection_AnimTable[] =
@@ -569,7 +569,8 @@ static void SpriteCB_PressStartCopyrightBanner(struct Sprite *sprite)
     {
         sprite->data[1]++;
         // Alternate between hidden and shown every 16th frame
-        if (sprite->data[1] & 0x10)
+        //if (sprite->data[1] & 0x10)
+		if (sprite->data[1] & 0x20)
             sprite->invisible = FALSE;
         else
             sprite->invisible = TRUE;
@@ -883,8 +884,9 @@ static void Task_TitleScreenPhase2(u8 taskId)
     else
     {
         gTasks[taskId].tSkipToNext = TRUE;
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BD); // to disable transparency (blending) altogether: SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
-        //SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 15));
+        //SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BD); // to disable transparency (blending) altogether: SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_OBJ);
+		//SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 15));
 		SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 2));
         SetGpuReg(REG_OFFSET_BLDY, 0);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1
@@ -895,10 +897,10 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
-        CreateSprite(&sSunsetLeftSpriteTemplate, 32, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-        CreateSprite(&sSunsetRightSpriteTemplate, 96, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-		CreateSprite(&sReflectionLeftSpriteTemplate, 32, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-        CreateSprite(&sReflectionRightSpriteTemplate, 96, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sSunsetLeftSpriteTemplate, 28, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sSunsetRightSpriteTemplate, 92, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+		CreateSprite(&sReflectionLeftSpriteTemplate, 28, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sReflectionRightSpriteTemplate, 92, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 		gTasks[taskId].data[4] = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
@@ -954,7 +956,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
             //gBattle_BG1_Y = gTasks[taskId].data[4] / 2;
             //gBattle_BG1_X = 0;
 			gBattle_BG1_Y = 0;
-            gBattle_BG1_X = gTasks[taskId].data[4] / 2;
+            gBattle_BG1_X = gTasks[taskId].data[4] / 4;
         }
         //UpdateLegendaryMarkingColor(gTasks[taskId].tCounter);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
