@@ -59,11 +59,20 @@ static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unk_853
 
 //static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
 //static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sunset.4bpp.lz");
-static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sunset.bin.lz");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sky.4bpp.lz");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sky.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 //static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_sun.4bpp.lz");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_full.4bpp.lz");
+
+const u32 gSunset_Left[] = INCBIN_U32("graphics/title_screen/sun_anim_test_left.4bpp.lz"); //test to add sprite
+const u32 gSunset_Right[] = INCBIN_U32("graphics/title_screen/sun_anim_test_right.4bpp.lz"); //test to add sprite
+const u32 gSunset_PalLeft[] = INCBIN_U32("graphics/title_screen/sun_anim_test.gbapal.lz"); //test to add sprite
+const u32 gSunset_PalRight[] = INCBIN_U32("graphics/title_screen/sun_anim_test.gbapal.lz"); //test to add sprite
+const u32 gReflection_Left[] = INCBIN_U32("graphics/title_screen/ref_anim_left.4bpp.lz"); //test to add sprite
+const u32 gReflection_Right[] = INCBIN_U32("graphics/title_screen/ref_anim_right.4bpp.lz"); //test to add sprite
+const u32 gReflection_PalLeft[] = INCBIN_U32("graphics/title_screen/ref_anim_pal.gbapal.lz"); //test to add sprite
+const u32 gReflection_PalRight[] = INCBIN_U32("graphics/title_screen/ref_anim_pal.gbapal.lz"); //test to add sprite
 
 const u16 gIntroWaterDropAlphaBlend[] =
 {
@@ -101,6 +110,177 @@ const u16 gIntroWaterDropAlphaBlend[] =
     BLDALPHA_BLEND(0, 16),
     [32 ... 63] = BLDALPHA_BLEND(0, 16)
 };
+
+// start test sprite
+// =================
+
+static const struct CompressedSpriteSheet sSpriteSheet_SunsetLeft[] = 
+{
+    //{gTest_Mon, 4096, 777},
+	{gSunset_Left, 3072, 777},
+    {NULL},
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_SunsetRight[] = 
+{
+    //{gTest_Mon, 4096, 777},
+	{gSunset_Right, 3072, 778},
+    {NULL},
+};
+
+static const struct CompressedSpritePalette sSpritePal_SunsetLeft[] =
+{
+    {gSunset_PalLeft, 777},
+    {NULL},
+}; 
+
+static const struct CompressedSpritePalette sSpritePal_SunsetRight[] =
+{
+    {gSunset_PalRight, 778},
+    {NULL},
+}; 
+
+static const union AnimCmd sSunset_Anim1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(32, 30),
+	ANIMCMD_FRAME(64, 30), //attempt at animation
+    ANIMCMD_JUMP(0),
+};
+static const union AnimCmd *const sSunset_AnimTable[] =
+{
+        sSunset_Anim1,
+};
+
+static const struct OamData sSunsetOamData =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    //.shape = 0,
+	.shape = 1, // see TONC table 8.4
+    .x = 0, //gBattle_BGX_X, //added
+    .matrixNum = 0, //ST_OAM_HFLIP //ST_OAM_VFLIP --> doesnt work sadly
+    //.size = 3,
+	.size = 3, // see TONC table 8.4
+    .tileNum = 0,
+    .priority = 3, // 3 puts sprite behind clouds layer (BG1). 1 puts it in front of it.
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sSunsetLeftSpriteTemplate =
+
+{
+    .tileTag = 777,
+    .paletteTag = 777,
+    .oam = &sSunsetOamData,
+    .anims = sSunset_AnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sSunsetRightSpriteTemplate =
+
+{
+    .tileTag = 778,
+    .paletteTag = 778,
+    .oam = &sSunsetOamData,
+    .anims = sSunset_AnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+// ====
+
+static const struct CompressedSpriteSheet sSpriteSheet_ReflectionLeft[] = 
+{
+    //{gTest_Mon, 4096, 777},
+	{gReflection_Left, 4096, 779},
+    {NULL},
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_ReflectionRight[] = 
+{
+    //{gTest_Mon, 4096, 777},
+	{gReflection_Right, 4096, 780},
+    {NULL},
+};
+
+static const struct CompressedSpritePalette sSpritePal_ReflectionLeft[] =
+{
+    {gReflection_PalLeft, 779},
+    {NULL},
+}; 
+
+static const struct CompressedSpritePalette sSpritePal_ReflectionRight[] =
+{
+    {gReflection_PalRight, 780},
+    {NULL},
+}; 
+
+static const union AnimCmd sReflection_Anim1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(32, 30),
+	ANIMCMD_FRAME(64, 30), //attempt at animation
+    ANIMCMD_FRAME(96, 30), //attempt at animation
+	ANIMCMD_JUMP(0),
+};
+static const union AnimCmd *const sReflection_AnimTable[] =
+{
+        sReflection_Anim1,
+};
+
+static const struct OamData sReflectionOamData =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    //.shape = 0,
+	.shape = 1, // see TONC table 8.4
+    .x = 0, //gBattle_BGX_X, //added
+    .matrixNum = 0, //ST_OAM_HFLIP //ST_OAM_VFLIP --> doesnt work sadly
+    //.size = 3,
+	.size = 3, // see TONC table 8.4
+    .tileNum = 0,
+    .priority = 3, // 3 puts sprite behind clouds layer (BG1). 1 puts it in front of it.
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sReflectionLeftSpriteTemplate =
+
+{
+    .tileTag = 779,
+    .paletteTag = 779,
+    .oam = &sReflectionOamData,
+    .anims = sReflection_AnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sReflectionRightSpriteTemplate =
+
+{
+    .tileTag = 780,
+    .paletteTag = 780,
+    .oam = &sReflectionOamData,
+    .anims = sReflection_AnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+// ========== 
+// end test sprite
 
 static const struct OamData sVersionBannerLeftOamData =
 {
@@ -564,6 +744,14 @@ void CB2_InitTitleScreen(void)
         LoadCompressedSpriteSheet(&sPokemonLogoShineSpriteSheet[0]);
         LoadPalette(gTitleScreenEmeraldVersionPal, 0x100, 0x20);
         LoadSpritePalette(&sSpritePalette_PressStart[0]);
+        LoadCompressedSpriteSheet(sSpriteSheet_SunsetLeft); // test sprite
+		LoadCompressedSpriteSheet(sSpriteSheet_SunsetRight); // test sprite
+		LoadCompressedSpritePalette(sSpritePal_SunsetLeft); // test sprite
+		LoadCompressedSpritePalette(sSpritePal_SunsetRight); // test sprite
+		LoadCompressedSpriteSheet(sSpriteSheet_ReflectionLeft); // test sprite
+		LoadCompressedSpriteSheet(sSpriteSheet_ReflectionRight); // test sprite
+		LoadCompressedSpritePalette(sSpritePal_ReflectionLeft); // test sprite
+		LoadCompressedSpritePalette(sSpritePal_ReflectionRight); // test sprite
         gMain.state = 2;
         break;
     case 2:
@@ -615,7 +803,8 @@ void CB2_InitTitleScreen(void)
         if (!UpdatePaletteFade())
         {
             StartPokemonLogoShine(0);
-            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+            //ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE); 
+			ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 2, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE); //edited 4, 4, 0, ==> 0, 0, 0, //u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude, u8 delayInterval, u8 regOffset, bool8 applyBattleBgOffsets)
             SetMainCallback2(MainCB2);
         }
         break;
@@ -694,8 +883,9 @@ static void Task_TitleScreenPhase2(u8 taskId)
     else
     {
         gTasks[taskId].tSkipToNext = TRUE;
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BD);
-        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 15));
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BD); // to disable transparency (blending) altogether: SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
+        //SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 15));
+		SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 2));
         SetGpuReg(REG_OFFSET_BLDY, 0);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1
                                     | DISPCNT_OBJ_1D_MAP
@@ -705,7 +895,11 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
-        gTasks[taskId].data[4] = 0;
+        CreateSprite(&sSunsetLeftSpriteTemplate, 32, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sSunsetRightSpriteTemplate, 96, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+		CreateSprite(&sReflectionLeftSpriteTemplate, 32, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sReflectionRightSpriteTemplate, 96, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+		gTasks[taskId].data[4] = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
 
@@ -760,7 +954,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
             //gBattle_BG1_Y = gTasks[taskId].data[4] / 2;
             //gBattle_BG1_X = 0;
 			gBattle_BG1_Y = 0;
-            gBattle_BG1_X = 0;
+            gBattle_BG1_X = gTasks[taskId].data[4] / 2;
         }
         //UpdateLegendaryMarkingColor(gTasks[taskId].tCounter);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
