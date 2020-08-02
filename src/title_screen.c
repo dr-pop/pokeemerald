@@ -59,20 +59,20 @@ static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unk_853
 
 //static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
 //static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sky2.4bpp.lz");
-static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sky.bin.lz");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/sky_ts.4bpp.lz");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sky_ts.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 //static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_full.4bpp.lz");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_ts.4bpp.lz");
 
-const u32 gSunset_Left[] = INCBIN_U32("graphics/title_screen/sun_anim_test_left.4bpp.lz"); //test to add sprite
-const u32 gSunset_Right[] = INCBIN_U32("graphics/title_screen/sun_anim_test_right.4bpp.lz"); //test to add sprite
-const u32 gSunset_PalLeft[] = INCBIN_U32("graphics/title_screen/sun_anim_test.gbapal.lz"); //test to add sprite
-const u32 gSunset_PalRight[] = INCBIN_U32("graphics/title_screen/sun_anim_test.gbapal.lz"); //test to add sprite
-const u32 gReflection_Left[] = INCBIN_U32("graphics/title_screen/ref_anim_left.4bpp.lz"); //test to add sprite
-const u32 gReflection_Right[] = INCBIN_U32("graphics/title_screen/ref_anim_right.4bpp.lz"); //test to add sprite
-const u32 gReflection_PalLeft[] = INCBIN_U32("graphics/title_screen/ref_anim_pal.gbapal.lz"); //test to add sprite
-const u32 gReflection_PalRight[] = INCBIN_U32("graphics/title_screen/ref_anim_pal.gbapal.lz"); //test to add sprite
+const u32 gSunset_Left[] = INCBIN_U32("graphics/title_screen/sun_anim_left.4bpp.lz"); //test to add sprite
+const u32 gSunset_Right[] = INCBIN_U32("graphics/title_screen/sun_anim_right.4bpp.lz"); //test to add sprite
+const u32 gSunset_PalLeft[] = INCBIN_U32("graphics/title_screen/sun_anim_pal.gbapal.lz"); //test to add sprite
+const u32 gSunset_PalRight[] = INCBIN_U32("graphics/title_screen/sun_anim_pal.gbapal.lz"); //test to add sprite
+const u32 gReflection_Left[] = INCBIN_U32("graphics/title_screen/refl_anim_left.4bpp.lz"); //test to add sprite
+const u32 gReflection_Right[] = INCBIN_U32("graphics/title_screen/refl_anim_right.4bpp.lz"); //test to add sprite
+const u32 gReflection_PalLeft[] = INCBIN_U32("graphics/title_screen/refl_anim_pal.gbapal.lz"); //test to add sprite
+const u32 gReflection_PalRight[] = INCBIN_U32("graphics/title_screen/refl_anim_pal.gbapal.lz"); //test to add sprite
 
 const u16 gIntroWaterDropAlphaBlend[] =
 {
@@ -797,7 +797,7 @@ void CB2_InitTitleScreen(void)
                                     | DISPCNT_WIN0_ON
                                     | DISPCNT_OBJWIN_ON);
         //m4aSongNumStart(MUS_TITLE3); //MUS_SATTOWER
-		m4aSongNumStart(MUS_PYRAMID_TOP);
+		m4aSongNumStart(MUS_SATTOWER);
         gMain.state = 5;
         break;
     case 5:
@@ -897,10 +897,10 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
-        CreateSprite(&sSunsetLeftSpriteTemplate, 28, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-        CreateSprite(&sSunsetRightSpriteTemplate, 92, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-		CreateSprite(&sReflectionLeftSpriteTemplate, 28, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
-        CreateSprite(&sReflectionRightSpriteTemplate, 92, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sSunsetLeftSpriteTemplate, 22, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sSunsetRightSpriteTemplate, 86, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+		CreateSprite(&sReflectionLeftSpriteTemplate, 22, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+        CreateSprite(&sReflectionRightSpriteTemplate, 86, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 		gTasks[taskId].data[4] = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }

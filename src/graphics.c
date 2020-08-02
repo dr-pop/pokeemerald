@@ -1626,18 +1626,23 @@ const u16 gMonIconPalettes[][16] =
 };
 
 const u16 gTitleScreenBgPalettes[] = INCBIN_U16("graphics/title_screen/pokemon_logo.gbapal");
-const u16 gTitleScreenBgPalettes2[] = INCBIN_U16("graphics/title_screen/rayquaza_and_clouds.gbapal");
+//const u16 gTitleScreenBgPalettes2[] = INCBIN_U16("graphics/title_screen/rayquaza_and_clouds.gbapal");
+const u16 gTitleScreenBgPalettes2[] = INCBIN_U16("graphics/title_screen/sky_and_clouds.gbapal");
 
-const u16 gTitleScreenEmeraldVersionPal[] = INCBIN_U16("graphics/title_screen/emerald_version.gbapal");
+//const u16 gTitleScreenEmeraldVersionPal[] = INCBIN_U16("graphics/title_screen/emerald_version.gbapal");
+const u16 gTitleScreenEmeraldVersionPal[] = INCBIN_U16("graphics/title_screen/rose_version.gbapal");
 
-const u32 gUnknown_08DDE458[] = INCBIN_U32("graphics/title_screen/title_screen1.bin.lz");
+//const u32 gUnknown_08DDE458[] = INCBIN_U32("graphics/title_screen/title_screen1.bin.lz");
+const u32 gUnknown_08DDE458[] = INCBIN_U32("graphics/title_screen/clouds_ts.bin.lz"); // added
 
 const u32 gTitleScreenPokemonLogoGfx[] = INCBIN_U32("graphics/title_screen/pokemon_logo.8bpp.lz");
 
-const u32 gTitleScreenEmeraldVersionGfx[] = INCBIN_U32("graphics/title_screen/emerald_version.8bpp.lz");
+//const u32 gTitleScreenEmeraldVersionGfx[] = INCBIN_U32("graphics/title_screen/emerald_version.8bpp.lz");
+const u32 gTitleScreenEmeraldVersionGfx[] = INCBIN_U32("graphics/title_screen/rose_version.8bpp.lz"); // added
 
 const u16 gTitleScreenPressStartPal[] = INCBIN_U16("graphics/title_screen/press_start.gbapal");
-const u32 gTitleScreenPressStartGfx[] = INCBIN_U32("graphics/title_screen/press_start.4bpp.lz");
+//const u32 gTitleScreenPressStartGfx[] = INCBIN_U32("graphics/title_screen/press_start.4bpp.lz");
+const u32 gTitleScreenPressStartGfx[] = INCBIN_U32("graphics/title_screen/press_start_new.4bpp.lz"); // added
 
 const u32 gUnknown_08DE0644[] = INCBIN_U32("graphics/title_screen/title_screen2.bin.lz");
 
