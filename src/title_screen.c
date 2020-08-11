@@ -63,7 +63,7 @@ static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/s
 static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/sky_ts.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 //static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds_ts.4bpp.lz");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds3_ts.4bpp.lz");
 
 const u32 gSunset_Left[] = INCBIN_U32("graphics/title_screen/sun_anim_left.4bpp.lz"); //test to add sprite
 const u32 gSunset_Right[] = INCBIN_U32("graphics/title_screen/sun_anim_right.4bpp.lz"); //test to add sprite
@@ -896,7 +896,8 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_BG2_ON
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
-        CreateCopyrightBanner(START_BANNER_X, 148);
+        //CreateCopyrightBanner(START_BANNER_X, 148);
+		CreateCopyrightBanner(112, 148);
         CreateSprite(&sSunsetLeftSpriteTemplate, 22, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
         CreateSprite(&sSunsetRightSpriteTemplate, 86, 103, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 		CreateSprite(&sReflectionLeftSpriteTemplate, 22, 135, 0); // test sprite --> coordinates changed. u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
