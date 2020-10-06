@@ -58,12 +58,12 @@ const union AnimCmd gObjectEventImageAnim_QuintyPlumpGoWest[] =
     ANIMCMD_JUMP(0),
 };
 
-const union AnimCmd gObjectEventImageAnim_QuintyPlumpGoEast[] =
+const union AnimCmd gObjectEventImageAnim_QuintyPlumpGoEast[] = // suitable for idle submarine animation
 {
-    ANIMCMD_FRAME(5, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(5, 8, .hFlip = TRUE), //move left frame 1, hflip
+    ANIMCMD_FRAME(2, 8, .hFlip = TRUE), //face left, hflip
+    ANIMCMD_FRAME(6, 8, .hFlip = TRUE), //move left frame 2, hflip
+    ANIMCMD_FRAME(2, 8, .hFlip = TRUE), //face left, hflip
     ANIMCMD_JUMP(0),
 };
 

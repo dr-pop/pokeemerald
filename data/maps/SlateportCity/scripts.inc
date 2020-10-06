@@ -1,4 +1,5 @@
 SlateportCity_MapScripts:: @ 81DCC61
+	//map_script MAP_SCRIPT_ON_LOAD, SlateportCity_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_OnFrame
@@ -7,6 +8,8 @@ SlateportCity_MapScripts:: @ 81DCC61
 SlateportCity_OnTransition: @ 81DCC6C
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
+	//compare VAR_EVER_GRANDE_CITY_STATE, 0
+	//call_if_eq SlateportCity_EventScript_PrepareIntroGame
 	//compare VAR_WILLYSTAD_CITY_STATE, 1
 	//call_if_eq SlateportCity_EventScript_LocateRival
 	//compare VAR_WILLYSTAD_CITY_STATE, 1
@@ -30,14 +33,198 @@ SlateportCity_EventScript_LocateRival::
 	end
 
 SlateportCity_OnWarp:
-	compare VAR_WILLYSTAD_CITY_STATE, 1
-	call_if_eq SlateportCity_EventScript_LocateRival
-	end
+	//map_script_2 VAR_MAUVILLE_CITY_STATE, 0, SlateportCity_EventScript_PrepareIntroGame
+	map_script_2 VAR_WILLYSTAD_CITY_STATE, 1, SlateportCity_EventScript_LocateRival
+	//compare VAR_WILLYSTAD_CITY_STATE, 1
+	//call_if_eq SlateportCity_EventScript_LocateRival
+	//compare VAR_EVER_GRANDE_CITY_STATE, 0
+	//call_if_eq SlateportCity_EventScript_PrepareIntroGame
+	//end
+	.2byte 0
+
+//SlateportCity_OnLoad:
+	//map_script_2 VAR_MAUVILLE_CITY_STATE, 0, SlateportCity_EventScript_PrepareIntroGame
+	//.2byte 0
 
 SlateportCity_OnFrame: @ 81DCD12
 	//map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottScene
 	map_script_2 VAR_WILLYSTAD_CITY_STATE, 1, SlateportCity_EventScript_RivalIntroduction
+	map_script_2 VAR_EVER_GRANDE_CITY_STATE, 2, SlateportCity_EventScript_ProfIntroduction
+	//map_script_2 VAR_EVER_GRANDE_CITY_STATE, 1, SlateportCity_EventScript_IntroGame3
+	//map_script_2 VAR_EVER_GRANDE_CITY_STATE, 0, SlateportCity_EventScript_IntroGame2
+	//map_script_2 VAR_EVER_GRANDE_CITY_STATE, 0, SlateportCity_EventScript_IntroGame
 	.2byte 0
+
+// =======================================
+// CUTSCENE: NEW GAME INTRODUCTION, AUTO-PLAY
+// =======================================
+
+SlateportCity_EventScript_ProfIntroduction::
+	lock
+	delay 30
+	applymovement 10, Common_Movement_FaceLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox SlateportCity_Text_ProfHarbor, MSGBOX_DEFAULT
+	closemessage
+	applymovement 10, Common_Movement_WalkInPlaceFastLeft
+	waitmovement 0
+	applymovement 10, Common_Movement_WalkInPlaceFastLeft
+	waitmovement 0
+	msgbox SlateportCity_Text_ProfHarbor2, MSGBOX_DEFAULT
+	closemessage
+	//applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	applymovement 10, SlateportCity_Movement_ProfHarborExit
+	waitmovement 0
+	setflag FLAG_HIDE_WILLYSTAD_HARBOR_PROF
+	removeobject 10
+	setvar VAR_EVER_GRANDE_CITY_STATE, 3
+	setflag FLAG_SYS_B_DASH
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	release
+	end
+
+SlateportCity_Text_ProfHarbor:
+	.string "Prof. Buxus: Welcome to\n"
+	.string "Willystad City, {PLAYER}!\p"
+	.string "There is no better place to rest\n"
+	.string "and recover than Rainbow Island.$"
+
+SlateportCity_Text_ProfHarbor2:
+	.string "Alright now, I am running late for\n"
+	.string "an important meeting.\p"
+	.string "Come meet me in my laboratory later!$"
+
+SlateportCity_Movement_ProfHarborExit:
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+
+// ==== OLD ====
+
+SlateportCity_EventScript_PrepareIntroGame::
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_HidePlayer
+	waitmovement 0
+	end
+
+SlateportCity_EventScript_IntroGame::
+	lockall
+	setvar VAR_EVER_GRANDE_CITY_STATE, 1
+	//msgbox gText_TheBagIsFull, MSGBOX_DEFAULT	
+	//waitmessage
+	//savebgm MUS_AQA_0
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, SlateportCity_Movement_SubEntry
+	applymovement 5, SlateportCity_Movement_SubEntry
+	waitmovement 0
+	delay 30
+	special RemoveCameraObject
+	warpsilent MAP_SLATEPORT_CITY, -1, 37, 41
+	waitstate
+	releaseall
+	//applymovement 5, Common_Movement_WalkUp
+	//waitmovement 0
+	//setobjectxy 5, 20, 40
+	//setobjectxy OBJ_EVENT_ID_PLAYER, 20, 42
+	end
+
+SlateportCity_EventScript_IntroGame2::
+	lock
+	delay 30
+	fadescreen FADE_TO_BLACK
+	delay 16
+	clearflag FLAG_UNKNOWN_0x363
+	//addobject 10
+	showobjectat 10, MAP_SLATEPORT_CITY
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_EVER_GRANDE_CITY_STATE, 1
+	release
+	end
+
+SlateportCity_EventScript_IntroGame3::
+	lock
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_SubEntryPlayer
+	applymovement 5, SlateportCity_Movement_SubEntry
+	waitmovement 0
+	setvar VAR_EVER_GRANDE_CITY_STATE, 0
+	end
+
+SlateportCity_Movement_HidePlayer:
+	set_invisible
+	step_end
+
+SlateportCity_Movement_SubEntry:
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	step_end
+
+SlateportCity_Movement_SubEntryPlayer:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	walk_slow_right
+	step_end
+
 
 // ============================================================
 // DEBUGGING AND TESTING SCRIPTS.
@@ -81,7 +268,14 @@ Text_PlayerHasFullParty:
 Script_DebugKecleonNew::
 	lock
 	faceplayer
-	message Text_DebugHello
+	msgbox Text_DebugHello, MSGBOX_DEFAULT
+	msgbox Text_DebugSubmarine, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonSubmarine
+	msgbox Text_DebugOcean, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Script_DebugKecleonOcean
+	message Text_DebugHello2
 	waitmessage
 	//multichoice 1, 1, MULTI_DEBUG_KECLEON, 0
 	scrollingmultichoice 0, 2, 2, 5, TRUE
@@ -97,10 +291,35 @@ Script_DebugKecleonNew::
 	case MULTI_B_PRESSED, Script_DebugKecleonNew_Cancel
 
 Text_DebugHello:
-	.string "Hello, I'm Debug Kecleon.\p"
+	.string "Hello, I'm {COLOR}{RED}Debug Kecleon{COLOR}{DARK_GREY}.$"
+
+Text_DebugSubmarine:
+	.string "Do you wish to go to the\n"
+	.string "submarine?$"
+
+Text_DebugOcean:
+	.string "Do you wish to play the\n"
+	.string "ocean animation sequence?$"
+
+Text_DebugHello2:
 	.string "To which game state do you\n"
 	.string "wish to go?$"
-	
+
+Script_DebugKecleonSubmarine::
+	setvar VAR_EVER_GRANDE_CITY_STATE, 2
+	clearflag FLAG_HIDE_WILLYSTAD_HARBOR_PROF
+	warp MAP_ABANDONED_SHIP_CAPTAINS_OFFICE, 255, 5, 4
+	waitstate
+	release
+	end
+
+Script_DebugKecleonOcean::
+	setvar VAR_EVER_GRANDE_CITY_STATE, 1
+	warp MAP_ROUTE108, 255, 12, 17
+	waitstate
+	release
+	end
+
 Script_DebugKecleonNew_1::
 	setflag FLAG_HIDE_WILLYSTAD_RIVAL_SPRITES
 	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
@@ -114,7 +333,7 @@ Script_DebugKecleonNew_1::
 	closemessage
 	warp MAP_SLATEPORT_CITY, 255, 37, 41
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option1:
@@ -134,7 +353,7 @@ Script_DebugKecleonNew_2::
 	closemessage
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 13
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option2:
@@ -154,7 +373,7 @@ Script_DebugKecleonNew_3::
 	closemessage
 	warp MAP_SLATEPORT_CITY, 255, 18, 17
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option3:
@@ -174,7 +393,7 @@ Script_DebugKecleonNew_4::
 	closemessage
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option4:
@@ -194,7 +413,7 @@ Script_DebugKecleonNew_5::
 	closemessage
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 11
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option5:
@@ -214,7 +433,7 @@ Script_DebugKecleonNew_6a::
 	closemessage
 	warp MAP_RUSTBORO_CITY_POKEMON_SCHOOL, 255, 6, 8
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option6a:
@@ -234,7 +453,7 @@ Script_DebugKecleonNew_6b::
 	closemessage
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_2F, 255, 8, 9
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option6b:
@@ -254,7 +473,7 @@ Script_DebugKecleonNew_7::
 	closemessage
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 8, 5
 	waitstate
-	releaseall
+	release
 	end
 
 Text_Debug_Option7:
@@ -272,6 +491,7 @@ Text_DebugDone:
 
 Text_DebugBye:
 	.string "OK then. Bye!$"
+
 
 // ==== ANIMATION TEST RUN: ===
 

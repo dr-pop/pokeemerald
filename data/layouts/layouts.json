@@ -233,11 +233,11 @@
         {
             "blockdata_filepath": "data/layouts/Route108/map.bin",
             "border_filepath": "data/layouts/Route108/border.bin",
-            "height": 20,
+            "height": 26,
             "id": "LAYOUT_ROUTE108",
             "name": "Route108_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Slateport",
+            "secondary_tileset": "gTileset_Rustboro",
             "width": 60
         },
         {

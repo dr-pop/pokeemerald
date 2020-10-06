@@ -609,7 +609,7 @@ $(OBJEVENTGFXDIR)/misc/mr_brineys_boat.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/misc/fossil2.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/misc/submarine_emerged_idle.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/misc/submarine_emerged_idle2.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 12 -mheight 5
 
 
