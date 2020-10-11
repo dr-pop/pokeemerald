@@ -67,9 +67,7 @@ SlateportCity_EventScript_ProfIntroduction::
 	waitmovement 0
 	msgbox SlateportCity_Text_ProfHarbor, MSGBOX_DEFAULT
 	closemessage
-	applymovement 10, Common_Movement_WalkInPlaceFastLeft
-	waitmovement 0
-	applymovement 10, Common_Movement_WalkInPlaceFastLeft
+	applymovement 10, SlateportCity_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox SlateportCity_Text_ProfHarbor2, MSGBOX_DEFAULT
 	closemessage
@@ -89,6 +87,11 @@ SlateportCity_Text_ProfHarbor:
 	.string "Willystad City, {PLAYER}!\p"
 	.string "There is no better place to rest\n"
 	.string "and recover than Rainbow Island.$"
+
+SlateportCity_Movement_WalkInPlaceLeft:
+	walk_in_place_left
+	walk_in_place_left
+	step_end
 
 SlateportCity_Text_ProfHarbor2:
 	.string "Alright now, I am running late for\n"
