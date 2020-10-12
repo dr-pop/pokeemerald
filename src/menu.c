@@ -174,13 +174,13 @@ u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed
 
     printer.currentChar = str;
     printer.windowId = windowId;
-    printer.fontId = fontId;
+    printer.fontId = 2; //printer.fontId = fontId;
     printer.x = 0;
     printer.y = 1;
     printer.currentX = 0;
     printer.currentY = 1;
     printer.letterSpacing = 0;
-    printer.lineSpacing = 0;
+    printer.lineSpacing = 1; //printer.lineSpacing = 0;
     printer.unk = 0;
     printer.fgColor = fgColor;
     printer.bgColor = bgColor;
