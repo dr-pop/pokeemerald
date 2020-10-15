@@ -421,6 +421,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	applymovement 4, RustboroCity_DevonCorp_1F_Movement_Prof2
 	waitmovement 0
 	fadedefaultbgm
+	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_HIDE_WILLYSTAD_CROWD_FOSSIL
 	//setflag FLAG_DELIVERED_DEVON_GOODS
 	setvar VAR_WILLYSTAD_CITY_STATE, 1

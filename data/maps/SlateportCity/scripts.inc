@@ -237,6 +237,7 @@ Script_GivePokemonDemo::
 	lock
 	faceplayer
 	setflag FLAG_SYS_B_DASH
+	setflag FLAG_SYS_POKEMON_GET
 	msgbox Text_TakeCharizard, MSGBOX_DEFAULT
 	getpartysize
 	compare VAR_RESULT, 6
