@@ -28,6 +28,7 @@
 #include "overworld.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
+#include "random.h"
 
 EWRAM_DATA static struct NamingScreenData *gNamingScreenData = NULL;
 extern u16 gKeyRepeatStartDelay;
@@ -139,6 +140,54 @@ static const u8 gUnknown_0858BE40[] = __("abcdef .ghijkl ,mnopqrs tuvwxyz ABCDEF
 
 static const u8 gUnknown_0858BEA0[] = { 8, 8, 6 };
 static const u8 gUnknown_0858BEA3[] = { 0, 12, 24, 56, 68, 80, 92, 123, 0, 12, 24, 56, 68, 80, 92, 123, 0, 22, 44, 66, 88, 110, 0, 0 };
+
+static const u8 *const gMalePresetNames[] = { // added for RivalName
+    gText_ExpandedPlaceholder_Brendan,
+    gText_DefaultNameStu,
+    gText_DefaultNameMilton,
+    gText_DefaultNameTom,
+    gText_DefaultNameKenny,
+    gText_DefaultNameReid,
+    gText_DefaultNameJude,
+    gText_DefaultNameJaxson,
+    gText_DefaultNameEaston,
+    gText_DefaultNameWalker,
+    gText_DefaultNameTeru,
+    gText_DefaultNameJohnny,
+    gText_DefaultNameBrett,
+    gText_DefaultNameSeth,
+    gText_DefaultNameTerry,
+    gText_DefaultNameCasey,
+    gText_DefaultNameDarren,
+    gText_DefaultNameLandon,
+    gText_DefaultNameCollin,
+    gText_DefaultNameStanley,
+    gText_DefaultNameQuincy
+};
+
+static const u8 *const gFemalePresetNames[] = { // added for RivalName
+    gText_ExpandedPlaceholder_May,
+    gText_DefaultNameKimmy,
+    gText_DefaultNameTiara,
+    gText_DefaultNameBella,
+    gText_DefaultNameJayla,
+    gText_DefaultNameAllie,
+    gText_DefaultNameLianna,
+    gText_DefaultNameSara,
+    gText_DefaultNameMonica,
+    gText_DefaultNameCamila,
+    gText_DefaultNameAubree,
+    gText_DefaultNameRuthie,
+    gText_DefaultNameHazel,
+    gText_DefaultNameNadine,
+    gText_DefaultNameTanja,
+    gText_DefaultNameYasmin,
+    gText_DefaultNameNicola,
+    gText_DefaultNameLillie,
+    gText_DefaultNameTerra,
+    gText_DefaultNameLucy,
+    gText_DefaultNameHalie
+};
 
 // forward declarations
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[];
@@ -1146,6 +1195,7 @@ static void NamingScreen_CreatePlayerIcon(void);
 static void NamingScreen_CreatePCIcon(void);
 static void NamingScreen_CreateMonIcon(void);
 static void NamingScreen_CreateWandaDadIcon(void);
+static void NamingScreen_CreateRivalIcon(void); // added
 
 static void (*const sIconFunctions[])(void) =
 {
@@ -1154,6 +1204,7 @@ static void (*const sIconFunctions[])(void) =
     NamingScreen_CreatePCIcon,
     NamingScreen_CreateMonIcon,
     NamingScreen_CreateWandaDadIcon,
+	NamingScreen_CreateRivalIcon, // added
 };
 
 static void CreateInputTargetIcon(void)
@@ -1200,6 +1251,17 @@ static void NamingScreen_CreateWandaDadIcon(void)
     u8 spriteId;
 
     spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAN_1, SpriteCallbackDummy, 0x38, 0x25, 0);
+    gSprites[spriteId].oam.priority = 3;
+    StartSpriteAnim(&gSprites[spriteId], 4);
+}
+
+static void NamingScreen_CreateRivalIcon(void) // added rival name (ghouslash)
+{
+    u8 rivalGfxId;
+    u8 spriteId;
+
+    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender ^ 1);
+    spriteId = AddPseudoObjectEvent(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }
@@ -1499,6 +1561,7 @@ static void (*const gUnknown_0858BF58[])(void) =
     sub_80E48E8,
     sub_80E48E8,
     sub_80E4894,
+	sub_80E4894, // added, but experimenting here. need to update pokeemerald. see ghouslash commit for official change.
 };
 
 static void sub_80E4964(void)
@@ -1848,6 +1911,15 @@ static void sub_80E50EC(void)
     DoNamingScreen(3, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
+void NameRival(void) //added
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        StringCopy(gSaveBlock2Ptr->rivalName, gFemalePresetNames[Random() % NELEMS(gFemalePresetNames)]); // choose a random name from gFemalePresetNames for a male player's rival
+    else
+        StringCopy(gSaveBlock2Ptr->rivalName, gMalePresetNames[Random() % NELEMS(gMalePresetNames)]); // choose a random name from gMalePresetNames for a female player's rival
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
 //--------------------------------------------------
 // Forward-declared variables
 //--------------------------------------------------
@@ -1896,17 +1968,32 @@ static const struct NamingScreenTemplate wandaWordsScreenTemplate =
     .title = gText_TellHimTheWords,
 };
 
+static const u8 sText_RivalsName[] = _("Rival's Name?");
+
+static const struct NamingScreenTemplate sRivalNamingScreenTemplate =
+{
+    .copyExistingString = FALSE,
+    .maxChars = PLAYER_NAME_LENGTH,
+    .iconFunction = 5,
+    .addGenderIcon = FALSE,
+    .initialPage = KBPAGE_LETTERS_UPPER,
+    .unused = 35,
+    .title = sText_RivalsName,
+};
+
+/*
 static const struct NamingScreenTemplate rivalNamingScreenTemplate =
 {
     .copyExistingString = 0,
-    .maxChars = 7,
+    .maxChars = PLAYER_NAME_LENGTH, //7,
     .iconFunction = 1,
     .addGenderIcon = 0,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
-    .title = gText_RivalName,
+    .title = sText_RivalsName,
 	//.title = gText_TellHimTheWords,
 };
+*/
 
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 {
@@ -1915,9 +2002,10 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
     &monNamingScreenTemplate,
     &monNamingScreenTemplate,
     &wandaWordsScreenTemplate,
-	&rivalNamingScreenTemplate,
+	&sRivalNamingScreenTemplate, //&rivalNamingScreenTemplate,
 };
 
+/*
 void RivalNameChange(void) //added
 {
 	if(gSaveBlock2Ptr->playerGender == 0)
@@ -1929,6 +2017,7 @@ void RivalNameChange(void) //added
 		DoNamingScreen(5, gSaveBlock2Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 	}
 }
+*/
 
 const struct OamData gOamData_858BFEC =
 {

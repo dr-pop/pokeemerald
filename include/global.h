@@ -452,7 +452,7 @@ struct RankingHall2P
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    u8 rivalName[PLAYER_NAME_LENGTH + 1]; //added
+    //u8 rivalName[PLAYER_NAME_LENGTH + 1]; //added
 	/*0x08*/ u8 playerGender; // MALE, FEMALE
     /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
@@ -482,6 +482,7 @@ struct SaveBlock2
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[5][4]; // 4 positions for 5 categories.
     /*0x64C*/ struct BattleFrontier frontier;
+	/*0xF2C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1]; // added
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

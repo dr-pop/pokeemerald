@@ -407,6 +407,7 @@ B_ATK_TEAM2 = FD 38
 B_DEF_NAME = FD 39
 B_DEF_TEAM1 = FD 3A
 B_DEF_TEAM2 = FD 3B
+B_RIVAL_NAME = FD 3C @ added by dr pop
 
 @ indicates the end of a town/city name (before " TOWN" or " CITY")
 NAME_END = FC 00

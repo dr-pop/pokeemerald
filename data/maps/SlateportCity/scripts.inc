@@ -988,8 +988,9 @@ SlateportCity_EventScript_RivalIntroduction::
 	closemessage
 	delay 16
 	fadescreen FADE_TO_BLACK
-	special RivalNameChange
-	fadescreen FADE_FROM_BLACK
+	special NameRival //special RivalNameChange
+	waitstate
+	//fadescreen FADE_FROM_BLACK
 	//waitstate
 	delay 16
 	msgbox SlateportCity_Text_Rival2, MSGBOX_DEFAULT
