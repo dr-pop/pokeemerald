@@ -12,16 +12,17 @@
 #define ABILITYEFFECT_ENDTURN                    0x1
 #define ABILITYEFFECT_MOVES_BLOCK                0x2
 #define ABILITYEFFECT_ABSORBING                  0x3
-#define ABILITYEFFECT_MOVE_END                   0x4
-#define ABILITYEFFECT_IMMUNITY                   0x5
-#define ABILITYEFFECT_FORECAST                   0x6
-#define ABILITYEFFECT_SYNCHRONIZE                0x7
-#define ABILITYEFFECT_ATK_SYNCHRONIZE            0x8
-#define ABILITYEFFECT_INTIMIDATE1                0x9
-#define ABILITYEFFECT_INTIMIDATE2                0xA
-#define ABILITYEFFECT_TRACE1                     0xB
-#define ABILITYEFFECT_TRACE2                     0xC
-#define ABILITYEFFECT_MOVE_END_OTHER             0xD
+#define ABILITYEFFECT_MOVE_END_ATTACKER          0x4
+#define ABILITYEFFECT_MOVE_END                   0x5
+#define ABILITYEFFECT_IMMUNITY                   0x6
+#define ABILITYEFFECT_FORECAST                   0x7
+#define ABILITYEFFECT_SYNCHRONIZE                0x8
+#define ABILITYEFFECT_ATK_SYNCHRONIZE            0x9
+#define ABILITYEFFECT_INTIMIDATE1                0xA
+#define ABILITYEFFECT_INTIMIDATE2                0xB
+#define ABILITYEFFECT_TRACE1                     0xC
+#define ABILITYEFFECT_TRACE2                     0xD
+#define ABILITYEFFECT_MOVE_END_OTHER             0xE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
 
 #define ITEMEFFECT_ON_SWITCH_IN                 0x0
@@ -56,8 +57,8 @@ void CancelMultiTurnMoves(u8 battlerId);
 bool8 WasUnableToUseMove(u8 battlerId);
 void PrepareStringBattle(u16 stringId, u8 battlerId);
 void ResetSentPokesToOpponentValue(void);
-void sub_803F9EC(u8 battlerId);
-void sub_803FA70(u8 battlerId);
+void OpponentSwitchInResetSentPokesToOpponentValue(u8 battlerId);
+void UpdateSentPokesToOpponentValue(u8 battlerId);
 void BattleScriptPush(const u8* bsPtr);
 void BattleScriptPushCursor(void);
 void BattleScriptPop(void);
@@ -66,6 +67,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check);
 bool8 AreAllMovesUnusable(void);
 u8 GetImprisonedMovesCount(u8 battlerId, u16 move);
 u8 DoFieldEndTurnEffects(void);
+s32 GetDrainedBigRootHp(u32 battler, s32 hp);
 u8 DoBattlerEndTurnEffects(void);
 bool8 HandleWishPerishSongOnTurnEnd(void);
 bool8 HandleFaintedMonActions(void);
@@ -82,6 +84,7 @@ u32 IsAbilityOnOpposingSide(u32 battlerId, u32 ability);
 u32 IsAbilityOnField(u32 ability);
 u32 IsAbilityOnFieldExcept(u32 battlerId, u32 ability);
 u32 IsAbilityPreventingEscape(u32 battlerId);
+bool32 CanBattlerEscape(u32 battlerId); // no ability check
 void BattleScriptExecute(const u8* BS_ptr);
 void BattleScriptPushCursorAndCallback(const u8* BS_ptr);
 u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn);

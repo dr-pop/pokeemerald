@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -133,7 +133,7 @@
     "id": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
     "layout": "LAYOUT_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FUNE_KAN",
+    "music": "MUS_OCEANIC_MUSEUM",
     "name": "SlateportCity_OceanicMuseum_1F",
     "object_events": [
         {
@@ -145,7 +145,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 7,
             "y": 7
         },
@@ -158,7 +158,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt3",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 18,
             "y": 5
         },
@@ -171,7 +171,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt4",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 12,
             "y": 2
         },
@@ -184,7 +184,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt2",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 2,
             "y": 8
         },
@@ -197,7 +197,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt1",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 3,
             "y": 4
         },
@@ -210,7 +210,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt5",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 14,
             "y": 4
         },
@@ -223,7 +223,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 12,
             "y": 7
         },
@@ -236,7 +236,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt6",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 8,
             "y": 3
         },
@@ -249,7 +249,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron1",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 4,
             "y": 2
         },
@@ -262,7 +262,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron2",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 10,
             "y": 2
         },
@@ -275,7 +275,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron3",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 17,
             "y": 7
         },
@@ -288,7 +288,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron4",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 18,
             "y": 8
         },
@@ -301,7 +301,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP_LEFT_AND_RIGHT",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 9,
             "y": 4
         },
@@ -314,7 +314,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SlateportCity_OceanicMuseum_1F_EventScript_Reporter",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 7,
             "y": 4
         }

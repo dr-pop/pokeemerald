@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -179,7 +179,7 @@
     "id": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_2F",
     "layout": "LAYOUT_SLATEPORT_CITY_OCEANIC_MUSEUM_2F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FUNE_KAN",
+    "music": "MUS_OCEANIC_MUSEUM",
     "name": "SlateportCity_OceanicMuseum_2F",
     "object_events": [
         {
@@ -191,7 +191,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlateportCity_OceanicMuseum_2F_EventScript_CaptStern",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 13,
             "y": 6
         },
@@ -204,7 +204,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 6,
             "y": 1
         },
@@ -217,7 +217,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 6,
             "y": 1
         },
@@ -230,7 +230,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 6,
             "y": 1
         },
@@ -243,7 +243,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron1",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 12,
             "y": 7
         },
@@ -256,7 +256,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron2",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 9,
             "y": 6
         },
@@ -269,7 +269,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron3",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 1,
             "y": 3
         }

@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
+    "allow_cycling": true,
+    "allow_escaping": false,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -55,7 +55,7 @@
     "id": "MAP_ROUTE125",
     "layout": "LAYOUT_ROUTE125",
     "map_type": "MAP_TYPE_OCEAN_ROUTE",
-    "music": "MUS_DOORO_X3",
+    "music": "MUS_ROUTE120",
     "name": "Route125",
     "object_events": [
         {
@@ -184,7 +184,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route125_EventScript_ItemBigPearl",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 46,
             "y": 17
         }

@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
+    "allow_cycling": true,
+    "allow_escaping": false,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -106,7 +106,7 @@
     "id": "MAP_ROUTE101",
     "layout": "LAYOUT_ROUTE101",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DOORO1",
+    "music": "MUS_ROUTE101",
     "name": "Route101",
     "object_events": [
         {
@@ -118,7 +118,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route101_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 18,
             "y": 21
         },
@@ -131,7 +131,7 @@
             "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_RIGHT",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 10,
             "y": 8
         },
@@ -144,7 +144,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route101_EventScript_BirchsBag",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 12,
             "y": 9
         },
@@ -157,7 +157,7 @@
             "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_LEFT",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 11,
             "y": 8
         },
@@ -170,7 +170,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "ProfBirch_EventScript_RatePokedexOrRegister",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 8,
             "y": 9
         },
@@ -183,7 +183,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
             "script": "Route101_EventScript_Boy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "x": 13,
             "y": 5
         }
