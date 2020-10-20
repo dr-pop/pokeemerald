@@ -7,72 +7,139 @@ RustboroCity_DevonCorp_3F_MapScripts:: @ 821242D
 	.byte 0
 
 RustboroCity_DevonCorp_3F_OnTransition: @ 821243D
-	compare VAR_DEVON_CORP_3F_STATE, 0
-	call_if_eq RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos
+	//compare VAR_DEVON_CORP_3F_STATE, 0
+	//call_if_eq RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos
 	end
 
-RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos:: @ 8212449
-	setobjectxyperm LOCALID_DEVON_EMPLOYEE, 3, 2
-	setobjectmovementtype LOCALID_DEVON_EMPLOYEE, MOVEMENT_TYPE_FACE_LEFT
-	return
+//RustboroCity_DevonCorp_3F_EventScript_SetEmployeePos:: @ 8212449
+	//setobjectxyperm 2, 3, 2
+	//setobjectmovementtype 2, MOVEMENT_TYPE_FACE_LEFT
+	//return
 
 RustboroCity_DevonCorp_3F_OnWarp: @ 8212455
-	map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast
+	//map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast
 	.2byte 0
 
 RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast:: @ 821245F
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	//turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	end
 
 RustboroCity_DevonCorp_3F_OnFrame: @ 8212464
-	map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_MeetPresident
+	//map_script_2 VAR_DEVON_CORP_3F_STATE, 0, RustboroCity_DevonCorp_3F_EventScript_MeetPresident
 	.2byte 0
 
 RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	lockall
 	msgbox RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen
-	waitmovement 0
-	delay 80
-	applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer
-	waitmovement 0
-	msgbox RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe, MSGBOX_DEFAULT
-	closemessage
-	playbgm MUS_FOLLOW_ME, 0
-	applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident
-	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
-	waitmovement 0
-	msgbox RustboroCity_DevonCorp_3F_Text_PleaseGoAhead, MSGBOX_DEFAULT
-	closemessage
-	fadedefaultbgm
-	applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk
-	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
-	waitmovement 0
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
-	giveitem ITEM_LETTER
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
-	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
-	waitfanfare
-	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
-	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT
-	closemessage
-	call Common_EventScript_OutOfCenterPartyHeal
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
-	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setvar VAR_BRINEY_LOCATION, 1
-	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	//applymovement 2, RustboroCity_DevonCorp_3F_Movement_EmployeeWalkOffscreen
+	//waitmovement 0
+	//delay 80
+	//applymovement 2, RustboroCity_DevonCorp_3F_Movement_EmployeeReturnToPlayer
+	//waitmovement 0
+	//msgbox RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe, MSGBOX_DEFAULT
+	//closemessage
+	//playbgm MUS_TSURETEK, 0
+	//applymovement 2, RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident
+	//applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
+	//waitmovement 0
+	//msgbox RustboroCity_DevonCorp_3F_Text_PleaseGoAhead, MSGBOX_DEFAULT
+	//closemessage
+	//fadedefaultbgm
+	//applymovement 2, RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk
+	//applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
+	//waitmovement 0
+	//msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
+	//giveitem ITEM_LETTER
+	//msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
+	//playfanfare MUS_FANFA4
+	//message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
+	//waitfanfare
+	//setflag FLAG_SYS_POKENAV_GET
+	//setflag FLAG_RECEIVED_POKENAV
+	//setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+	//msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT
+	//closemessage
+	//call Common_EventScript_OutOfCenterPartyHeal
+	//msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
+	//setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+	//clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	//clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+	//clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	//clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	//setvar VAR_BRINEY_LOCATION, 1
+	//clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setvar VAR_DEVON_CORP_3F_STATE, 1
-	setvar VAR_RUSTBORO_CITY_STATE, 6
+	//setvar VAR_RUSTBORO_CITY_STATE, 6
 	releaseall
 	end
+
+// ============================================================
+// NPC INTERACTIONS. LIBRARY.
+// ============================================================
+
+RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay:: @ 8212600
+	msgbox RustboroCity_DevonCorp_3F_Text_RareRocksDisplay, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_3F_Text_RareRocksDisplay: @ 8212EE9
+	.string "It's a collection of beautiful tools\n"
+	.string "a jewelery made from gold and silver.$"
+
+RustboroCity_DevonCorp_3F_EventScript_Sign:: @ 8212600
+	msgbox RustboroCity_DevonCorp_3F_Text_Sign, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_3F_Text_Sign: @ 8212EE9
+	.string "Island Library\n"
+	.string "Rules and Regulation:\l"
+	.string "Please be quiet.\l"
+	.string "Return books on time.\l"
+	.string "No Fire Pokémon allowed.$"
+
+RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls:: @ 82125F6
+	msgbox RustboroCity_DevonCorp_3F_Text_IndigenousItems, MSGBOX_NPC
+	end
+
+RustboroCity_DevonCorp_3F_Text_IndigenousItems: @ 8212E88
+	.string "These artefacts were used by the\n"
+	.string "Island's original inhabitants.\p"
+	.string "Many of their descendants now live\n"
+	.string "in a place called Konuko Town.$"
+	//.string "I wonder how life was, before the first\n"
+	//.string "explorers arrived.$"
+
+RustboroCity_DevonCorp_3F_EventScript_Librarian::
+	msgbox RustboroCity_DevonCorp_3F_Text_Librarian1, MSGBOX_NPC
+	end
+
+RustboroCity_DevonCorp_3F_Text_Librarian1: @ 8212E88
+	.string "Oh, hello there.\n"
+	.string "Welcome to the Island Library.\p"
+	.string "My name is Mr. Booker.\n"
+	.string "I am the Island Librarian.\p"
+	.string "The books here are free\n"
+	.string "for you to read.\p"
+	.string "Just remember to put them\n"
+	.string "back where they belong.\p"
+	.string "A number of books have gone missing\n"
+	.string "over time by careless readers.\p"
+	.string "Gosh, I would give a lot to get\n"
+	.string "those back…$"
+
+RustboroCity_DevonCorp_3F_EventScript_Woman::
+	msgbox RustboroCity_DevonCorp_3F_Text_Woman1, MSGBOX_NPC
+	end
+
+RustboroCity_DevonCorp_3F_Text_Woman1: @ 8212E88
+	.string "I love to just spend hours browsing\n"
+	.string "books in the Library.\p"
+	.string "There's so many stories left to read!$"
+
+
+// =============================================
+// REMAINING SCRIPTS FROM ORIGINAL GAME, UNUSED:
+// =============================================
 
 RustboroCity_DevonCorp_3F_Movement_Unused: @ 821252F
 	walk_up
@@ -190,15 +257,6 @@ RustboroCity_DevonCorp_3F_EventScript_Employee:: @ 82125E1
 	release
 	end
 
-RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls:: @ 82125F6
-	msgbox RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay:: @ 8212600
-	msgbox RustboroCity_DevonCorp_3F_Text_RareRocksDisplay, MSGBOX_SIGN
-	end
-
 RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor: @ 8212609
 	.string "I'm MR. STONE, the PRESIDENT of\n"
 	.string "the DEVON CORPORATION.\p"
@@ -303,8 +361,4 @@ RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular: @ 8212E88
 	.string "DEVON's new products, the REPEAT BALL\n"
 	.string "and TIMER BALL, have become hugely\l"
 	.string "popular among TRAINERS.$"
-
-RustboroCity_DevonCorp_3F_Text_RareRocksDisplay: @ 8212EE9
-	.string "It's a collection of rare rocks and\n"
-	.string "stones assembled by the PRESIDENT.$"
 

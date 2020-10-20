@@ -920,6 +920,7 @@ void ChooseStarter(void)
 {
     SetMainCallback2(CB2_ChooseStarter);
     gMain.savedCallback = CB2_GiveStarter;
+	//gMain.savedCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
 }
 
 static void CB2_GiveStarter(void)
@@ -929,10 +930,13 @@ static void CB2_GiveStarter(void)
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
-    ResetTasks();
-    PlayBattleBGM();
-    SetMainCallback2(CB2_StartFirstBattle);
-    BattleTransition_Start(B_TRANSITION_BLUR);
+    //ResetTasks();
+    //PlayBattleBGM();
+    //SetMainCallback2(CB2_StartFirstBattle);
+    //FadeScreen(FADE_TO_BLACK, 0); //added
+	//CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded, 0x400); //added
+	SetMainCallback2(CB2_ReturnToFieldContinueScript); //added
+	//BattleTransition_Start(B_TRANSITION_BLUR);
 }
 
 static void CB2_StartFirstBattle(void)

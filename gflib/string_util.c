@@ -453,6 +453,12 @@ static const u8 *ExpandPlaceholder_KunChan(void)
         return gText_ExpandedPlaceholder_Chan;
 }
 
+static const u8 *ExpandPlaceholder_RivalName(void) //added
+{
+    return gSaveBlock2Ptr->rivalName;
+}
+
+/*
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
@@ -460,6 +466,7 @@ static const u8 *ExpandPlaceholder_RivalName(void)
     else
         return gText_ExpandedPlaceholder_Brendan;
 }
+*/
 
 static const u8 *ExpandPlaceholder_Version(void)
 {

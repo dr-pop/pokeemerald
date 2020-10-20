@@ -109,7 +109,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+            "graphics_id": "OBJ_EVENT_GFX_ARCHIE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -134,19 +134,6 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_MANIAC",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "OldaleTown_EventScript_FootprintsMan",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "x": 14,
-            "y": 11
-        },
-        {
-            "elevation": 3,
             "flag": "FLAG_HIDE_OLDALE_TOWN_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_VAR_0",
             "movement_range_x": 1,
@@ -164,32 +151,32 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_OLDALE_TOWN_HOUSE1",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_MOSSDEEP_CITY_HOUSE4",
+            "dest_warp_id": 1,
             "elevation": 0,
             "x": 39,
-            "y": 16
+            "y": 17
         },
         {
-            "dest_map": "MAP_OLDALE_TOWN_HOUSE2",
+            "dest_map": "MAP_SLATEPORT_CITY_NAME_RATERS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 17,
-            "y": 16
+            "y": 17
         },
         {
-            "dest_map": "MAP_OLDALE_TOWN_POKEMON_CENTER_1F",
+            "dest_map": "MAP_DEWFORD_TOWN_HOUSE1",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 23,
-            "y": 9
+            "y": 10
         },
         {
-            "dest_map": "MAP_OLDALE_TOWN_MART",
+            "dest_map": "MAP_PETALBURG_CITY_HOUSE2",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 9,
-            "y": 9
+            "y": 10
         }
     ],
     "weather": "WEATHER_SUNNY"

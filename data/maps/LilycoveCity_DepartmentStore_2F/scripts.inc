@@ -1,5 +1,24 @@
 LilycoveCity_DepartmentStore_2F_MapScripts:: @ 821FB2C
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LilycoveCity_DepartmentStore_2F_OnWarp
 	.byte 0
+
+// ====
+
+LilycoveCity_DepartmentStore_2F_OnWarp:
+	map_script_2 VAR_LILYCOVE_CITY_STATE, 0, LilycoveCity_DepartmentStore_2F_EventScript_SetUpRoomObjects
+	.2byte 0
+
+LilycoveCity_DepartmentStore_2F_EventScript_SetUpRoomObjects::
+	setvar VAR_TEMP_1, 1
+	applymovement OBJ_EVENT_ID_PLAYER, LilycoveCity_DepartmentStore_2F_Movement_SetInvisible
+	waitmovement 0
+	end
+
+LilycoveCity_DepartmentStore_2F_Movement_SetInvisible:
+	set_invisible
+	step_end
+
+// ====
 
 LilycoveCity_DepartmentStore_2F_EventScript_Cook:: @ 821FB2D
 	msgbox LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly, MSGBOX_NPC

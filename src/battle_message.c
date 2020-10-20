@@ -2754,9 +2754,15 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
         GetEreaderTrainerName(text);
         toCpy = text;
     }
-    else
+    else //edited below
     {
         toCpy = gTrainers[trainerId].trainerName;
+		if (toCpy[0] == B_BUFF_PLACEHOLDER_BEGIN && toCpy[1] == B_TXT_RIVAL_NAME)
+                        toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
+		//if(!StringCompare(gTrainers[trainerId].trainerName, gText_ExpandedPlaceholder_May) || !StringCompare(gTrainers[trainerId].trainerName, gText_ExpandedPlaceholder_Brendan))
+		//		toCpy = gSaveBlock2Ptr->rivalName;
+		//else
+		//		toCpy = gTrainers[trainerId].trainerName;
     }
 
     return toCpy;
@@ -3245,7 +3251,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else
                     toCpy = sText_Opposing2;
                 break;
-            }
+            case B_TXT_RIVAL_NAME: // added
+                toCpy = gSaveBlock2Ptr->rivalName; // added
+                break; // added
+			}
 
             if (toCpy != NULL)
             {

@@ -1,0 +1,126 @@
+
+// ==================================
+// CUTSCENE. MAYORS MISSION
+// ==================================
+
+RustboroCity_DevonCorp_1F_EventScript_MayorOffice:: @ 821127F
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_DEVON_EMPLOYEE, RustboroCity_DevonCorp_1F_EventScript_MayorOffice2
+	msgbox RustboroCity_DevonCorp_1F_Text_MayorOffice1, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_PLAYER_ID, RustboroCity_DevonCorp_1F_Movement_Player1
+	waitmovement 0
+	applymovement 1, RustboroCity_DevonCorp_1F_Movement_Mayor1
+	waitmovement 0
+	applymovement 1, RustboroCity_DevonCorp_1F_Movement_Mayor2
+	applymovement 1, RustboroCity_DevonCorp_1F_Movement_Player2
+	waitmovement 0
+	delay 30
+	msgbox RustboroCity_DevonCorp_1F_Text_MayorOffice2, MSGBOX_DEFAULT
+	closemessage
+	applymovement 1, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_1F_Text_MayorOffice3, MSGBOX_DEFAULT
+	closemessage
+	applymovement 1, RustboroCity_DevonCorp_1F_Movement_Mayor2
+	applymovement OBJ_EVENT_PLAYER_ID, RustboroCity_DevonCorp_1F_Movement_Player3
+	waitmovement 0
+	setflag FLAG_MET_DEVON_EMPLOYEE
+	release
+	end
+
+RustboroCity_DevonCorp_1F_Text_MayorOffice1:
+	.string "Hello, {PLAYER}.\n"
+	.string "I'm glad you came.\p"
+	.string "The Professor told me how he\n"
+	.string "found you lost at sea.\p"
+	.string "And that you have no recollection\n"
+	.string "of how you got there.\l"
+	.string "Or where you come from.\p"
+	.string "You were lucky the Professor\n"
+	.string "found you out there.\l"
+	.string "But then again, so were we."
+	.string "Your ability to catch the\n"
+	.string "thief impressed me.\p"
+	.string "I could use your help on another\n"
+	.string "important matter.\p"
+	.string "Let me explain.$"
+
+RustboroCity_DevonCorp_1F_Movement_Player1:
+	walk_left
+	face_right
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_Mayor1:
+	walk_slow_down
+	walk_right
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_Mayor2:
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_Player2:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	face_up
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_Mayor3:
+	walk_left
+	walk_left
+	walk_down
+	walk_left
+	walk_left
+	walk_up
+	face_down
+	step_end
+
+RustboroCity_DevonCorp_1F_Movement_Player3:
+	delay_16
+	face_left
+	step_end
+
+RustboroCity_DevonCorp_1F_Text_MayorOffice2:
+	.string "This Island we inhabit is more\n"
+	.string "than just this city.\p"
+	.string "In fact, there are more than six\n"
+	.string "settlements on this Island.\p"
+	.string "Each town has their own specialty.\p"
+	.string "Together, we trade and cooperate.\p"
+	.string "So long every community keeps to their\n"
+	.string "natural role, the Island is in harmony.$"
+
+RustboroCity_DevonCorp_1F_Text_MayorOffice3:
+	.string "Unfortunately, some people wish to\n"
+	.string "disturb this balance.\p"
+	.string "I do not know who they are, but they\n"
+	.string "have terrorized the farmers of the\l"
+	.string "neighbouring Konuko Town.\p"
+	.string "And when the farmers are in trouble,\n"
+	.string "the Factory on Mt. Snow is in trouble.\p"
+	.string "And when the Factory is in trouble,\n"
+	.string "Willystad cannot trade.\p"
+	.string "{PLAYER}!\p"
+	.string "I need to ask you to go to Konuko Town\n"
+	.string "and investigate the situation.\p"
+	.string "Please find out who is disturbing the\n"
+	.string "farmers and restore order to our Island.\p"
+	.string "You have proven to be a good person before.\n"
+	.string "Please don't let our Island down.$"
+
+RustboroCity_DevonCorp_1F_EventScript_MayorOffice2::
+	msgbox RustboroCity_DevonCorp_1F_Text_MayorOffice4, MSGBOX_NPC
+	end
+
+RustboroCity_DevonCorp_1F_Text_MayorOffice4:
+	.string "Go to Konuko Town, {PLAYER}.\n"
+	.string "Find out who is disturbing the farmers.\p"
+	.string "Please don't let our Island down.$"

@@ -194,7 +194,7 @@
         {
             "blockdata_filepath": "data/layouts/Route104/map.bin",
             "border_filepath": "data/layouts/Route104/border.bin",
-            "height": 60,
+            "height": 70,
             "id": "LAYOUT_ROUTE104",
             "name": "Route104_Layout",
             "primary_tileset": "gTileset_General",
@@ -234,11 +234,11 @@
         {
             "blockdata_filepath": "data/layouts/Route108/map.bin",
             "border_filepath": "data/layouts/Route108/border.bin",
-            "height": 20,
+            "height": 26,
             "id": "LAYOUT_ROUTE108",
             "name": "Route108_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Slateport",
+            "secondary_tileset": "gTileset_Rustboro",
             "width": 60
         },
         {
@@ -559,12 +559,12 @@
             "name": "House1_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/House2/map.bin",
             "border_filepath": "data/layouts/House2/border.bin",
-            "height": 8,
+            "height": 10,
             "id": "LAYOUT_HOUSE2",
             "name": "House2_Layout",
             "primary_tileset": "gTileset_Building",
@@ -574,12 +574,12 @@
         {
             "blockdata_filepath": "data/layouts/PokemonCenter_1F/map.bin",
             "border_filepath": "data/layouts/PokemonCenter_1F/border.bin",
-            "height": 9,
+            "height": 10,
             "id": "LAYOUT_POKEMON_CENTER_1F",
             "name": "PokemonCenter_1F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonCenter",
-            "width": 14
+            "width": 15
         },
         {
             "blockdata_filepath": "data/layouts/PokemonCenter_2F/map.bin",
@@ -589,36 +589,36 @@
             "name": "PokemonCenter_2F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonCenter",
-            "width": 14
+            "width": 15
         },
         {
             "blockdata_filepath": "data/layouts/Mart/map.bin",
             "border_filepath": "data/layouts/Mart/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_MART",
             "name": "Mart_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_Shop",
+            "secondary_tileset": "gTileset_PokemonCenter",
             "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/House3/map.bin",
             "border_filepath": "data/layouts/House3/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_HOUSE3",
             "name": "House3_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_PokemonCenter",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/DewfordTown_Gym/map.bin",
             "border_filepath": "data/layouts/DewfordTown_Gym/border.bin",
-            "height": 28,
+            "height": 14,
             "id": "LAYOUT_DEWFORD_TOWN_GYM",
             "name": "DewfordTown_Gym_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_DewfordGym",
+            "secondary_tileset": "gTileset_PetalburgGym",
             "width": 18
         },
         {
@@ -628,8 +628,8 @@
             "id": "LAYOUT_DEWFORD_TOWN_HALL",
             "name": "DewfordTown_Hall_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 17
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/House4/map.bin",
@@ -638,8 +638,8 @@
             "id": "LAYOUT_HOUSE4",
             "name": "House4_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/LavaridgeTown_HerbShop/map.bin",
@@ -724,12 +724,12 @@
         {
             "blockdata_filepath": "data/layouts/VerdanturfTown_WandasHouse/map.bin",
             "border_filepath": "data/layouts/VerdanturfTown_WandasHouse/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_VERDANTURF_TOWN_WANDAS_HOUSE",
             "name": "VerdanturfTown_WandasHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 17
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/PacifidlogTown_House1/map.bin",
@@ -764,12 +764,12 @@
         {
             "blockdata_filepath": "data/layouts/HouseWithBed/map.bin",
             "border_filepath": "data/layouts/HouseWithBed/border.bin",
-            "height": 8,
+            "height": 10,
             "id": "LAYOUT_HOUSE_WITH_BED",
             "name": "HouseWithBed_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/SlateportCity_SternsShipyard_1F/map.bin",
@@ -884,22 +884,22 @@
         {
             "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_1F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_DevonCorp_1F/border.bin",
-            "height": 9,
+            "height": 24,
             "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_1F",
             "name": "RustboroCity_DevonCorp_1F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 19
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 17
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_2F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_DevonCorp_2F/border.bin",
-            "height": 9,
+            "height": 30,
             "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_2F",
             "name": "RustboroCity_DevonCorp_2F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 19
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 17
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Gym/map.bin",
@@ -918,38 +918,38 @@
             "id": "LAYOUT_RUSTBORO_CITY_POKEMON_SCHOOL",
             "name": "RustboroCity_PokemonSchool_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_PokemonSchool",
-            "width": 12
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_House/map.bin",
             "border_filepath": "data/layouts/RustboroCity_House/border.bin",
-            "height": 9,
+            "height": 10,
             "id": "LAYOUT_RUSTBORO_CITY_HOUSE",
             "name": "RustboroCity_House_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 8
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_House1/map.bin",
             "border_filepath": "data/layouts/RustboroCity_House1/border.bin",
-            "height": 8,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_HOUSE1",
             "name": "RustboroCity_House1_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
+            "secondary_tileset": "gTileset_OceanicMuseum",
             "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_CuttersHouse/map.bin",
             "border_filepath": "data/layouts/RustboroCity_CuttersHouse/border.bin",
-            "height": 9,
+            "height": 13,
             "id": "LAYOUT_RUSTBORO_CITY_CUTTERS_HOUSE",
             "name": "RustboroCity_CuttersHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 11
+            "secondary_tileset": "gTileset_BikeShop",
+            "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/FortreeCity_House1/map.bin",
@@ -984,12 +984,12 @@
         {
             "blockdata_filepath": "data/layouts/Route104_MrBrineysHouse/map.bin",
             "border_filepath": "data/layouts/Route104_MrBrineysHouse/border.bin",
-            "height": 9,
+            "height": 15,
             "id": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
             "name": "Route104_MrBrineysHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_LilycoveMuseum_1F/map.bin",
@@ -1034,12 +1034,12 @@
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_PokemonTrainerFanClub/map.bin",
             "border_filepath": "data/layouts/LilycoveCity_PokemonTrainerFanClub/border.bin",
-            "height": 14,
+            "height": 15,
             "id": "LAYOUT_LILYCOVE_CITY_POKEMON_TRAINER_FAN_CLUB",
             "name": "LilycoveCity_PokemonTrainerFanClub_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/MossdeepCity_Gym/map.bin",
@@ -1154,12 +1154,12 @@
         {
             "blockdata_filepath": "data/layouts/Route114_FossilManiacsHouse/map.bin",
             "border_filepath": "data/layouts/Route114_FossilManiacsHouse/border.bin",
-            "height": 8,
+            "height": 15,
             "id": "LAYOUT_ROUTE114_FOSSIL_MANIACS_HOUSE",
             "name": "Route114_FossilManiacsHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_PetalburgGym",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route114_FossilManiacsTunnel/map.bin",
@@ -1174,22 +1174,22 @@
         {
             "blockdata_filepath": "data/layouts/Route114_LanettesHouse/map.bin",
             "border_filepath": "data/layouts/Route114_LanettesHouse/border.bin",
-            "height": 8,
+            "height": 15,
             "id": "LAYOUT_ROUTE114_LANETTES_HOUSE",
             "name": "Route114_LanettesHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_Lab",
-            "width": 11
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route116_TunnelersRestHouse/map.bin",
             "border_filepath": "data/layouts/Route116_TunnelersRestHouse/border.bin",
-            "height": 9,
+            "height": 15,
             "id": "LAYOUT_ROUTE116_TUNNELERS_REST_HOUSE",
             "name": "Route116_TunnelersRestHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/Route117_PokemonDayCare/map.bin",
@@ -1318,8 +1318,8 @@
             "id": "LAYOUT_PETALBURG_WOODS",
             "name": "PetalburgWoods_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Rustboro",
-            "width": 48
+            "secondary_tileset": "gTileset_Fortree",
+            "width": 60
         },
         {
             "blockdata_filepath": "data/layouts/MtChimney/map.bin",
@@ -2654,12 +2654,12 @@
         {
             "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_3F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_DevonCorp_3F/border.bin",
-            "height": 9,
+            "height": 19,
             "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_3F",
             "name": "RustboroCity_DevonCorp_3F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 19
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 17
         },
         {
             "blockdata_filepath": "data/layouts/EverGrandeCity_PokemonLeague_1F/map.bin",
@@ -2884,32 +2884,32 @@
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Flat2_1F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_Flat2_1F/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_FLAT2_1F",
             "name": "RustboroCity_Flat2_1F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 14
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Flat2_2F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_Flat2_2F/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_FLAT2_2F",
             "name": "RustboroCity_Flat2_2F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 14
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Flat2_3F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_Flat2_3F/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_FLAT2_3F",
             "name": "RustboroCity_Flat2_3F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 14
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/SootopolisCity_LotadAndSeedotHouse/map.bin",
@@ -2934,22 +2934,22 @@
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_CoveLilyMotel_1F/map.bin",
             "border_filepath": "data/layouts/LilycoveCity_CoveLilyMotel_1F/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_LILYCOVE_CITY_COVE_LILY_MOTEL_1F",
             "name": "LilycoveCity_CoveLilyMotel_1F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_CoveLilyMotel_2F/map.bin",
             "border_filepath": "data/layouts/LilycoveCity_CoveLilyMotel_2F/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_LILYCOVE_CITY_COVE_LILY_MOTEL_2F",
             "name": "LilycoveCity_CoveLilyMotel_2F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/Route124_DivingTreasureHuntersHouse/map.bin",
@@ -3074,22 +3074,22 @@
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Flat1_1F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_Flat1_1F/border.bin",
-            "height": 8,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_FLAT1_1F",
             "name": "RustboroCity_Flat1_1F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 14
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_Flat1_2F/map.bin",
             "border_filepath": "data/layouts/RustboroCity_Flat1_2F/border.bin",
-            "height": 8,
+            "height": 11,
             "id": "LAYOUT_RUSTBORO_CITY_FLAT1_2F",
             "name": "RustboroCity_Flat1_2F_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 14
+            "secondary_tileset": "gTileset_OceanicMuseum",
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/EverGrandeCity_Hall4/map.bin",

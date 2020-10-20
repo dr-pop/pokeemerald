@@ -140,6 +140,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayFishing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HotSpringsOldWoman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSTidal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SubmarineShadow;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SubmarineEmergedIdle;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PichuDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PikachuDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MarillDoll;
@@ -237,6 +238,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RubySapphireBrenda
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RubySapphireMay;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lugia;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fossil2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bard;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hipster;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Trader;
@@ -389,6 +391,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN] =    &gObjectEventGraphicsInfo_HotSpringsOldWoman,
     [OBJ_EVENT_GFX_SS_TIDAL] =                 &gObjectEventGraphicsInfo_SSTidal,
     [OBJ_EVENT_GFX_SUBMARINE_SHADOW] =         &gObjectEventGraphicsInfo_SubmarineShadow,
+    [OBJ_EVENT_GFX_SUBMARINE_EMERGED_IDLE] =   &gObjectEventGraphicsInfo_SubmarineEmergedIdle,
     [OBJ_EVENT_GFX_PICHU_DOLL] =               &gObjectEventGraphicsInfo_PichuDoll,
     [OBJ_EVENT_GFX_PIKACHU_DOLL] =             &gObjectEventGraphicsInfo_PikachuDoll,
     [OBJ_EVENT_GFX_MARILL_DOLL] =              &gObjectEventGraphicsInfo_MarillDoll,
@@ -486,6 +489,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LINK_RS_MAY] =              &gObjectEventGraphicsInfo_RubySapphireMay,
     [OBJ_EVENT_GFX_LUGIA] =                    &gObjectEventGraphicsInfo_Lugia,
     [OBJ_EVENT_GFX_HOOH] =                     &gObjectEventGraphicsInfo_HoOh,
+	[OBJ_EVENT_GFX_FOSSIL2] =                  &gObjectEventGraphicsInfo_Fossil2,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

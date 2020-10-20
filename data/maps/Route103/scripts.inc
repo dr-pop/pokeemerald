@@ -1,18 +1,254 @@
 .set LOCALID_RIVAL, 2
 
 Route103_MapScripts:: @ 81EC38E
-	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
+	//map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
+	//map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
 	.byte 0
 
 Route103_OnTransition: @ 81EC399
-	call Common_EventScript_SetupRivalGfxId
-	call ProfBirch_EventScript_UpdateLocation
+	//call Common_EventScript_SetupRivalGfxId
+	//call ProfBirch_EventScript_UpdateLocation
 	end
 
 Route103_OnLoad: @ 81EC3A4
-	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	//call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
 	end
+
+// ====
+// CUTSCENE. THIEF.
+// ====
+
+Route103_EventScript_Marcos:: @ 81EC74A
+	lock
+	copyvar VAR_TEMP_1, VAR_FACING
+	applymovement 17, Route103_Movement_RivalEnter2
+	waitmovement 0
+	msgbox Route103_Text_Thief3, MSGBOX_DEFAULT
+	delay 16
+	faceplayer
+	delay 16
+	playse SE_PIN
+	applymovement 17, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 16
+	msgbox Route103_Text_Thief4, MSGBOX_DEFAULT
+	delay 16
+	trainerbattle_no_intro TRAINER_MARCOS, Route103_Text_MarcosDefeated
+	//trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
+	//trainerbattle_single TRAINER_MARCOS, Route103_Text_MarcosIntro, Route103_Text_MarcosDefeated
+	//msgbox Route103_Text_MarcosPostBattle, MSGBOX_AUTOCLOSE
+	playbgm MUS_RG_RIVAL1, 0
+	addobject 12
+	applymovement 12, Route103_Movement_RivalEnter
+	waitmovement 0
+	applymovement 17, Common_Movement_FaceRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	applymovement 12, Route103_Movement_RivalEnter2
+	waitmovement 0
+	delay 16
+	msgbox Route103_Text_Rival1, MSGBOX_DEFAULT
+	delay 16
+	switch VAR_TEMP_1
+	case DIR_SOUTH, Route103_EventScript_PlayerLookSouth
+	case DIR_NORTH, Route103_EventScript_PlayerLookNorth
+	case DIR_WEST, Route103_EventScript_PlayerLookWest
+	release
+	end
+
+Route103_EventScript_PlayerLookSouth::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	goto Route103_EventScript_ThiefGivesItem
+	end
+
+Route103_EventScript_PlayerLookNorth::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	goto Route103_EventScript_ThiefGivesItem
+	end
+
+Route103_EventScript_PlayerLookWest::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	goto Route103_EventScript_ThiefGivesItem
+	end
+	
+Route103_EventScript_ThiefGivesItem::
+	delay 16
+	msgbox Route103_Text_Thief1, MSGBOX_DEFAULT
+	closemessage
+	faceplayer
+	delay 16
+	msgbox Route103_Text_Thief3, MSGBOX_DEFAULT
+	closemessage
+	delay 16
+	giveitem ITEM_PLUME_FOSSIL
+	delay 16
+	msgbox Route103_Text_Thief2, MSGBOX_DEFAULT
+	closemessage
+	//delay 8
+	switch VAR_TEMP_1
+	case DIR_SOUTH, Route103_EventScript_ThiefExitSouth
+	case DIR_NORTH, Route103_EventScript_ThiefExitNorth
+	case DIR_WEST, Route103_EventScript_ThiefExitWest
+	release
+	end
+
+Route103_EventScript_ThiefExitNorth::
+	applymovement 17, Route103_Movement_ThiefExitNorth
+	waitmovement 0
+	applymovement 12, Route103_Movement_RivalMoveNorth
+	waitmovement 0
+	goto Route103_EventScript_ThiefExitEnd
+	end
+
+Route103_Movement_RivalMoveNorth:
+	walk_down
+	walk_left
+	step_end
+
+Route103_EventScript_ThiefExitSouth::
+	applymovement 17, Route103_Movement_ThiefExitSouthWest
+	waitmovement 0
+	applymovement 12, Route103_Movement_RivalMoveSouth
+	waitmovement 0
+	goto Route103_EventScript_ThiefExitEnd
+	end
+
+Route103_Movement_RivalMoveSouth:
+	walk_up
+	walk_left
+	step_end
+
+Route103_EventScript_ThiefExitWest::
+	applymovement 17, Route103_Movement_ThiefExitSouthWest
+	waitmovement 0
+	goto Route103_EventScript_ThiefExitEnd
+	end
+
+Route103_EventScript_ThiefExitEnd::	
+	setflag FLAG_HIDE_WILLYSTAD_RIVAL_AND_THIEF
+	removeobject 17
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	delay 16
+	msgbox Route103_Text_Rival2, MSGBOX_DEFAULT
+	delay 16
+	//fadescreen FADE_TO_BLACK
+	//clearflag DEVON_GOODS_STOLEN
+	//clearflag FLAG_DELIVERED_DEVON_GOODS
+	setvar VAR_WILLYSTAD_CITY_STATE, 3
+	warp MAP_RUSTBORO_CITY_DEVON_CORP_1F, 255, 9, 13
+	waitstate
+	releaseall
+	end
+
+Route103_Text_Thief3:
+	.string "Thief: …Curses!\p"
+	.string "It's a dead end…$"
+
+Route103_Text_Thief4:
+	.string "What do you want, punk?\p"
+	.string "Are you here to take the Fossil\n"
+	.string "I rightfully stole?\p"
+	.string "Well, guess what?\n"
+	.string "You'll run into a dead end yourself.$"
+
+Route103_Text_Thief1:
+	.string "Thief: Oh, great.\n"
+	.string "Another one.\p"
+	.string "Here, take this stupid Fossil alright.$"
+	
+Route103_Text_Thief2:
+	.string "Thief: Now leave me alone!$"
+
+Route103_Text_Rival1:
+	.string "{RIVAL}: {PLAYER}, you've caught\n"
+	.string "the scoundrel!$"
+
+Route103_Text_Rival2:
+	.string "{RIVAL}: That good-for-nothing was\n"
+	.string "lucky to get away!\p"
+	.string "Come on, let's bring this fossil back\n"
+	.string "to the Professor and the Mayor.$"
+
+Route103_Movement_RivalEnter:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route103_Movement_RivalEnter2:
+	walk_in_place_fast_left
+	walk_in_place_fast_left
+	step_end
+
+Route103_Movement_ThiefExitNorth:
+	walk_right
+	walk_down
+	walk_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+Route103_Movement_ThiefExitSouthWest:
+	walk_down
+	walk_right
+	walk_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+// ====
+// NPC INTERACTIONS
+// ====
+
+Route103_EventScript_Man:: @ 81EC5E2
+	lock
+	faceplayer
+	compare VAR_WILLYSTAD_CITY_STATE, 2
+	goto_if_eq Route103_EventScript_Man2
+	msgbox Route103_Text_Ledges, MSGBOX_DEFAULT //edited
+	release
+	end
+
+Route103_EventScript_Man2::
+	msgbox Route103_Text_Man2, MSGBOX_DEFAULT //edited
+	release
+	end
+
+Route103_Text_Ledges: @ 81ECBB5 //edited
+	.string "I jumped down from this ledge.\p"
+	.string "But now there's no way back up.$"
+
+Route103_Text_Man2:
+	.string "You see that shady figure\n"
+	.string "over there?\p"
+	.string "I bet he's up to no good.$"
+
+// ========
+// OLD SCRIPTS BELOW
+// ========
+
+//remove below at some point
 
 Route103_EventScript_OpenAlteringCave:: @ 81EC3AE
 	setmetatile 45, 5, METATILE_General_CaveEntrance_Top, 1
@@ -190,13 +426,10 @@ Route103_Movement_WatchRivalExitFacingEastOrWest: @ 81EC5D6
 	delay_16
 	walk_in_place_fastest_down
 	step_end
+// remove above at some point
 
 Route103_EventScript_Boy:: @ 81EC5D9
 	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
-	end
-
-Route103_EventScript_Man:: @ 81EC5E2
-	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
 	end
 
 Route103_EventScript_RouteSign:: @ 81EC5EB
@@ -273,11 +506,6 @@ Route103_EventScript_MiguelRematch:: @ 81EC733
 	msgbox Route103_Text_MiguelRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route103_EventScript_Marcos:: @ 81EC74A
-	trainerbattle_single TRAINER_MARCOS, Route103_Text_MarcosIntro, Route103_Text_MarcosDefeated
-	msgbox Route103_Text_MarcosPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route103_EventScript_Rhett:: @ 81EC761
 	trainerbattle_single TRAINER_RHETT, Route103_Text_RhettIntro, Route103_Text_RhettDefeated
 	msgbox Route103_Text_RhettPostBattle, MSGBOX_AUTOCLOSE
@@ -293,6 +521,7 @@ Route103_EventScript_Isabelle:: @ 81EC78F
 	msgbox Route103_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+//remove below
 Route103_Text_MayRoute103Pokemon: @ 81EC7A6
 	.string "MAY: Let's see… The POKéMON found\n"
 	.string "on ROUTE 103 include…$"
@@ -344,15 +573,11 @@ Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
 	.string "{PLAYER}, I get the feeling that you\n"
 	.string "could befriend any POKéMON with ease.\p"
 	.string "We should head back to the LAB.$"
+//remove above
 
 Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
 	.string "My POKéMON is staggeringly tired…\n"
 	.string "I should have brought a POTION…$"
-
-Route103_Text_ShortcutToOldale: @ 81ECBB5
-	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
-	.string "Fufufu, that's useful, isn't it?$"
 
 Route103_Text_RouteSign: @ 81ECC1A
 	.string "ROUTE 103\n"

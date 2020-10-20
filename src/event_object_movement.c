@@ -436,6 +436,36 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_32 0x1121
 #define OBJ_EVENT_PAL_TAG_33 0x1122
 #define OBJ_EVENT_PAL_TAG_34 0x1123
+#define OBJ_EVENT_PAL_PLAYERM 0x1124 // custom
+#define OBJ_EVENT_PAL_BLUE 0x1125
+#define OBJ_EVENT_PAL_BROWN 0x1126
+#define OBJ_EVENT_PAL_GREEN 0x1127
+#define OBJ_EVENT_PAL_ORANGE 0x1128
+#define OBJ_EVENT_PAL_PINK 0x1129
+#define OBJ_EVENT_PAL_PURPLE 0x1130
+#define OBJ_EVENT_PAL_REDBROWN 0x1131
+#define OBJ_EVENT_PAL_SANDGREEN 0x1132
+#define OBJ_EVENT_PAL_WHITE 0x1133
+#define OBJ_EVENT_PAL_YELLOW 0x1134
+#define OBJ_EVENT_PAL_GREEN2 0x1135
+#define OBJ_EVENT_PAL_REDPURPLE 0x1136
+#define OBJ_EVENT_PAL_LILA 0x1137
+#define OBJ_EVENT_PAL_WHITE2 0x1138
+#define OBJ_EVENT_PAL_TWIN 0x1139
+#define OBJ_EVENT_PAL_SWIMMER 0x1140
+#define OBJ_EVENT_PAL_RICHBOY 0x1141
+#define OBJ_EVENT_PAL_GROWER 0x1142
+#define OBJ_EVENT_PAL_LADY 0x1143
+#define OBJ_EVENT_PAL_BURGLAR 0x1144
+#define OBJ_EVENT_PAL_RUIN 0x1145
+#define OBJ_EVENT_PAL_TAMER 0x1146
+#define OBJ_EVENT_PAL_FARMER 0x1147
+#define OBJ_EVENT_PAL_MAYOR 0x1148
+#define OBJ_EVENT_PAL_OFFICER 0x1149
+#define OBJ_EVENT_PAL_PROF 0x1150
+#define OBJ_EVENT_PAL_FOSSIL2 0x1151
+#define OBJ_EVENT_PAL_SUBMARINE 0x1152
+#define OBJ_EVENT_PAL_PLAYERF 0x1153
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -482,6 +512,36 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette32, OBJ_EVENT_PAL_TAG_32},
     {gObjectEventPalette33, OBJ_EVENT_PAL_TAG_33},
     {gObjectEventPalette34, OBJ_EVENT_PAL_TAG_34},
+	{gObjectEventPalettePlayerM, 	OBJ_EVENT_PAL_PLAYERM}, // custom
+	{gObjectEventPalettePlayerF, 	OBJ_EVENT_PAL_PLAYERF}, // custom
+	{gObjectEventPaletteBlue, 		OBJ_EVENT_PAL_BLUE}, // custom
+	{gObjectEventPaletteBrown, 		OBJ_EVENT_PAL_BROWN}, // custom
+	{gObjectEventPaletteGreen, 		OBJ_EVENT_PAL_GREEN}, // custom
+	{gObjectEventPaletteOrange, 	OBJ_EVENT_PAL_ORANGE}, // custom
+	{gObjectEventPalettePink, 		OBJ_EVENT_PAL_PINK}, // custom
+	{gObjectEventPalettePurple, 	OBJ_EVENT_PAL_PURPLE}, // custom
+	{gObjectEventPaletteRedbrown, 	OBJ_EVENT_PAL_REDBROWN}, // custom
+	{gObjectEventPaletteSandgreen, 	OBJ_EVENT_PAL_SANDGREEN}, // custom
+	{gObjectEventPaletteWhite, 		OBJ_EVENT_PAL_WHITE}, // custom
+	{gObjectEventPaletteYellow, 	OBJ_EVENT_PAL_YELLOW}, // custom
+	{gObjectEventPaletteGreen2, 	OBJ_EVENT_PAL_GREEN2}, // custom
+	{gObjectEventPaletteRedpurple, 	OBJ_EVENT_PAL_REDPURPLE}, // custom
+	{gObjectEventPaletteLila, 		OBJ_EVENT_PAL_LILA}, // custom
+	{gObjectEventPaletteWhite2, 	OBJ_EVENT_PAL_WHITE2}, // custom
+	{gObjectEventPaletteTwin, 		OBJ_EVENT_PAL_TWIN}, // custom
+	{gObjectEventPaletteSwimmer, 	OBJ_EVENT_PAL_SWIMMER}, // custom
+	{gObjectEventPaletteRichboy, 	OBJ_EVENT_PAL_RICHBOY}, // custom
+	{gObjectEventPaletteGrower, 	OBJ_EVENT_PAL_GROWER}, // custom
+	{gObjectEventPaletteLady, 		OBJ_EVENT_PAL_LADY}, // custom
+	{gObjectEventPaletteBurglar, 	OBJ_EVENT_PAL_BURGLAR}, // custom
+	{gObjectEventPaletteRuin, 		OBJ_EVENT_PAL_RUIN}, // custom
+	{gObjectEventPaletteTamer, 		OBJ_EVENT_PAL_TAMER}, // custom
+	{gObjectEventPaletteFarmer, 	OBJ_EVENT_PAL_FARMER}, // custom
+	{gObjectEventPaletteMayor, 		OBJ_EVENT_PAL_MAYOR}, // custom
+	{gObjectEventPaletteOfficer, 	OBJ_EVENT_PAL_OFFICER}, // custom
+	{gObjectEventPaletteProf, 		OBJ_EVENT_PAL_PROF}, // custom
+	{gObjectEventPaletteFossil2, 	OBJ_EVENT_PAL_FOSSIL2}, // custom
+	{gObjectEventPaletteSubmarine, 	OBJ_EVENT_PAL_SUBMARINE}, // custom
     {NULL,                  0x0000},
 };
 
@@ -1332,10 +1392,14 @@ void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
 
 static void RemoveObjectEventInternal(struct ObjectEvent *objectEvent)
 {
-    struct SpriteFrameImage image;
+    u8 paletteNum; // added for dyn pal system
+	
+	struct SpriteFrameImage image;
     image.size = GetObjectEventGraphicsInfo(objectEvent->graphicsId)->size;
     gSprites[objectEvent->spriteId].images = &image;
+	paletteNum = gSprites[objectEvent->spriteId].oam.paletteNum; // added
     DestroySprite(&gSprites[objectEvent->spriteId]);
+	FieldEffectFreePaletteIfUnused(paletteNum); // added
 }
 
 void RemoveAllObjectEventsExceptPlayer(void)
@@ -1352,7 +1416,7 @@ void RemoveAllObjectEventsExceptPlayer(void)
 static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTemplate, struct SpriteTemplate *spriteTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY)
 {
     u8 spriteId;
-    u8 paletteSlot;
+    // u8 paletteSlot; // commented out for dynamic palette system
     u8 objectEventId;
     struct Sprite *sprite;
     struct ObjectEvent *objectEvent;
@@ -1364,25 +1428,30 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
 
     objectEvent = &gObjectEvents[objectEventId];
     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
-    paletteSlot = graphicsInfo->paletteSlot;
-    if (paletteSlot == 0)
-    {
-        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, 0);
-    }
-    else if (paletteSlot == 10)
-    {
-        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag1, 10);
-    }
-    else if (paletteSlot >= 16)
-    {
-        paletteSlot -= 16;
-        sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
-    }
+    if (spriteTemplate->paletteTag != 0xffff)    // added for dyanmic palette system, below cmtd out
+	{											 // added
+		// sub_808E894(spriteTemplate->paletteTag); // originally added but replaced with line below
+		LoadObjectEventPalette(spriteTemplate->paletteTag); //customly added
+	} 											 // added
+	//paletteSlot = graphicsInfo->paletteSlot;
+    //if (paletteSlot == 0)
+    //{
+    //    LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, 0);
+    //}
+    //else if (paletteSlot == 10)
+    //{
+    //    LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag1, 10);
+    //}
+    //else if (paletteSlot >= 16)
+    //{
+    //    paletteSlot -= 16;
+    //    sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
+    //}
 
     if (objectEvent->movementType == MOVEMENT_TYPE_INVISIBLE)
         objectEvent->invisible = TRUE;
 
-    *(u16 *)&spriteTemplate->paletteTag = 0xFFFF;
+    //*(u16 *)&spriteTemplate->paletteTag = 0xFFFF;
     spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
     if (spriteId == MAX_SPRITES)
     {
@@ -1396,7 +1465,7 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
     sprite->centerToCornerVecY = -(graphicsInfo->height >> 1);
     sprite->pos1.x += 8;
     sprite->pos1.y += 16 + sprite->centerToCornerVecY;
-    sprite->oam.paletteNum = paletteSlot;
+    //sprite->oam.paletteNum = paletteSlot;
     sprite->coordOffsetEnabled = TRUE;
     sprite->data[0] = objectEventId;
     objectEvent->spriteId = spriteId;
@@ -1668,7 +1737,7 @@ void sub_808E16C(s16 x, s16 y)
 static void sub_808E1B8(u8 objectEventId, s16 x, s16 y)
 {
     u8 spriteId;
-    u8 paletteSlot;
+    // u8 paletteSlot; // cmtd out for dyn pal system
     struct Sprite *sprite;
     struct ObjectEvent *objectEvent;
     struct SpriteTemplate spriteTemplate;
@@ -1692,22 +1761,27 @@ static void sub_808E1B8(u8 objectEventId, s16 x, s16 y)
     spriteFrameImage.size = graphicsInfo->size;
     MakeObjectTemplateFromObjectEventGraphicsInfoWithCallbackIndex(objectEvent->graphicsId, objectEvent->movementType, &spriteTemplate, &subspriteTables);
     spriteTemplate.images = &spriteFrameImage;
-    *(u16 *)&spriteTemplate.paletteTag = 0xFFFF;
-    paletteSlot = graphicsInfo->paletteSlot;
-    if (paletteSlot == 0)
-    {
-        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
-    }
-    else if (paletteSlot == 10)
-    {
-        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
-    }
-    else if (paletteSlot >= 16)
-    {
-        paletteSlot -= 16;
-        sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
-    }
-    *(u16 *)&spriteTemplate.paletteTag = 0xFFFF;
+    if (spriteTemplate.paletteTag != 0xffff) 	// from here added... (dyn pal system)
+	{
+		// sub_808E894(spriteTemplate.paletteTag); // added but replaced with custom line below
+		LoadObjectEventPalette(spriteTemplate.paletteTag); // custom line
+	}											// ...until here added
+	//*(u16 *)&spriteTemplate.paletteTag = 0xFFFF;
+    //paletteSlot = graphicsInfo->paletteSlot;
+    //if (paletteSlot == 0)
+    //{
+    //    LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
+    //}
+    //else if (paletteSlot == 10)
+    //{
+    //    LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
+    //}
+    //else if (paletteSlot >= 16)
+    //{
+    //    paletteSlot -= 16;
+    //    sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
+    //}
+    //*(u16 *)&spriteTemplate.paletteTag = 0xFFFF;
     spriteId = CreateSprite(&spriteTemplate, 0, 0, 0);
     if (spriteId != MAX_SPRITES)
     {
@@ -1727,7 +1801,7 @@ static void sub_808E1B8(u8 objectEventId, s16 x, s16 y)
         {
             SetSubspriteTables(sprite, subspriteTables);
         }
-        sprite->oam.paletteNum = paletteSlot;
+        //sprite->oam.paletteNum = paletteSlot;
         sprite->coordOffsetEnabled = TRUE;
         sprite->data[0] = objectEventId;
         objectEvent->spriteId = spriteId;

@@ -40,10 +40,15 @@
 #define METATILE_General_YellowCaveOpen       0x1A9
 #define METATILE_General_BlueCaveIndent       0x1B0
 #define METATILE_General_BlueCaveOpen         0x1B1
+#define METATILE_General_PopDoor1             0x021
+#define METATILE_General_PopDoor2             0x022
+#define METATILE_General_PopSliding           0x020
 
 // gTileset_Building
-#define METATILE_Building_PC_Off 0x004
-#define METATILE_Building_PC_On  0x005
+#define METATILE_Building_PC_Off 			0x004
+#define METATILE_Building_PC_On  			0x005
+#define METATILE_Building_AnimatedDoor 		0x006
+#define METATILE_Building_LockedDoor    	0x007
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_Door_CableClub  0x264
@@ -504,6 +509,14 @@
 #define METATILE_TrainerHill_CounterDoor          0x334
 #define METATILE_TrainerHill_Door_Elevator_Lobby  0x32C
 #define METATILE_TrainerHill_Door_Elevator_Roof   0x383
+
+// gTileset_RS
+#define METATILE_RS_MossdeepGym_RedArrow_Down   0x205
+#define METATILE_RS_MossdeepGym_RedArrow_Left   0x20C
+#define METATILE_RS_MossdeepGym_RedArrow_Right  0x204
+#define METATILE_RS_MossdeepGym_RedArrow_Up     0x20D
+#define METATILE_RS_MossdeepGym_Switch_Down     0x239
+#define METATILE_RS_MossdeepGym_Switch_Up       0x238
 
 // gTileset_Underwater
 #define METATILE_Underwater_RockWall    0x21E
