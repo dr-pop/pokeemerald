@@ -11,7 +11,7 @@
     "id": "MAP_VERDANTURF_TOWN_WANDAS_HOUSE",
     "layout": "LAYOUT_VERDANTURF_TOWN_WANDAS_HOUSE",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOMACHI0",
+    "music": "MUS_VERDANTURF",
     "name": "VerdanturfTown_WandasHouse",
     "object_events": [
         {

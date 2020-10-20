@@ -11,7 +11,7 @@
     "id": "MAP_RUSTBORO_CITY_HOUSE1",
     "layout": "LAYOUT_RUSTBORO_CITY_HOUSE1",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_P_SCHOOL",
+    "music": "MUS_SCHOOL",
     "name": "RustboroCity_House1",
     "object_events": [
         {

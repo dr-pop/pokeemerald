@@ -51,7 +51,7 @@
     "id": "MAP_RUSTBORO_CITY_POKEMON_SCHOOL",
     "layout": "LAYOUT_RUSTBORO_CITY_POKEMON_SCHOOL",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_P_SCHOOL",
+    "music": "MUS_SCHOOL",
     "name": "RustboroCity_PokemonSchool",
     "object_events": [
         {

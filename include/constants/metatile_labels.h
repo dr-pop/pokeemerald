@@ -16,7 +16,6 @@
 #define METATILE_General_MuddySlope_Frame2    0x0EA
 #define METATILE_General_MuddySlope_Frame3    0x0EB
 #define METATILE_General_SandPit_Center       0x121
-#define METATILE_General_Door                 0x021   
 #define METATILE_General_Door_PokeMart        0x041
 #define METATILE_General_Door_PokeCenter      0x061
 #define METATILE_General_Door_Gym             0x1CD

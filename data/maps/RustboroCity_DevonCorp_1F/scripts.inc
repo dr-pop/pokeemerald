@@ -241,7 +241,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene1:: @ 8211289
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Prof3, MSGBOX_DEFAULT
 	closemessage
 	delay 16
-	playbgm MUS_RG_AJITO, 0
+	playbgm MUS_RG_ROCKET_HIDEOUT, 0
 	delay 16
 	applymovement 14, RustboroCity_DevonCorp_1F_Movement_Burglar1
 	waitmovement 0
@@ -454,7 +454,7 @@ RustboroCity_DevonCorp_1F_EventScript_ChooseStarterDebug::
 	delay 30
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Rival1, MSGBOX_DEFAULT
 	closemessage
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -727,7 +727,7 @@ RustboroCity_DevonCorp_1F_EventScript_Cutscene2::
 	closemessage
 	delay 16
 	//player and rival receive Pokémon
-	playfanfare MUS_FANFA5
+	playfanfare MUS_EVOLVED
 	msgbox RustboroCity_DevonCorp_1F_Text_Cutscene1Fanfare1, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

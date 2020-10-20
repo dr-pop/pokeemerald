@@ -136,7 +136,7 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxus:: @ 8213EA9
 	msgbox RustboroCity_PokemonSchool_Text_Prof1, MSGBOX_DEFAULT
 	closemessage
 	delay 16
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox RustboroCity_PokemonSchool_Text_ReceivedPokedex, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -241,7 +241,7 @@ RustboroCity_PokemonSchool_EventScript_ProfBuxusExit2::
 	applymovement 5, RustboroCity_PokemonSchool_Movement_Prof2
 	waitmovement 0
 	delay 8
-	playse SE_RG_W_DOOR
+	playse SE_RG_DOOR
 	delay 8
 	removeobject 5
 	setflag FLAG_HIDE_WILLYSTAD_LAB_PROF

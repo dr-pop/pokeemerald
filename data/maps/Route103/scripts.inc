@@ -37,7 +37,7 @@ Route103_EventScript_Marcos:: @ 81EC74A
 	//trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
 	//trainerbattle_single TRAINER_MARCOS, Route103_Text_MarcosIntro, Route103_Text_MarcosDefeated
 	//msgbox Route103_Text_MarcosPostBattle, MSGBOX_AUTOCLOSE
-	playbgm MUS_RG_RIVAL1, 0
+	playbgm MUS_RG_ENCOUNTER_RIVAL, 0
 	addobject 12
 	applymovement 12, Route103_Movement_RivalEnter
 	waitmovement 0
