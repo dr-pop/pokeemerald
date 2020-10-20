@@ -29,7 +29,7 @@
         },
         {
             "direction": "dive",
-            "map": "MAP_UNDERWATER6",
+            "map": "MAP_UNDERWATER_ROUTE105",
             "offset": 0
         }
     ],

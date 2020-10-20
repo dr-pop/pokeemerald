@@ -749,7 +749,7 @@ Script_GivePokemonDemo::
 	compare VAR_RESULT, 6
 	goto_if_eq Script_PlayerHasFullParty
 	givemon SPECIES_CHARIZARD, 50, ITEM_DRAGON_FANG
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox Text_ReceivedCharizard, MSGBOX_DEFAULT
 	waitfanfare
 	release
