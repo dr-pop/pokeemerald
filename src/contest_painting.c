@@ -44,7 +44,7 @@ static void PrintContestPaintingCaption(u8, u8);
 static void VBlankCB_ContestPainting(void);
 static void _InitContestMonPixels(u8 *spriteGfx, u16 *palette, u16 (*destPixels)[64][64]);
 
-extern const u8 gUnknown_0827EA0C[];
+extern const u8 gContestPaintingCaption[];
 extern const u8 gContestCoolness[];
 extern const u8 gContestBeauty[];
 extern const u8 gContestCuteness[];
@@ -165,12 +165,11 @@ const u16 gUnknown_085B0838[] = {RGB(0, 0, 0), RGB(0, 0, 0)};
 
 void SetContestWinnerForPainting(int contestWinnerId)
 {
-    // probably fakematching
     u8 *ptr1 = &gUnknown_02039F5D;
     u8 *ptr2 = &gUnknown_02039F5C;
-	gCurContestWinner = gSaveBlock1Ptr->contestWinners[contestWinnerId - 1];
-	*ptr1 = contestWinnerId - 1;
-	*ptr2 = FALSE;
+    gCurContestWinner = gSaveBlock1Ptr->contestWinners[contestWinnerId - 1];
+    *ptr1 = contestWinnerId - 1;
+    *ptr2 = FALSE;
 }
 
 void CB2_ContestPainting(void)
@@ -251,7 +250,7 @@ static void HoldContestPainting(void)
         if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
         {
             gContestPaintingState++;
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB(0, 0, 0));
         }
 
         if (gUnknown_030011F6)
@@ -298,7 +297,7 @@ static void PrintContestPaintingCaption(u8 contestType, bool8 arg1)
         StringCopy(gStringVar2, gContestPaintingWinner->trainerName);
         sub_81DB5AC(gStringVar2);
         StringCopy(gStringVar3, gContestPaintingWinner->monName);
-        StringExpandPlaceholders(gStringVar4, gUnknown_0827EA0C);
+        StringExpandPlaceholders(gStringVar4, gContestPaintingCaption);
     }
     else
     {
@@ -368,19 +367,19 @@ static void InitContestMonPixels(u16 species, u8 whichSprite)
     {
         HandleLoadSpecialPokePic_DontHandleDeoxys(
             &gMonFrontPicTable[species],
-            gMonSpritesGfxPtr->sprites[1],
+            gMonSpritesGfxPtr->sprites.ptr[1],
             species,
             gContestPaintingWinner->personality);
-        _InitContestMonPixels(gMonSpritesGfxPtr->sprites[1], gContestPaintingMonPalette, (void *)gContestMonPixels);
+        _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[1], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
     else
     {
         HandleLoadSpecialPokePic_DontHandleDeoxys(
             &gMonBackPicTable[species],
-            gMonSpritesGfxPtr->sprites[0],
+            gMonSpritesGfxPtr->sprites.ptr[0],
             species,
             gContestPaintingWinner->personality);
-        _InitContestMonPixels(gMonSpritesGfxPtr->sprites[0], gContestPaintingMonPalette, (void *)gContestMonPixels);
+        _InitContestMonPixels(gMonSpritesGfxPtr->sprites.ptr[0], gContestPaintingMonPalette, (void *)gContestMonPixels);
     }
 }
 
@@ -397,16 +396,16 @@ static void _InitContestMonPixels(u8 *spriteGfx, u16 *palette, u16 (*destPixels)
             {
                 for (pixelX = 0; pixelX < 8; pixelX++)
                 {
-                    colorIndex = spriteGfx[((tileY * 8) + tileX) * 32 + (pixelY << 2) + (pixelX >> 1)];
+                    colorIndex = spriteGfx[32 * (tileY * 8 + tileX) + (pixelY << 2) + (pixelX >> 1)];
                     if (pixelX & 1)
                         colorIndex >>= 4;
                     else
-                        colorIndex &= 0xF; // %=16 works here too. Both match
+                        colorIndex &= 0xF;
 
-                    if (colorIndex == 0)   // transparent pixel
-                        (*destPixels)[tileY * 8 + pixelY][tileX * 8 + pixelX] = 0x8000;
+                    if (colorIndex == 0) // transparent pixel
+                        (*destPixels)[8 * tileY + pixelY][tileX * 8 + pixelX] = 0x8000;
                     else
-                        (*destPixels)[tileY * 8 + pixelY][tileX * 8 + pixelX] = palette[colorIndex];
+                        (*destPixels)[8 * tileY + pixelY][tileX * 8 + pixelX] = palette[colorIndex];
                 }
             }
         }
@@ -501,20 +500,19 @@ static void LoadContestPaintingFrame(u8 contestWinnerId, bool8 arg1)
 
 static void InitPaintingMonOamData(u8 contestWinnerId)
 {
-    //Some hacks just to get the asm to match
-#ifndef NONMATCHING
-    asm(""::"r"(contestWinnerId));
-#endif
-
     gMain.oamBuffer[0] = sContestPaintingMonOamData;
     gMain.oamBuffer[0].tileNum = 0;
 
-#ifndef NONMATCHING
-    if (contestWinnerId) contestWinnerId = gMain.oamBuffer[0].tileNum;
-#endif
-
-    gMain.oamBuffer[0].x = 88;
-    gMain.oamBuffer[0].y = 24;
+    if (contestWinnerId > 1)
+    {
+        gMain.oamBuffer[0].x = 88;
+        gMain.oamBuffer[0].y = 24;
+    }
+    else
+    {
+        gMain.oamBuffer[0].x = 88; // Duplicated code
+        gMain.oamBuffer[0].y = 24;
+    }
 }
 
 static u8 GetImageEffectForContestWinner(u8 contestWinnerId)

@@ -132,7 +132,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "31",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_118_SITRUS_1",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 35,
             "y": 5
@@ -145,7 +145,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "32",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_118_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 36,
             "y": 5
@@ -158,7 +158,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "33",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_118_SITRUS_2",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 37,
             "y": 5

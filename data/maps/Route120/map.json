@@ -641,12 +641,12 @@
         },
         {
             "elevation": 4,
-            "flag": "FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_INVISIBLE",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "flag": "FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
-            "script": "Route120_EventScript_InvisibleBridgeKecleon",
+            "script": "Route120_EventScript_BridgeKecleon",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 12,
@@ -719,8 +719,8 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_VISIBLE",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_2",
+            "flag": "FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_SHADOW",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON_BRIDGE_SHADOW",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -733,7 +733,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_120_KECLEON_1",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
@@ -746,7 +746,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_120_KECLEON_2",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
@@ -759,7 +759,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_120_KECLEON_3",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
@@ -772,7 +772,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_120_KECLEON_5",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
@@ -785,7 +785,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_120_KECLEON_4",
-            "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
+            "graphics_id": "OBJ_EVENT_GFX_KECLEON",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",

@@ -751,8 +751,8 @@ static bool32 InitFrontierPass(void)
         ShowBg(2);
         LoadCursorAndSymbolSprites();
         SetVBlankCallback(VblankCb_FrontierPass);
-        BlendPalettes(0xFFFFFFFF, 0x10, RGB_BLACK);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         break;
     case 10:
         AnimateSprites();
@@ -775,7 +775,7 @@ static bool32 HideFrontierPass(void)
     case 0:
         if (sPassData->unkE != 1 && sPassData->unkE != 2)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         }
         else
         {
@@ -983,6 +983,9 @@ static void Task_HandleFrontierPassInput(u8 taskId)
                 SetMainCallback2(CB2_HideFrontierPass);
                 DestroyTask(taskId);
                 // BUG. The function should return here. Otherwise, it can play the same sound twice and destroy the same task twice.
+                #ifdef BUGFIX
+                return;
+                #endif
             }
         }
 
@@ -1020,7 +1023,7 @@ static void Task_DoFadeEffect(u8 taskId)
             data[2] = Q_8_8(1);
             data[3] = 0x15;
             data[4] = 0x15;
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITE);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_WHITE);
         }
         else
         {
@@ -1034,8 +1037,8 @@ static void Task_DoFadeEffect(u8 taskId)
             ShowBg(2);
             LoadCursorAndSymbolSprites();
             SetVBlankCallback(VblankCb_FrontierPass);
-            BlendPalettes(0xFFFFFFFF, 0x10, RGB_WHITE);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_WHITE);
+            BlendPalettes(PALETTES_ALL, 0x10, RGB_WHITE);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_WHITE);
         }
         sPassGfx->setAffine = TRUE;
         sPassGfx->unk2E = MathUtil_Inv16(data[1]);
@@ -1173,75 +1176,47 @@ static void sub_80C5F58(bool8 arg0, bool8 arg1)
 
 static void sub_80C6104(u8 cursorArea, u8 previousCursorArea)
 {
-    bool32 var;
-
     switch (previousCursorArea)
     {
     case CURSOR_AREA_MAP:
         CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk24, 16, 3, 12, 7, 17);
-        var = TRUE;
         break;
     case CURSOR_AREA_CARD:
         CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk24 + 336, 16, 10, 12, 7, 17);
-        var = TRUE;
         break;
     case CURSOR_AREA_RECORD:
-        if (!sPassData->hasBattleRecord)
-        {
-            var = FALSE;
-        }
-        else
-        {
+        if (sPassData->hasBattleRecord)
             CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk28, 2, 10, 12, 3, 17);
-            var = TRUE;
-        }
+        else if (cursorArea == CURSOR_AREA_NOTHING || cursorArea > CURSOR_AREA_CANCEL)
+            return;
         break;
     case CURSOR_AREA_CANCEL:
         CopyToBgTilemapBufferRect_ChangePalette(1, gUnknown_08DE3350, 21, 0, 9, 2, 17);
-        var = TRUE;
         break;
     default:
-        var = FALSE;
-        break;
-    }
-
-    if (!var)
-    {
         if (cursorArea == CURSOR_AREA_NOTHING || cursorArea > CURSOR_AREA_CANCEL)
             return;
+        break;
     }
-
+    
     switch (cursorArea)
     {
     case CURSOR_AREA_MAP:
         CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk24 + 168, 16, 3, 12, 7, 17);
-        var = TRUE;
         break;
     case CURSOR_AREA_CARD:
         CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk24 + 504, 16, 10, 12, 7, 17);
-        var = TRUE;
         break;
     case CURSOR_AREA_RECORD:
-        if (!sPassData->hasBattleRecord)
+        if (sPassData->hasBattleRecord)
+            CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk28 + 72, 2, 10, 12, 3, 17);
+        else
             return;
-
-        CopyToBgTilemapBufferRect_ChangePalette(1, sPassGfx->unk28 + 72, 2, 10, 12, 3, 17);
-        var = TRUE;
-        break;
+        break; //needed to match
     case CURSOR_AREA_CANCEL:
         CopyToBgTilemapBufferRect_ChangePalette(1, gUnknown_08DE3374, 21, 0, 9, 2, 17);
-        var = TRUE;
         break;
     default:
-        var = FALSE;
-        break;
-    }
-
-    if (!var)
-    {
-        #ifndef NONMATCHING
-            asm("":::"r4");
-        #endif
         if (previousCursorArea == CURSOR_AREA_NOTHING || previousCursorArea > CURSOR_AREA_CANCEL)
             return;
     }
@@ -1391,8 +1366,8 @@ static bool32 InitFrontierMap(void)
         ShowBg(2);
         InitFrontierMapSprites();
         SetVBlankCallback(VblankCb_FrontierPass);
-        BlendPalettes(0xFFFFFFFF, 0x10, RGB_WHITE);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_WHITE);
+        BlendPalettes(PALETTES_ALL, 0x10, RGB_WHITE);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_WHITE);
         break;
     case 7:
         if (UpdatePaletteFade())
@@ -1410,7 +1385,7 @@ static bool32 ExitFrontierMap(void)
     switch (sPassData->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITE);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_WHITE);
         break;
     case 1:
         if (UpdatePaletteFade())

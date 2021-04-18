@@ -135,7 +135,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "24",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_112_RAWST_2",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 27,
             "y": 6
@@ -148,7 +148,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "23",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_112_PECHA_2",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 28,
             "y": 6
@@ -161,7 +161,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "22",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_112_PECHA_1",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 29,
             "y": 6
@@ -174,7 +174,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
             "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "21",
+            "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_112_RAWST_1",
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 30,
             "y": 6

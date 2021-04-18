@@ -183,7 +183,7 @@ bool8 AdjustQuantityAccordingToDPadInput(s16 *arg0, u16 arg1)
 {
     s16 valBefore = (*arg0);
 
-    if (JOY_REPEAT(DPAD_ANY) == DPAD_UP)
+    if ((JOY_REPEAT(DPAD_ANY)) == DPAD_UP)
     {
         (*arg0)++;
         if ((*arg0) > arg1)
@@ -199,7 +199,7 @@ bool8 AdjustQuantityAccordingToDPadInput(s16 *arg0, u16 arg1)
             return TRUE;
         }
     }
-    else if (JOY_REPEAT(DPAD_ANY) == DPAD_DOWN)
+    else if ((JOY_REPEAT(DPAD_ANY)) == DPAD_DOWN)
     {
         (*arg0)--;
         if ((*arg0) <= 0)
@@ -215,7 +215,7 @@ bool8 AdjustQuantityAccordingToDPadInput(s16 *arg0, u16 arg1)
             return TRUE;
         }
     }
-    else if (JOY_REPEAT(DPAD_ANY) == DPAD_RIGHT)
+    else if ((JOY_REPEAT(DPAD_ANY)) == DPAD_RIGHT)
     {
         (*arg0) += 10;
         if ((*arg0) > arg1)
@@ -231,7 +231,7 @@ bool8 AdjustQuantityAccordingToDPadInput(s16 *arg0, u16 arg1)
             return TRUE;
         }
     }
-    else if (JOY_REPEAT(DPAD_ANY) == DPAD_LEFT)
+    else if ((JOY_REPEAT(DPAD_ANY)) == DPAD_LEFT)
     {
         (*arg0) -= 10;
         if ((*arg0) <= 0)
@@ -312,14 +312,14 @@ static bool8 sub_81221D0(void)
     if (!MenuHelpers_LinkSomething())
         return FALSE;
     else
-        return sub_8087598();
+        return Overworld_LinkRecvQueueLengthMoreThan2();
 }
 
 bool8 MenuHelpers_CallLinkSomething(void)
 {
     if (sub_81221D0() == TRUE)
         return TRUE;
-    else if (sub_800B504() != TRUE)
+    else if (IsLinkRecvQueueLengthAtLeast3() != TRUE)
         return FALSE;
     else
         return TRUE;

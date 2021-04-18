@@ -41,7 +41,6 @@
 #include "constants/moves.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 
 struct WallpaperTable
 {
@@ -232,7 +231,7 @@ struct PokemonStorageSystemData
     struct Sprite *field_D94;
     struct Sprite *field_D98[2];
     u16 *field_DA0;
-    struct PokemonMarkMenu markMenu;
+    struct MonMarkingsMenu markMenu;
     struct UnkPSSStruct_2002370 field_1E5C;
     struct Pokemon movingMon;
     struct Pokemon field_2108;
@@ -2157,7 +2156,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 {
     ResetTasks();
     sCurrentBoxOption = boxOption;
-    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
+    sPSSData = Alloc(sizeof(*sPSSData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2177,7 +2176,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 static void Cb2_ReturnToPSS(void)
 {
     ResetTasks();
-    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
+    sPSSData = Alloc(sizeof(*sPSSData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2324,8 +2323,8 @@ static void Cb_InitPSS(u8 taskId)
         {
             sPSSData->markMenu.baseTileTag = TAG_TILE_D;
             sPSSData->markMenu.basePaletteTag = TAG_PAL_DACE;
-            sub_811F90C(&sPSSData->markMenu);
-            sub_811FA90();
+            InitMonMarkingsMenu(&sPSSData->markMenu);
+            BufferMonMarkingsMenuTiles();
         }
         else
         {
@@ -2337,12 +2336,12 @@ static void Cb_InitPSS(u8 taskId)
         SetMonIconTransparency();
         if (!sPSSData->isReshowingPSS)
         {
-            BlendPalettes(0xFFFFFFFF, 0x10, RGB_BLACK);
+            BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
             SetPSSCallback(Cb_ShowPSS);
         }
         else
         {
-            BlendPalettes(0xFFFFFFFF, 0x10, RGB_BLACK);
+            BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
             SetPSSCallback(Cb_ReshowPSS);
         }
         SetVBlankCallback(VblankCb_PSS);
@@ -2375,7 +2374,7 @@ static void Cb_ReshowPSS(u8 taskId)
     switch (sPSSData->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, -1, 0x10, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, -1, 0x10, 0, RGB_BLACK);
         sPSSData->state++;
         break;
     case 1:
@@ -3180,13 +3179,13 @@ static void Cb_ShowMarkMenu(u8 taskId)
     case 0:
         PrintStorageActionText(PC_TEXT_MARK_POKE);
         sPSSData->markMenu.markings = sPSSData->cursorMonMarkings;
-        sub_811FAA4(sPSSData->cursorMonMarkings, 0xb0, 0x10);
+        OpenMonMarkingsMenu(sPSSData->cursorMonMarkings, 0xb0, 0x10);
         sPSSData->state++;
         break;
     case 1:
-        if (!sub_811FBA4())
+        if (!HandleMonMarkingsMenuInput())
         {
-            sub_811FAF8();
+            FreeMonMarkingsMenu();
             ClearBottomWindow();
             SetMonMarkings(sPSSData->markMenu.markings);
             RefreshCursorMonData();
@@ -3682,7 +3681,7 @@ static void Cb_NameBox(u8 taskId)
     {
     case 0:
         sub_80CE760();
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sPSSData->state++;
         break;
     case 1:
@@ -3702,7 +3701,7 @@ static void Cb_ShowMonSummary(u8 taskId)
     {
     case 0:
         sub_80CE7E8();
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sPSSData->state++;
         break;
     case 1:
@@ -3721,7 +3720,7 @@ static void Cb_GiveItemFromBag(u8 taskId)
     switch (sPSSData->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sPSSData->state++;
         break;
     case 1:
@@ -3984,7 +3983,7 @@ static void sub_80CA0D8(void)
 
 static void sub_80CA154(void)
 {
-    sPSSData->field_D94 = sub_811FFB4(TAG_TILE_10, TAG_PAL_DAC8, NULL);
+    sPSSData->field_D94 = CreateMonMarkingComboSprite(TAG_TILE_10, TAG_PAL_DAC8, NULL);
     sPSSData->field_D94->oam.priority = 1;
     sPSSData->field_D94->subpriority = 1;
     sPSSData->field_D94->pos1.x = 40;
@@ -4050,11 +4049,11 @@ static void LoadCursorMonSprite(void)
     u16 tileStart;
     u8 palSlot;
     u8 spriteId;
-    struct SpriteSheet sheet = {sPSSData->field_22C4, 0x800, TAG_TILE_2};
+    struct SpriteSheet sheet = {sPSSData->field_22C4, MON_PIC_SIZE, TAG_TILE_2};
     struct SpritePalette palette = {sPSSData->field_2244, TAG_PAL_DAC6};
     struct SpriteTemplate template = sSpriteTemplate_CursorMon;
 
-    for (i = 0; i < 0x800; i++)
+    for (i = 0; i < MON_PIC_SIZE; i++)
         sPSSData->field_22C4[i] = 0;
     for (i = 0; i < 0x10; i++)
         sPSSData->field_2244[i] = 0;
@@ -4096,7 +4095,7 @@ static void LoadCursorMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sPSSData->field_22C4, species, pid, TRUE);
         LZ77UnCompWram(sPSSData->cursorMonPalette, sPSSData->field_2244);
-        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, 0x800);
+        CpuCopy32(sPSSData->field_22C4, sPSSData->field_223C, MON_PIC_SIZE);
         LoadPalette(sPSSData->field_2244, sPSSData->field_223A, 0x20);
         sPSSData->cursorMonSprite->invisible = FALSE;
     }
@@ -4127,7 +4126,7 @@ static void PrintCursorMonInfo(void)
     CopyWindowToVram(0, 2);
     if (sPSSData->cursorMonSpecies != SPECIES_NONE)
     {
-        sub_8120084(sPSSData->cursorMonMarkings, sPSSData->field_DA0);
+        UpdateMonMarkingTiles(sPSSData->cursorMonMarkings, sPSSData->field_DA0);
         sPSSData->field_D94->invisible = FALSE;
     }
     else
@@ -5899,12 +5898,12 @@ static bool8 sub_80CD554(void)
     return TRUE;
 }
 
-static void sub_80CD6AC(u8 newCurosrArea, u8 newCursorPosition)
+static void sub_80CD6AC(u8 newCursorArea, u8 newCursorPosition)
 {
     u16 x, y;
 
-    sub_80CD444(newCurosrArea, newCursorPosition, &x, &y);
-    sPSSData->field_CD4 = newCurosrArea;
+    sub_80CD444(newCursorArea, newCursorPosition, &x, &y);
+    sPSSData->field_CD4 = newCursorArea;
     sPSSData->field_CD5 = newCursorPosition;
     sPSSData->field_CCC = x;
     sPSSData->field_CCE = y;
@@ -5956,9 +5955,9 @@ static void sub_80CD70C(void)
     sPSSData->field_CC0 = sPSSData->field_CB4->pos1.y << 8;
 }
 
-static void sub_80CD894(u8 newCurosrArea, u8 newCursorPosition)
+static void sub_80CD894(u8 newCursorArea, u8 newCursorPosition)
 {
-    sub_80CD6AC(newCurosrArea, newCursorPosition);
+    sub_80CD6AC(newCursorArea, newCursorPosition);
     sub_80CD70C();
     if (sPSSData->boxOption != BOX_OPTION_MOVE_ITEMS)
     {
@@ -5978,19 +5977,19 @@ static void sub_80CD894(u8 newCurosrArea, u8 newCursorPosition)
         else if (sBoxCursorArea == CURSOR_AREA_IN_PARTY)
             sub_80D0E50(CURSOR_AREA_IN_PARTY, sBoxCursorPosition);
 
-        if (newCurosrArea == CURSOR_AREA_IN_BOX)
-            sub_80D0D8C(newCurosrArea, newCursorPosition);
-        else if (newCurosrArea == CURSOR_AREA_IN_PARTY)
-            sub_80D0D8C(newCurosrArea, newCursorPosition);
+        if (newCursorArea == CURSOR_AREA_IN_BOX)
+            sub_80D0D8C(newCursorArea, newCursorPosition);
+        else if (newCursorArea == CURSOR_AREA_IN_PARTY)
+            sub_80D0D8C(newCursorArea, newCursorPosition);
     }
 
-    if (newCurosrArea == CURSOR_AREA_IN_PARTY && sBoxCursorArea != CURSOR_AREA_IN_PARTY)
+    if (newCursorArea == CURSOR_AREA_IN_PARTY && sBoxCursorArea != CURSOR_AREA_IN_PARTY)
     {
-        sPSSData->field_CD6 = newCurosrArea;
+        sPSSData->field_CD6 = newCursorArea;
         sPSSData->field_CB8->invisible = TRUE;
     }
 
-    switch (newCurosrArea)
+    switch (newCursorArea)
     {
     case CURSOR_AREA_IN_PARTY:
     case CURSOR_AREA_BOX:
@@ -6778,11 +6777,11 @@ static void SetCursorMonData(void *pokemon, u8 mode)
 {
     u8 *txtPtr;
     u16 gender;
-    bool8 sanityIsBagEgg;
+    bool8 sanityIsBadEgg;
 
     sPSSData->cursorMonItem = 0;
     gender = MON_MALE;
-    sanityIsBagEgg = FALSE;
+    sanityIsBadEgg = FALSE;
     if (mode == MODE_PARTY)
     {
         struct Pokemon *mon = (struct Pokemon *)pokemon;
@@ -6790,8 +6789,8 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         sPSSData->cursorMonSpecies = GetMonData(mon, MON_DATA_SPECIES2);
         if (sPSSData->cursorMonSpecies != SPECIES_NONE)
         {
-            sanityIsBagEgg = GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG);
-            if (sanityIsBagEgg)
+            sanityIsBadEgg = GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG);
+            if (sanityIsBadEgg)
                 sPSSData->cursorMonIsEgg = TRUE;
             else
                 sPSSData->cursorMonIsEgg = GetMonData(mon, MON_DATA_IS_EGG);
@@ -6814,8 +6813,8 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         if (sPSSData->cursorMonSpecies != SPECIES_NONE)
         {
             u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
-            sanityIsBagEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
-            if (sanityIsBagEgg)
+            sanityIsBadEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
+            if (sanityIsBadEgg)
                 sPSSData->cursorMonIsEgg = TRUE;
             else
                 sPSSData->cursorMonIsEgg = GetBoxMonData(boxMon, MON_DATA_IS_EGG);
@@ -6847,7 +6846,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
     }
     else if (sPSSData->cursorMonIsEgg)
     {
-        if (sanityIsBagEgg)
+        if (sanityIsBadEgg)
             StringCopyPadded(sPSSData->cursorMonNickText, sPSSData->cursorMonNick, CHAR_SPACE, 5);
         else
             StringCopyPadded(sPSSData->cursorMonNickText, gText_EggNickname, CHAR_SPACE, 8);
@@ -7441,7 +7440,7 @@ static u8 HandleInput_OnButtons(void)
             sPSSData->field_CD7 = 1;
             break;
         }
-        
+
         if (JOY_REPEAT(DPAD_DOWN | START_BUTTON))
         {
             retVal = 1;
@@ -8390,7 +8389,7 @@ static u8 sub_80D0894(void)
 
 static void sub_80D08CC(void)
 {
-    s32 i, j, r8, r9;
+    s32 i, j;
     s32 rowCount, columnCount;
     u8 boxId;
     u8 monArrayId;
@@ -8409,8 +8408,13 @@ static void sub_80D08CC(void)
         for (j = sMoveMonsPtr->minRow; j < rowCount; j++)
         {
             struct BoxPokemon *boxMon = GetBoxedMonPtr(boxId, boxPosition);
-
+            // UB: possible null dereference
+#ifdef UBFIX
+            if (boxMon != NULL)
+                sMoveMonsPtr->boxMons[monArrayId] = *boxMon;
+#else
             sMoveMonsPtr->boxMons[monArrayId] = *boxMon;
+#endif
             monArrayId++;
             boxPosition++;
         }
@@ -9330,10 +9334,11 @@ u32 GetBoxMonLevelAt(u8 boxId, u8 boxPosition)
 {
     u32 lvl;
 
-    // BUG: Missed 'else' statement.
     if (boxId < TOTAL_BOXES_COUNT && boxPosition < IN_BOX_COUNT && GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
         lvl = GetLevelFromBoxMonExp(&gPokemonStoragePtr->boxes[boxId][boxPosition]);
-    // else
+    #ifdef BUGFIX
+    else
+    #endif
         lvl = 0;
 
     return lvl;

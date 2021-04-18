@@ -1205,6 +1205,8 @@
 #define NATIONAL_DEX_HO_OH 250
 #define NATIONAL_DEX_CELEBI 251
 
+// removed data added by battle_engine (unowns).
+
 #define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI
 
 #define NATIONAL_DEX_TREECKO 252
@@ -1983,5 +1985,7 @@
 #define HOENN_DEX_DEOXYS 211
 
 #define HOENN_DEX_COUNT 212
+
+// removed data added by battle_engine (unowns).
 
 #endif  // GUARD_CONSTANTS_SPECIES_H
