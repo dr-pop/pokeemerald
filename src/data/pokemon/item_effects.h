@@ -215,7 +215,7 @@ const u8 gItemEffect_Calcium[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_Zinc[10] = {
+const u8 gItemEffect_Zinc[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
