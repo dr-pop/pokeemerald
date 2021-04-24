@@ -36,12 +36,12 @@ const u8 gItemEffect_MaxPotion[7] = {
 
 const u8 gItemEffect_HyperPotion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 200, // Amount of HP to recover
+    [6] = 120, // Amount of HP to recover
 };
 
 const u8 gItemEffect_SuperPotion[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 50, // Amount of HP to recover
+    [6] = 60, // Amount of HP to recover
 };
 
 const u8 gItemEffect_FullHeal[6] = {
@@ -60,17 +60,17 @@ const u8 gItemEffect_MaxRevive[7] = {
 
 const u8 gItemEffect_FreshWater[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 50, // Amount of HP to recover
+    [6] = 30, // Amount of HP to recover
 };
 
 const u8 gItemEffect_SodaPop[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 60, // Amount of HP to recover
+    [6] = 50, // Amount of HP to recover
 };
 
 const u8 gItemEffect_Lemonade[7] = {
     [4] = ITEM4_HEAL_HP,
-    [6] = 80, // Amount of HP to recover
+    [6] = 70, // Amount of HP to recover
 };
 
 const u8 gItemEffect_MoomooMilk[7] = {
@@ -81,7 +81,7 @@ const u8 gItemEffect_MoomooMilk[7] = {
 const u8 gItemEffect_EnergyPowder[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 50,  // Amount of HP to recover
+    [6] = 60,  // Amount of HP to recover
     [7] = -5,  // Friendship change, low
     [8] = -5,  // Friendship change, mid
     [9] = -10, // Friendship change, high
@@ -90,7 +90,7 @@ const u8 gItemEffect_EnergyPowder[10] = {
 const u8 gItemEffect_EnergyRoot[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 200, // Amount of HP to recover
+    [6] = 120, // Amount of HP to recover
     [7] = -10, // Friendship change, low
     [8] = -10, // Friendship change, mid
     [9] = -15, // Friendship change, high
@@ -178,11 +178,12 @@ const u8 gItemEffect_SacredAsh[7] = {
     [(i) + 1] = 3, /* Friendship change, mid */  \
     [(i) + 2] = 2  /* Friendship change, high */
 
-const u8 gItemEffect_HPUp[10] = {
+const u8 gItemEffect_HPUp[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Protein[11] = {
@@ -190,85 +191,83 @@ const u8 gItemEffect_Protein[11] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Iron[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Carbos[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Calcium[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Zinc[10] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
+    [10] = ITEM10_IS_VITAMIN,
 };
+
+#define WING_FRIENDSHIP_CHANGE(i)                \
+    [(i) + 0] = 3, /* Friendship change, low */  \
+    [(i) + 1] = 2, /* Friendship change, mid */  \
+    [(i) + 2] = 1  /* Friendship change, high */
 
 const u8 gItemEffect_HpWing[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_AtkWing[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_DefWing[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpeedWing[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpatkWing[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpdefWing[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
+    [6] = ITEM6_ADD_ONE_EV,
+    WING_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
@@ -312,40 +311,61 @@ const u8 gItemEffect_DireHit[8] = {
 };
 
 const u8 gItemEffect_XAttack[8] = {
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_ATTACK,
+#else
     [0] = 1, // ITEM0_X_ATTACK
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
     STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_XDefend[8] = {
-    [1] = 1 << 4, /// ITEM1_X_DEFEND
+const u8 gItemEffect_XDefense[8] = {
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_DEFENSE,
+#else
+    [1] = 1 << 4, // ITEM1_X_DEFEND
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
     STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
 const u8 gItemEffect_XSpeed[8] = {
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_SPEED,
+#else
     [1] = 1, // ITEM1_X_SPEED
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
     STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
 const u8 gItemEffect_XAccuracy[8] = {
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_ACCURACY,
+#else
     [2] = 1 << 4, // ITEM2_X_ACCURACY
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
     STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
 const u8 gItemEffect_XSpecialAttack[8] = {
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_SPATK,
+#else
     [2] = 1, // ITEM2_X_SPATK
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
     STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
 const u8 gItemEffect_XSpecialDefense[8] = {
-    [2] = 1,
+#ifdef BATTLE_ENGINE
+    [1] = ITEM1_X_SPDEF,
+#endif
     [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
-    [6] = 1,
-    [7] = 1,
+    STAT_BOOST_FRIENDSHIP_CHANGE,
 };
 
 const u8 gItemEffect_EvoStone[6] = {
