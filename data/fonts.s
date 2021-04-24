@@ -38,11 +38,11 @@ gFont2LatinGlyphWidths:: @ 864C0E4
 @change font1 to font2
 	.align 2
 gFont1LatinGlyphs:: @ 864C2E4
-	.incbin "data/graphics/fonts/font2.latfont"
+	.incbin "graphics/fonts/font2.latfont"
 
 	.align 2
 gFont1LatinGlyphWidths:: @ 86542E4
-	.include "data/graphics/fonts/font2_latin_widths.inc"
+	.include "graphics/fonts/font2_latin_widths.inc"
 
 /*
 	.align 2
